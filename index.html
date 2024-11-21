@@ -10,6 +10,44 @@
             --primary-color: #d4af37;
             --secondary-color: #1a1a1a;
             --text-color: #ffffff;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes holographic {
+            0% {
+                filter: hue-rotate(0deg) saturate(1);
+            }
+            50% {
+                filter: hue-rotate(180deg) saturate(1.5);
+            }
+            100% {
+                filter: hue-rotate(360deg) saturate(1);
+            }
+        }
+
+        @keyframes fire {
+            0% { box-shadow: 0 0 20px #ff4d4d; }
+            50% { box-shadow: 0 0 40px #ff4d4d, 0 0 60px #ff8533; }
+            100% { box-shadow: 0 0 20px #ff4d4d; }
+        }
+
+        @keyframes auraGlow {
+            0% { box-shadow: 0 0 20px var(--color); }
+            50% { box-shadow: 0 0 40px var(--color), 0 0 60px var(--color); }
+            100% { box-shadow: 0 0 20px var(--color); }
         }
 
         body {
@@ -35,12 +73,6 @@
             letter-spacing: 2px;
         }
 
-        .header p {
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-
         .rankings {
             display: flex;
             flex-wrap: wrap;
@@ -58,13 +90,55 @@
             background-color: #2a2a2a;
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             cursor: pointer;
+            opacity: 0;
+        }
+
+        .card.fade-in {
+            animation: fadeIn 0.5s ease forwards;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .card[data-rank="1"] {
+            --color: var(--gold);
+            animation: holographic 3s infinite linear;
+        }
+
+        .card[data-rank="1"] .card-image {
+            animation: auraGlow 2s infinite;
+            --color: var(--gold);
+        }
+
+        .card[data-rank="2"] {
+            --color: var(--silver);
+            animation: holographic 3s infinite linear;
+        }
+
+        .card[data-rank="2"] .card-image {
+            animation: auraGlow 2s infinite;
+            --color: var(--silver);
+        }
+
+        .card[data-rank="3"] {
+            --color: var(--bronze);
+            animation: holographic 3s infinite linear;
+        }
+
+        .card[data-rank="3"] .card-image {
+            animation: auraGlow 2s infinite;
+            --color: var(--bronze);
+        }
+
+        .card.ple-leader {
+            position: relative;
+        }
+
+        .card.ple-leader .card-image {
+            animation: fire 2s infinite;
         }
 
         .card-image {
@@ -100,7 +174,6 @@
             display: flex;
             justify-content: space-around;
             margin-top: 0.5rem;
-            font-size: 0.9rem;
         }
 
         .stat {
@@ -167,9 +240,16 @@
             const container = document.getElementById('rankings');
             container.innerHTML = '';
 
-            players.forEach(player => {
+            // Trouver le joueur avec le plus de points PLE
+            const maxPlePoints = Math.max(...players.map(p => p.plePoints));
+
+            players.forEach((player, index) => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                    card.classList.add('ple-leader');
+                }
+                card.setAttribute('data-rank', player.rank);
                 
                 const imagePath = `./cards/${player.name}.png`;
                 
@@ -196,6 +276,11 @@
                 `;
 
                 container.appendChild(card);
+                
+                // Animation d'entrée séquentielle
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 200); // Délai de 200ms entre chaque carte
             });
         }
 
