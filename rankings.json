@@ -1,1 +1,114 @@
-[]
+[
+  {
+    "name": "AURELIEN",
+    "seasonPoints": 68,
+    "totalPoints": 55,
+    "plePoints": 0,
+    "rank": 1,
+    "imageUrl": "cards/AURELIEN.png"
+  },
+  {
+    "name": "JASON",
+    "seasonPoints": 63,
+    "totalPoints": 54,
+    "plePoints": 0,
+    "rank": 2,
+    "imageUrl": "cards/JASON.png"
+  },
+  {
+    "name": "MATHIS",
+    "seasonPoints": 62,
+    "totalPoints": 56,
+    "plePoints": 0,
+    "rank": 3,
+    "imageUrl": "cards/MATHIS.png"
+  },
+  {
+    "name": "ANTO",
+    "seasonPoints": 57,
+    "totalPoints": 51,
+    "plePoints": 0,
+    "rank": 4,
+    "imageUrl": "cards/ANTO.png"
+  },
+  {
+    "name": "QUENTIN",
+    "seasonPoints": 49,
+    "totalPoints": 45,
+    "plePoints": 0,
+    "rank": 5,
+    "imageUrl": "cards/QUENTIN.png"
+  },
+  {
+    "name": "BRANDON",
+    "seasonPoints": 42,
+    "totalPoints": 39,
+    "plePoints": 0,
+    "rank": 6,
+    "imageUrl": "cards/BRANDON.png"
+  },
+  {
+    "name": "NEK",
+    "seasonPoints": 43,
+    "totalPoints": 39,
+    "plePoints": 0,
+    "rank": 7,
+    "imageUrl": "cards/NEK.png"
+  },
+  {
+    "name": "ONI",
+    "seasonPoints": 40,
+    "totalPoints": 40,
+    "plePoints": 0,
+    "rank": 8,
+    "imageUrl": "cards/ONI.png"
+  },
+  {
+    "name": "NATHAN",
+    "seasonPoints": 33,
+    "totalPoints": 30,
+    "plePoints": 0,
+    "rank": 9,
+    "imageUrl": "cards/NATHAN.png"
+  },
+  {
+    "name": "MIZOU",
+    "seasonPoints": 21,
+    "totalPoints": 14,
+    "plePoints": 0,
+    "rank": 10,
+    "imageUrl": "cards/MIZOU.png"
+  },
+  {
+    "name": "RYOLAIT12",
+    "seasonPoints": 20,
+    "totalPoints": 16,
+    "plePoints": 0,
+    "rank": 11,
+    "imageUrl": "cards/RYOLAIT12.png"
+  },
+  {
+    "name": "BEN",
+    "seasonPoints": 19,
+    "totalPoints": 16,
+    "plePoints": 0,
+    "rank": 12,
+    "imageUrl": "cards/BEN.png"
+  },
+  {
+    "name": "LUDOPOUL",
+    "seasonPoints": 12,
+    "totalPoints": 12,
+    "plePoints": 0,
+    "rank": 13,
+    "imageUrl": "cards/LUDOPOUL.png"
+  },
+  {
+    "name": "ELCHAPO",
+    "seasonPoints": 10,
+    "totalPoints": 10,
+    "plePoints": 0,
+    "rank": 14,
+    "imageUrl": "cards/ELCHAPO.png"
+  }
+]

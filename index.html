@@ -54,6 +54,10 @@
         .card {
             position: relative;
             width: 300px;
+            height: 420px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
@@ -63,11 +67,11 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        .card img {
+        .card-image {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .card-info {
@@ -78,7 +82,6 @@
             background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
             padding: 1rem;
             border-radius: 0 0 10px 10px;
-            text-align: center;
         }
 
         .rank {
@@ -90,6 +93,7 @@
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: bold;
+            z-index: 1;
         }
 
         .stats {
@@ -112,6 +116,13 @@
 
         .stat-value {
             font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .player-name {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 0;
             color: var(--primary-color);
         }
 
@@ -160,11 +171,13 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 
+                const imagePath = `./cards/${player.name}.png`;
+                
                 card.innerHTML = `
                     <div class="rank">#${player.rank}</div>
-                    <img src="${player.imageUrl}" alt="${player.name}" onerror="this.src='cards/default.png'">
+                    <img class="card-image" src="${imagePath}" alt="${player.name}" onerror="this.src='https://via.placeholder.com/300x420/2a2a2a/d4af37?text=${player.name}'">
                     <div class="card-info">
-                        <h3>${player.name}</h3>
+                        <h3 class="player-name">${player.name}</h3>
                         <div class="stats">
                             <div class="stat">
                                 <span class="stat-label">Saison</span>
