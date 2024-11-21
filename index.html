@@ -42,9 +42,28 @@
         }
 
         @keyframes fire {
-            0% { box-shadow: 0 0 20px #ff4d4d; }
-            50% { box-shadow: 0 0 40px #ff4d4d, 0 0 60px #ff8533; }
-            100% { box-shadow: 0 0 20px #ff4d4d; }
+            0% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px #ff4d4d,
+                    0 0 60px #ff4d4d,
+                    0 0 90px #ff8533,
+                    0 0 120px #ff8533;
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+                transform: scale(1);
+            }
         }
 
         @keyframes auraGlow {
@@ -134,10 +153,25 @@
 
         .card.ple-leader {
             position: relative;
+            z-index: 2;
+        }
+
+        .card.ple-leader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff4d4d, #ff8533);
+            border-radius: 10px;
+            z-index: -1;
+            animation: fire 2s infinite;
         }
 
         .card.ple-leader .card-image {
-            animation: fire 2s infinite;
+            position: relative;
+            z-index: 1;
         }
 
         .card-image {
