@@ -153,21 +153,52 @@
 
         .ple-leader {
             position: relative;
-            z-index: 2;
+            overflow: visible !important;
         }
 
-        .ple-leader::before {
+        .ple-leader::after {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #ff4d4d, #ff8533);
-            border-radius: 15px;
-            z-index: -1;
-            animation: fire 2s infinite;
-            opacity: 0.8;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #ff4d4d;
+            border-radius: 12px;
+            animation: fireGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fireGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 15px #ff4d4d,
+                    0 0 25px #ff4d4d,
+                    0 0 35px #ff8533,
+                    inset 0 0 15px #ff4d4d;
+                border-color: #ff4d4d;
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #ff8533,
+                    0 0 45px #ff8533,
+                    0 0 65px #ff4d4d,
+                    inset 0 0 25px #ff8533;
+                border-color: #ff8533;
+            }
+        }
+
+        .ple-leader .rank::after {
+            content: '🔥';
+            margin-left: 5px;
+            font-size: 1.2em;
+        }
+
+        .ple-leader .card-info {
+            background: linear-gradient(to top, 
+                rgba(255, 77, 77, 0.9), 
+                rgba(255, 133, 51, 0.7)
+            );
         }
 
         .card-image {
