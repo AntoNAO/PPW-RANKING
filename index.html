@@ -151,27 +151,23 @@
             animation: holographic 3s infinite ease-in-out;
         }
 
-        .card.ple-leader {
+        .ple-leader {
             position: relative;
             z-index: 2;
         }
 
-        .card.ple-leader::before {
+        .ple-leader::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
             background: linear-gradient(45deg, #ff4d4d, #ff8533);
-            border-radius: 10px;
+            border-radius: 15px;
             z-index: -1;
             animation: fire 2s infinite;
-        }
-
-        .card.ple-leader .card-image {
-            position: relative;
-            z-index: 1;
+            opacity: 0.8;
         }
 
         .card-image {
@@ -263,26 +259,35 @@
             try {
                 const response = await fetch('rankings.json');
                 const players = await response.json();
-                displayRankings(players);
+                
+                // Trouver le plus haut score PLE
+                const maxPlePoints = Math.max(...players.map(p => Number(p.plePoints)));
+                console.log('Max PLE Points:', maxPlePoints);
+                
+                displayRankings(players, maxPlePoints);
             } catch (error) {
                 console.error('Erreur lors du chargement des données:', error);
             }
         }
 
-        function displayRankings(players) {
+        function displayRankings(players, maxPlePoints) {
             const container = document.getElementById('rankings');
             container.innerHTML = '';
-
-            // Trouver le joueur avec le plus de points PLE
-            const maxPlePoints = Math.max(...players.map(p => p.plePoints));
 
             players.forEach((player, index) => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                
+                // Ajouter la classe ple-leader si le joueur a le plus de points PLE (et plus que 0)
+                console.log('Player:', player.name, 'PLE Points:', player.plePoints);
+                if (player.plePoints == maxPlePoints && maxPlePoints > 0) {
+                    console.log('Adding PLE leader class to:', player.name);
                     card.classList.add('ple-leader');
                 }
-                card.setAttribute('data-rank', player.rank);
+                
+                if (player.rank <= 3) {
+                    card.setAttribute('data-rank', player.rank);
+                }
                 
                 const imagePath = `./cards/${player.name}.png`;
                 
@@ -310,10 +315,9 @@
 
                 container.appendChild(card);
                 
-                // Animation d'entrée séquentielle
                 setTimeout(() => {
                     card.classList.add('fade-in');
-                }, index * 200); // Délai de 200ms entre chaque carte
+                }, index * 200);
             });
         }
 
