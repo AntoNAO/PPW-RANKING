@@ -46,10 +46,12 @@
         }
 
         .ple-card {
-            background: #2a2a2a;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease;
+            position: relative;
+            aspect-ratio: 16/9;
         }
 
         .ple-card:hover {
@@ -58,35 +60,47 @@
 
         .ple-image {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
 
         .ple-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            z-index: 2;
         }
 
         .ple-title {
-            color: var(--primary-color);
-            margin: 0 0 1rem 0;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
         .ple-date {
-            color: #888;
             font-size: 0.9rem;
-            margin-bottom: 1rem;
+            opacity: 0.8;
         }
 
-        .ple-results {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .ple-grid {
-                grid-template-columns: 1fr;
-            }
+        .ple-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 3;
         }
 
         .back-button {
@@ -130,6 +144,12 @@
         }
 
         @media (max-width: 768px) {
+            .ple-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
             .search-box {
                 flex-direction: column;
             }
@@ -157,34 +177,90 @@
     </div>
 
     <script>
-        // Exemple de données PLE (à remplacer par vos vraies données)
+        // Données des PLE avec les images par défaut
         const pleEvents = [
             {
                 name: "Royal Rumble 2024",
                 date: "2024-01-27",
-                image: "path_to_image.jpg",
-                results: "path_to_results.jpg"
+                image: "https://www.wwe.com/f/styles/og_image/public/2024/01/20240127_RoyalRumble--82ff5b87f9c1a25c848613140bf9b643.jpg",
+                status: "Terminé"
             },
             {
                 name: "Elimination Chamber 2024",
                 date: "2024-02-24",
-                image: "path_to_image.jpg",
-                results: "path_to_results.jpg"
+                image: "https://www.wwe.com/f/styles/og_image/public/2024/02/20240224_EC_LOGO--6c2c48e9c7f1e1c48876c61b3a64fc78.jpg",
+                status: "À venir"
+            },
+            {
+                name: "WrestleMania 40",
+                date: "2024-04-06",
+                image: "https://www.wwe.com/f/styles/og_image/public/2024/02/20240406_WM_Logo--3e8c3a3c2b4c2a4e9e9a2a6a5e8f2c1d.jpg",
+                status: "À venir"
+            },
+            {
+                name: "BACKLASH FRANCE",
+                date: "2024-05-05",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=BACKLASH+FRANCE+2024",
+                status: "À venir"
+            },
+            {
+                name: "KING & QUEEN OF THE RING",
+                date: "2024-05-25",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=KING+%26+QUEEN+OF+THE+RING+2024",
+                status: "À venir"
+            },
+            {
+                name: "CLASH AT THE CASTLE SCOTLAND",
+                date: "2024-06-15",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=CLASH+AT+THE+CASTLE+SCOTLAND+2024",
+                status: "À venir"
+            },
+            {
+                name: "MONEY IN THE BANK TORONTO",
+                date: "2024-07-06",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=MONEY+IN+THE+BANK+TORONTO+2024",
+                status: "À venir"
+            },
+            {
+                name: "SUMMER SLAM CLEVELAND",
+                date: "2024-08-03",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=SUMMER+SLAM+CLEVELAND+2024",
+                status: "À venir"
+            },
+            {
+                name: "BASH IN BERLIN",
+                date: "2024-08-31",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=BASH+IN+BERLIN+2024",
+                status: "À venir"
+            },
+            {
+                name: "BAD BLOOD 2024",
+                date: "2024-10-05",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=BAD+BLOOD+2024",
+                status: "À venir"
+            },
+            {
+                name: "CROWN JEWEL 2024",
+                date: "2024-11-02",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=CROWN+JEWEL+2024",
+                status: "À venir"
             }
-            // Ajoutez d'autres événements ici
         ];
 
         function displayPLEs(events) {
             const grid = document.getElementById('pleGrid');
             grid.innerHTML = events.map(event => `
                 <div class="ple-card">
-                    <img src="${event.image}" alt="${event.name}" class="ple-image">
+                    <img src="${event.image}" alt="${event.name}" class="ple-image" onerror="this.src='https://via.placeholder.com/800x450?text=${encodeURIComponent(event.name)}'">
+                    <div class="ple-status">${event.status}</div>
                     <div class="ple-info">
                         <h2 class="ple-title">${event.name}</h2>
-                        <div class="ple-date">${new Date(event.date).toLocaleDateString()}</div>
-                        <div class="ple-results">
-                            <img src="${event.results}" alt="Résultats ${event.name}" style="width: 100%;">
-                        </div>
+                        <div class="ple-date">${new Date(event.date).toLocaleDateString('fr-FR', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })}</div>
                     </div>
                 </div>
             `).join('');
