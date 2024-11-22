@@ -97,17 +97,13 @@
                 box-shadow: 
                     0 0 15px #ffd700,
                     0 0 25px #ffd700,
-                    0 0 35px #daa520,
-                    inset 0 0 15px #ffd700;
-                border-color: #ffd700;
+                    0 0 35px #ffd700;
             }
             50% {
                 box-shadow: 
-                    0 0 25px #daa520,
-                    0 0 45px #daa520,
-                    0 0 65px #ffd700,
-                    inset 0 0 25px #daa520;
-                border-color: #daa520;
+                    0 0 25px #ffd700,
+                    0 0 45px #ffd700,
+                    0 0 65px #ffd700;
             }
         }
 
@@ -116,17 +112,13 @@
                 box-shadow: 
                     0 0 15px #c0c0c0,
                     0 0 25px #c0c0c0,
-                    0 0 35px #a9a9a9,
-                    inset 0 0 15px #c0c0c0;
-                border-color: #c0c0c0;
+                    0 0 35px #c0c0c0;
             }
             50% {
                 box-shadow: 
-                    0 0 25px #a9a9a9,
-                    0 0 45px #a9a9a9,
-                    0 0 65px #c0c0c0,
-                    inset 0 0 25px #a9a9a9;
-                border-color: #a9a9a9;
+                    0 0 25px #c0c0c0,
+                    0 0 45px #c0c0c0,
+                    0 0 65px #c0c0c0;
             }
         }
 
@@ -135,17 +127,13 @@
                 box-shadow: 
                     0 0 15px #cd7f32,
                     0 0 25px #cd7f32,
-                    0 0 35px #b8860b,
-                    inset 0 0 15px #cd7f32;
-                border-color: #cd7f32;
+                    0 0 35px #cd7f32;
             }
             50% {
                 box-shadow: 
-                    0 0 25px #b8860b,
-                    0 0 45px #b8860b,
-                    0 0 65px #cd7f32,
-                    inset 0 0 25px #b8860b;
-                border-color: #b8860b;
+                    0 0 25px #cd7f32,
+                    0 0 45px #cd7f32,
+                    0 0 65px #cd7f32;
             }
         }
 
@@ -251,6 +239,18 @@
             opacity: 0;
             transform: translateY(20px);
             position: relative;
+            width: 200px;
+            margin: 20px;
+        }
+
+        .card.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .icons-container {
@@ -282,290 +282,121 @@
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 15px;
         }
 
-        .card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
-            padding: 1.5rem;
-            color: white;
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
-        .player-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .player-rank {
-            position: absolute;
-            top: -30px;
-            right: 10px;
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 0.3rem;
-        }
-
-        .stat-value {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .progress-bars {
-            margin-top: 1rem;
-        }
-
-        .progress-bar {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            margin-bottom: 4px;
-            overflow: hidden;
-        }
-
-        .progress {
-            height: 100%;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
+        /* Effets spéciaux avec priorité */
+        .all-time-champion {
+            box-shadow: 0 0 15px #00bfff,
+                       0 0 25px #00bfff,
+                       0 0 35px #0099ff;
+            animation: diamondGlow 2s infinite !important;
         }
 
         .ple-leader {
-            position: relative;
-            overflow: visible !important;
+            box-shadow: 0 0 20px #ff4d4d,
+                       0 0 40px #ff4d4d,
+                       0 0 60px #ff8533;
+            animation: fire 2s infinite !important;
         }
 
-        .ple-leader::before {
-            content: '🔥';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 40px;
-            z-index: 2;
-            filter: drop-shadow(0 0 10px #ff4d4d);
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .ple-leader::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 3px solid #ff4d4d;
-            border-radius: 12px;
-            animation: fire 2s infinite;
-            pointer-events: none;
-        }
-
-        .all-time-champion {
-            position: relative;
-            overflow: visible !important;
-        }
-
-        .all-time-champion::before {
-            content: '👑';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 40px;
-            z-index: 2;
-            filter: drop-shadow(0 0 10px #00bfff);
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .all-time-champion::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 3px solid #00bfff;
-            border-radius: 12px;
-            animation: diamondGlow 2s infinite;
-            pointer-events: none;
-        }
-
-        .all-time-champion .rank::after {
-            content: '👑';
-            margin-left: 5px;
-            font-size: 1.2em;
-        }
-
-        .all-time-champion .card-info {
-            background: linear-gradient(to top, 
-                rgba(0, 191, 255, 0.9), 
-                rgba(0, 153, 255, 0.7)
-            );
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 0.5rem;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .stat-value {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .player-name {
-            text-align: center;
-            font-size: 1.2rem;
-            margin: 0;
-            color: var(--primary-color);
-        }
-
-        /* Styles pour les cartes du top 3 */
-        .card[data-rank="1"] {
+        .rank-1 {
+            box-shadow: 0 0 15px #ffd700,
+                       0 0 25px #ffd700,
+                       0 0 35px #ffd700;
             animation: goldGlow 2s infinite;
         }
 
-        .card[data-rank="2"] {
+        .rank-2 {
+            box-shadow: 0 0 15px #c0c0c0,
+                       0 0 25px #c0c0c0,
+                       0 0 35px #c0c0c0;
             animation: silverGlow 2s infinite;
         }
 
-        .card[data-rank="3"] {
+        .rank-3 {
+            box-shadow: 0 0 15px #cd7f32,
+                       0 0 25px #cd7f32,
+                       0 0 35px #cd7f32;
             animation: bronzeGlow 2s infinite;
         }
 
-        /* Styles pour les icônes multiples */
-        .multiple-icons {
-            position: relative;
-        }
-
-        .multiple-icons::before {
-            content: attr(data-icons);
-            position: absolute;
-            top: -25px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 40px;
-            z-index: 2;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
-            animation: float 2s ease-in-out infinite;
-        }
-
-        /* Animations pour les effets de lueur */
-        @keyframes goldGlow {
+        @keyframes diamondGlow {
             0%, 100% {
-                box-shadow: 
-                    0 0 15px #ffd700,
-                    0 0 25px #ffd700,
-                    0 0 35px #daa520,
-                    inset 0 0 15px #ffd700;
-                border-color: #ffd700;
+                box-shadow: 0 0 15px #00bfff,
+                           0 0 25px #00bfff,
+                           0 0 35px #0099ff;
             }
             50% {
-                box-shadow: 
-                    0 0 25px #daa520,
-                    0 0 45px #daa520,
-                    0 0 65px #ffd700,
-                    inset 0 0 25px #daa520;
-                border-color: #daa520;
-            }
-        }
-
-        @keyframes silverGlow {
-            0%, 100% {
-                box-shadow: 
-                    0 0 15px #c0c0c0,
-                    0 0 25px #c0c0c0,
-                    0 0 35px #a9a9a9,
-                    inset 0 0 15px #c0c0c0;
-                border-color: #c0c0c0;
-            }
-            50% {
-                box-shadow: 
-                    0 0 25px #a9a9a9,
-                    0 0 45px #a9a9a9,
-                    0 0 65px #c0c0c0,
-                    inset 0 0 25px #a9a9a9;
-                border-color: #a9a9a9;
-            }
-        }
-
-        @keyframes bronzeGlow {
-            0%, 100% {
-                box-shadow: 
-                    0 0 15px #cd7f32,
-                    0 0 25px #cd7f32,
-                    0 0 35px #b8860b,
-                    inset 0 0 15px #cd7f32;
-                border-color: #cd7f32;
-            }
-            50% {
-                box-shadow: 
-                    0 0 25px #b8860b,
-                    0 0 45px #b8860b,
-                    0 0 65px #cd7f32,
-                    inset 0 0 25px #b8860b;
-                border-color: #b8860b;
+                box-shadow: 0 0 25px #0099ff,
+                           0 0 45px #0099ff,
+                           0 0 65px #00bfff;
             }
         }
 
         @keyframes fire {
             0% {
-                box-shadow: 
-                    0 0 20px #ff4d4d,
-                    0 0 40px #ff4d4d,
-                    0 0 60px #ff8533;
+                box-shadow: 0 0 20px #ff4d4d,
+                           0 0 40px #ff4d4d,
+                           0 0 60px #ff8533;
             }
             50% {
-                box-shadow: 
-                    0 0 30px #ff4d4d,
-                    0 0 60px #ff4d4d,
-                    0 0 90px #ff8533,
-                    0 0 120px #ff8533;
+                box-shadow: 0 0 30px #ff4d4d,
+                           0 0 60px #ff4d4d,
+                           0 0 90px #ff8533;
             }
             100% {
-                box-shadow: 
-                    0 0 20px #ff4d4d,
-                    0 0 40px #ff4d4d,
-                    0 0 60px #ff8533;
+                box-shadow: 0 0 20px #ff4d4d,
+                           0 0 40px #ff4d4d,
+                           0 0 60px #ff8533;
+            }
+        }
+
+        @keyframes goldGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px #ffd700,
+                           0 0 25px #ffd700,
+                           0 0 35px #ffd700;
+            }
+            50% {
+                box-shadow: 0 0 25px #ffd700,
+                           0 0 45px #ffd700,
+                           0 0 65px #ffd700;
+            }
+        }
+
+        @keyframes silverGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px #c0c0c0,
+                           0 0 25px #c0c0c0,
+                           0 0 35px #c0c0c0;
+            }
+            50% {
+                box-shadow: 0 0 25px #c0c0c0,
+                           0 0 45px #c0c0c0,
+                           0 0 65px #c0c0c0;
+            }
+        }
+
+        @keyframes bronzeGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px #cd7f32,
+                           0 0 25px #cd7f32,
+                           0 0 35px #cd7f32;
+            }
+            50% {
+                box-shadow: 0 0 25px #cd7f32,
+                           0 0 45px #cd7f32,
+                           0 0 65px #cd7f32;
             }
         }
 
@@ -1213,39 +1044,31 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 
-                // Gestion des icônes multiples
+                // Gestion des effets spéciaux et des icônes
                 let icons = [];
-                let hasSpecialEffect = false;
                 
                 // All Time Champion (priorité la plus haute)
                 if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
-                    console.log('Adding All Time Champion class to:', player.name);
                     card.className = 'card all-time-champion';
                     icons.push('👑');
-                    hasSpecialEffect = true;
                 }
-                
                 // PLE leader (deuxième priorité)
                 else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
-                    console.log('Adding PLE leader class to:', player.name);
                     card.className = 'card ple-leader';
                     icons.push('🔥');
-                    hasSpecialEffect = true;
                 }
-                
                 // Top 3 (dernière priorité)
-                if (!hasSpecialEffect && player.rank <= 3) {
+                else if (player.rank <= 3) {
                     card.className = `card rank-${player.rank}`;
-                    card.setAttribute('data-rank', player.rank);
                 }
 
-                // Ajout des médailles aux icônes si dans le top 3
+                // Ajout des médailles pour le top 3
                 if (player.rank <= 3) {
                     const medals = ['🥇', '🥈', '🥉'];
                     icons.push(medals[player.rank - 1]);
                 }
 
-                // Configuration des icônes
+                // Création du conteneur d'icônes si nécessaire
                 if (icons.length > 0) {
                     const iconsContainer = document.createElement('div');
                     iconsContainer.className = 'icons-container';
@@ -1258,6 +1081,7 @@
                     card.appendChild(iconsContainer);
                 }
 
+                // Contenu de la carte
                 const cardContent = document.createElement('div');
                 cardContent.className = 'card-content';
                 cardContent.innerHTML = `
@@ -1265,14 +1089,15 @@
                 `;
                 card.appendChild(cardContent);
 
-                // Ajouter l'événement de clic pour ouvrir la modal
+                // Ajout de l'événement de clic pour la modal
                 card.addEventListener('click', () => openPlayerModal(player));
 
                 container.appendChild(card);
                 
+                // Animation d'apparition
                 setTimeout(() => {
                     card.classList.add('fade-in');
-                }, index * 200);
+                }, index * 100);
             });
         }
 
