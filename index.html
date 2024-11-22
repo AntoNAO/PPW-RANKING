@@ -162,6 +162,21 @@
             padding: 2rem;
             text-align: center;
             border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .site-logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .header h1 {
@@ -175,29 +190,44 @@
         .header p {
             color: var(--text-color);
             margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .participate-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            cursor: pointer;
+            background: linear-gradient(45deg, #ffd700, #daa520);
+            color: #000;
         }
 
-        .participate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        .join-button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
         }
 
-        .participate-button:active {
-            transform: translateY(0);
+        .rules-button {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(-1px);
         }
 
         .rankings {
@@ -460,11 +490,20 @@
 </head>
 <body>
     <header class="header">
+        <img src="./assets/logo.png" alt="PPW Logo" class="site-logo">
         <h1>Professional Pronostic Wrestling</h1>
         <p>Le classement officiel des pronostiqueurs WWE</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScZig0AEf57W0UJkm8tEKD-GLc_58KNIH8VsyMwcyqBe0akSA/viewform?usp=sf_link" target="_blank" class="participate-button">
-            Participer aux pronostics 🎯
-        </a>
+        <div class="nav-buttons">
+            <a href="LIEN_VERS_FORMULAIRE_INSCRIPTION" target="_blank" class="button join-button">
+                Rejoindre PPW 🤼
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScZig0AEf57W0UJkm8tEKD-GLc_58KNIH8VsyMwcyqBe0akSA/viewform?usp=sf_link" target="_blank" class="button participate-button">
+                Participer aux pronostics 🎯
+            </a>
+            <a href="LIEN_VERS_REGLES" target="_blank" class="button rules-button">
+                Règles du jeu 📋
+            </a>
+        </div>
     </header>
 
     <main class="rankings" id="rankings">
