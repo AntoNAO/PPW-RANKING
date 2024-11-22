@@ -5,7 +5,16 @@
     "totalPoints": 55,
     "plePoints": 0,
     "rank": 1,
-    "imageUrl": "cards/AURELIEN.png"
+    "imageUrl": "cards/AURELIEN.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": [
+      {
+        "title": "Premier du classement",
+        "icon": "👑",
+        "date": "2024"
+      }
+    ]
   },
   {
     "name": "JASON",
@@ -13,7 +22,10 @@
     "totalPoints": 54,
     "plePoints": 0,
     "rank": 2,
-    "imageUrl": "cards/JASON.png"
+    "imageUrl": "cards/JASON.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "MATHIS",
@@ -21,7 +33,10 @@
     "totalPoints": 56,
     "plePoints": 0,
     "rank": 3,
-    "imageUrl": "cards/MATHIS.png"
+    "imageUrl": "cards/MATHIS.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "ANTO",
@@ -29,7 +44,10 @@
     "totalPoints": 51,
     "plePoints": 0,
     "rank": 4,
-    "imageUrl": "cards/ANTO.png"
+    "imageUrl": "cards/ANTO.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "QUENTIN",
@@ -37,7 +55,10 @@
     "totalPoints": 45,
     "plePoints": 0,
     "rank": 5,
-    "imageUrl": "cards/QUENTIN.png"
+    "imageUrl": "cards/QUENTIN.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "BRANDON",
@@ -45,7 +66,15 @@
     "totalPoints": 39,
     "plePoints": 7,
     "rank": 6,
-    "imageUrl": "cards/BRANDON.png"
+    "imageUrl": "cards/BRANDON.png",
+    "championDays": 0,
+    "pleHistory": [
+      {
+        "name": "Royal Rumble 2024",
+        "points": 7
+      }
+    ],
+    "achievements": []
   },
   {
     "name": "NEK",
@@ -53,7 +82,10 @@
     "totalPoints": 39,
     "plePoints": 0,
     "rank": 7,
-    "imageUrl": "cards/NEK.png"
+    "imageUrl": "cards/NEK.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "ONI",
@@ -61,7 +93,10 @@
     "totalPoints": 40,
     "plePoints": 0,
     "rank": 8,
-    "imageUrl": "cards/ONI.png"
+    "imageUrl": "cards/ONI.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "NATHAN",
@@ -69,7 +104,10 @@
     "totalPoints": 30,
     "plePoints": 0,
     "rank": 9,
-    "imageUrl": "cards/NATHAN.png"
+    "imageUrl": "cards/NATHAN.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "MIZOU",
@@ -77,7 +115,10 @@
     "totalPoints": 14,
     "plePoints": 0,
     "rank": 10,
-    "imageUrl": "cards/MIZOU.png"
+    "imageUrl": "cards/MIZOU.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "RYOLAIT12",
@@ -85,7 +126,10 @@
     "totalPoints": 16,
     "plePoints": 0,
     "rank": 11,
-    "imageUrl": "cards/RYOLAIT12.png"
+    "imageUrl": "cards/RYOLAIT12.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "BEN",
@@ -93,7 +137,10 @@
     "totalPoints": 16,
     "plePoints": 0,
     "rank": 12,
-    "imageUrl": "cards/BEN.png"
+    "imageUrl": "cards/BEN.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "LUDOPOUL",
@@ -101,7 +148,10 @@
     "totalPoints": 12,
     "plePoints": 0,
     "rank": 13,
-    "imageUrl": "cards/LUDOPOUL.png"
+    "imageUrl": "cards/LUDOPOUL.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   },
   {
     "name": "ELCHAPO",
@@ -109,6 +159,9 @@
     "totalPoints": 10,
     "plePoints": 0,
     "rank": 14,
-    "imageUrl": "cards/ELCHAPO.png"
+    "imageUrl": "cards/ELCHAPO.png",
+    "championDays": 0,
+    "pleHistory": [],
+    "achievements": []
   }
 ]

@@ -475,6 +475,163 @@
             color: var(--primary-color);
         }
 
+        /* Styles pour la modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--card-bg);
+            margin: 50px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: var(--text-color);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .modal-header img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 75px;
+            margin-right: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .modal-header-info {
+            flex-grow: 1;
+        }
+
+        .modal-header-info h2 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .ple-history {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .ple-history h3 {
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+        }
+
+        .ple-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .ple-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(134, 180, 120, 0.1);
+            border-radius: 4px;
+        }
+
+        .ple-item .points {
+            font-weight: bold;
+            color: #86b478;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(134, 180, 120, 0.1);
+            border-radius: 4px;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+        }
+
+        .achievement small {
+            color: #666;
+        }
+
+        .achievements {
+            margin-top: 20px;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -492,6 +649,47 @@
     </style>
 </head>
 <body>
+    <!-- Modal -->
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <img src="" alt="" id="modalPlayerImage">
+                <div class="modal-header-info">
+                    <h2 id="modalPlayerName"></h2>
+                    <div id="modalPlayerRank"></div>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>SAISON</h3>
+                    <div class="stat-value" id="modalSeasonPoints"></div>
+                </div>
+                <div class="stat-box">
+                    <h3>ALL TIME</h3>
+                    <div class="stat-value" id="modalTotalPoints"></div>
+                </div>
+                <div class="stat-box">
+                    <h3>PLE</h3>
+                    <div class="stat-value" id="modalPlePoints"></div>
+                </div>
+                <div class="stat-box">
+                    <h3>Jours en tant que Champion</h3>
+                    <div class="stat-value" id="modalChampionDays">-</div>
+                </div>
+            </div>
+            <div class="ple-history">
+                <h3>Historique des PLE</h3>
+                <div class="ple-list" id="modalPleHistory">
+                    <!-- Les PLE seront ajoutés ici dynamiquement -->
+                </div>
+            </div>
+            <div class="achievements" id="modalAchievements">
+                <!-- Les achievements seront ajoutés ici dynamiquement -->
+            </div>
+        </div>
+    </div>
+
     <header class="header">
         <h1>Professional Pronostic Wrestling</h1>
         <img src="./assets/logo.png" alt="PPW Logo" class="site-logo">
@@ -577,6 +775,107 @@
                         </div>
                     </div>
                 `;
+
+                container.appendChild(card);
+                
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 200);
+            });
+        }
+
+        // Fonction pour ouvrir la modal avec les détails du joueur
+        function openPlayerModal(player) {
+            const modal = document.getElementById('playerModal');
+            const modalImg = document.getElementById('modalPlayerImage');
+            const modalName = document.getElementById('modalPlayerName');
+            const modalRank = document.getElementById('modalPlayerRank');
+            const modalSeasonPoints = document.getElementById('modalSeasonPoints');
+            const modalTotalPoints = document.getElementById('modalTotalPoints');
+            const modalPlePoints = document.getElementById('modalPlePoints');
+            const modalChampionDays = document.getElementById('modalChampionDays');
+            const modalPleHistory = document.getElementById('modalPleHistory');
+            const modalAchievements = document.getElementById('modalAchievements');
+
+            // Mise à jour des informations de base
+            modalImg.src = player.imageUrl;
+            modalImg.alt = player.name;
+            modalName.textContent = player.name;
+            modalRank.textContent = `Rang actuel: #${player.rank}`;
+            modalSeasonPoints.textContent = player.seasonPoints;
+            modalTotalPoints.textContent = player.totalPoints;
+            modalPlePoints.textContent = player.plePoints;
+            modalChampionDays.textContent = player.championDays || '0';
+
+            // Mise à jour de l'historique PLE
+            modalPleHistory.innerHTML = '';
+            if (player.pleHistory && player.pleHistory.length > 0) {
+                player.pleHistory.forEach(ple => {
+                    const pleItem = document.createElement('div');
+                    pleItem.className = 'ple-item';
+                    pleItem.innerHTML = `
+                        <div>${ple.name}</div>
+                        <div class="points">${ple.points} pts</div>
+                    `;
+                    modalPleHistory.appendChild(pleItem);
+                });
+            } else {
+                modalPleHistory.innerHTML = '<div class="ple-item">Aucun PLE participé</div>';
+            }
+
+            // Mise à jour des achievements
+            modalAchievements.innerHTML = '<h3>Achievements</h3>';
+            if (player.achievements && player.achievements.length > 0) {
+                player.achievements.forEach(achievement => {
+                    const achievementEl = document.createElement('div');
+                    achievementEl.className = 'achievement';
+                    achievementEl.innerHTML = `
+                        <span class="achievement-icon">${achievement.icon}</span>
+                        <div>
+                            <div>${achievement.title}</div>
+                            <small>${achievement.date}</small>
+                        </div>
+                    `;
+                    modalAchievements.appendChild(achievementEl);
+                });
+            } else {
+                modalAchievements.innerHTML += '<div class="achievement">Aucun achievement débloqué</div>';
+            }
+            
+            // Afficher la modal
+            modal.style.display = 'block';
+
+            // Empêcher le défilement de la page
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fermer la modal
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            document.getElementById('playerModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fermer la modal si on clique en dehors
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('playerModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        function displayRankings(players, maxPlePoints, maxTotalPoints) {
+            const container = document.getElementById('rankings');
+            container.innerHTML = '';
+
+            players.forEach((player, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                // ... (reste du code existant pour la création des cartes)
+
+                // Ajouter l'événement de clic pour ouvrir la modal
+                card.addEventListener('click', () => openPlayerModal(player));
 
                 container.appendChild(card);
                 
