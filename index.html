@@ -221,17 +221,21 @@
             transform: translateY(-1px);
         }
 
-        .rankings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
+        #rankings-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .card {
             position: relative;
-            width: 100%;
-            aspect-ratio: 2/3;
+            flex: 1 1 300px;
+            max-width: 300px;
+            margin: 15px;
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
@@ -251,8 +255,8 @@
 
         .player-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             border-radius: 15px;
         }
 
