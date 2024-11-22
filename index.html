@@ -854,67 +854,39 @@
             font-weight: bold;
         }
 
-        .wwe-news {
+        .content-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-top: 2rem;
         }
 
-        .news-feed {
-            max-height: 500px;
-            overflow-y: auto;
+        .next-ple {
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .news-item {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.3s ease;
+        .next-ple img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 15px;
+            margin: 1rem 0;
         }
 
-        .news-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .news-item h4 {
+        .next-ple-title {
+            font-size: 1.5rem;
             color: var(--primary-color);
-            margin: 0 0 0.5rem 0;
+            margin: 1rem 0;
         }
 
-        .news-item p {
-            font-size: 0.9em;
-            margin: 0 0 0.5rem 0;
-        }
-
-        .news-item small {
-            color: #888;
-        }
-
-        @media (max-width: 768px) {
-            .side-content {
-                position: static;
-                width: 100%;
-                height: auto;
-                margin-top: 2rem;
-                box-shadow: none;
-            }
-
-            .theme-switch {
-                top: 1rem;
-                right: 1rem;
-            }
-
-            .news-feed {
-                max-height: 300px;
-            }
-        }
-        
-        .history-button {
-            background: linear-gradient(45deg, #4a90e2, #357abd);
-            color: white;
-            margin-left: 1rem;
-        }
-
-        .history-button:hover {
-            background: linear-gradient(45deg, #357abd, #2868a0);
-            transform: translateY(-2px);
+        .next-ple-date {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 0.5rem 0;
         }
 
         .main-header {
@@ -952,15 +924,6 @@
             }
         }
 
-        .content-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            width: 100%;
-            max-width: 1400px;
-            align-items: start;
-        }
-
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -972,7 +935,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .next-ple, .wwe-news {
+        .next-ple {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 1.5rem;
@@ -989,7 +952,7 @@
             margin-bottom: 1rem;
         }
 
-        .next-ple h2, .wwe-news h2 {
+        .next-ple h2 {
             margin-bottom: 1rem;
             color: var(--primary-color);
             font-size: 1.5rem;
@@ -1012,42 +975,6 @@
             margin-top: 1rem;
             font-weight: bold;
             color: #ffffff;
-        }
-
-        .wwe-news {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .news-item {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-date {
-            font-size: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 1024px) {
-            .content-section {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .nav-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .button {
-                width: 100%;
-                max-width: 300px;
-            }
         }
 
         /* Styles pour la modal des cartes */
@@ -1276,24 +1203,6 @@
                 <div class="next-ple-date">30 novembre 2024</div>
                 <div class="countdown" id="countdown">
                     <!-- Le compte à rebours sera mis à jour par JavaScript -->
-                </div>
-            </div>
-
-            <div style="width: 100%; height: 100%;"></div>
-
-            <div class="wwe-news">
-                <h2>Actualités WWE</h2>
-                <div class="news-item">
-                    <div class="news-date">23 février 2024</div>
-                    <div class="news-content">The Rock fait son retour à la WWE et défie Roman Reigns</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-date">22 février 2024</div>
-                    <div class="news-content">Cody Rhodes remporte la Chamber Match</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-date">21 février 2024</div>
-                    <div class="news-content">Randy Orton de retour sur SmackDown</div>
                 </div>
             </div>
         </div>
