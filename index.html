@@ -263,18 +263,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .card[data-rank="1"] {
-            animation: goldGlow 2s infinite;
-        }
-
-        .card[data-rank="2"] {
-            animation: silverGlow 2s infinite;
-        }
-
-        .card[data-rank="3"] {
-            animation: bronzeGlow 2s infinite;
-        }
-
         .card-content {
             position: relative;
             width: 100%;
@@ -363,14 +351,14 @@
         }
 
         .ple-leader::before {
-            content: '🏆';
+            content: '🔥';
             position: absolute;
             top: -25px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 40px;
             z-index: 2;
-            filter: drop-shadow(0 0 10px var(--primary-color));
+            filter: drop-shadow(0 0 10px #ff4d4d);
             animation: float 2s ease-in-out infinite;
         }
 
@@ -381,9 +369,9 @@
             left: -5px;
             right: -5px;
             bottom: -5px;
-            border: 3px solid var(--primary-color);
+            border: 3px solid #ff4d4d;
             border-radius: 12px;
-            animation: diamondGlow 2s infinite;
+            animation: fire 2s infinite;
             pointer-events: none;
         }
 
@@ -400,7 +388,7 @@
             transform: translateX(-50%);
             font-size: 40px;
             z-index: 2;
-            filter: drop-shadow(0 0 10px gold);
+            filter: drop-shadow(0 0 10px #00bfff);
             animation: float 2s ease-in-out infinite;
         }
 
@@ -411,9 +399,9 @@
             left: -5px;
             right: -5px;
             bottom: -5px;
-            border: 3px solid gold;
+            border: 3px solid #00bfff;
             border-radius: 12px;
-            animation: goldGlow 2s infinite;
+            animation: diamondGlow 2s infinite;
             pointer-events: none;
         }
 
@@ -625,6 +613,148 @@
             }
         }
 
+        .all-time-champion {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .all-time-champion::before {
+            content: '👑';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #00bfff);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .all-time-champion::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #00bfff;
+            border-radius: 12px;
+            animation: diamondGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .ple-leader {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .ple-leader::before {
+            content: '🔥';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #ff4d4d);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .ple-leader::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #ff4d4d;
+            border-radius: 12px;
+            animation: fire 2s infinite;
+            pointer-events: none;
+        }
+
+        .card[data-rank="1"]::before {
+            content: '🥇';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #ffd700);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .card[data-rank="2"]::before {
+            content: '🥈';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #c0c0c0);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .card[data-rank="3"]::before {
+            content: '🥉';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #cd7f32);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .card[data-rank="1"]::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #ffd700;
+            border-radius: 12px;
+            animation: goldGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .card[data-rank="2"]::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #c0c0c0;
+            border-radius: 12px;
+            animation: silverGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .card[data-rank="3"]::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #cd7f32;
+            border-radius: 12px;
+            animation: bronzeGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .multiple-icons::before {
+            content: attr(data-icons);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -730,54 +860,38 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 
-                // All Time Champion prend la priorité sur le Top 3
+                // Gestion des icônes multiples
+                let icons = [];
+                
+                // All Time Champion
                 if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
                     console.log('Adding All Time Champion class to:', player.name);
                     card.classList.add('all-time-champion');
+                    icons.push('👑');
                 }
+                
                 // PLE leader
-                else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
                     console.log('Adding PLE leader class to:', player.name);
                     card.classList.add('ple-leader');
+                    icons.push('🔥');
                 }
-                // Top 3 seulement si pas All Time Champion ni PLE Leader
-                else if (player.rank <= 3) {
-                    card.setAttribute('data-rank', player.rank);
+                
+                // Top 3
+                if (player.rank <= 3) {
+                    const medals = ['🥇', '🥈', '🥉'];
+                    icons.push(medals[player.rank - 1]);
                 }
 
-                // Calculer les pourcentages pour les barres de progression
-                const plePercentage = (maxPlePoints > 0) ? (player.plePoints / maxPlePoints) * 100 : 0;
-                const totalPercentage = (maxTotalPoints > 0) ? (player.totalPoints / maxTotalPoints) * 100 : 0;
+                // Si plusieurs icônes, on les affiche toutes
+                if (icons.length > 1) {
+                    card.classList.add('multiple-icons');
+                    card.setAttribute('data-icons', icons.join(' '));
+                }
 
                 card.innerHTML = `
                     <div class="card-content">
                         <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
-                        <div class="card-info">
-                            <div class="player-name">${player.name}</div>
-                            <div class="player-rank">#${player.rank}</div>
-                            <div class="stats">
-                                <div class="stat">
-                                    <div class="stat-label">SAISON</div>
-                                    <div class="stat-value">${player.seasonPoints}</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-label">ALL TIME</div>
-                                    <div class="stat-value">${player.totalPoints}</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-label">PLE</div>
-                                    <div class="stat-value">${player.plePoints}</div>
-                                </div>
-                            </div>
-                            <div class="progress-bars">
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: ${plePercentage}%"></div>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: ${totalPercentage}%"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 `;
 
