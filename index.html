@@ -990,6 +990,101 @@
                 max-width: 300px;
             }
         }
+
+        /* Styles pour la modal des cartes */
+        .player-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .player-modal-content {
+            position: relative;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .player-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .player-history {
+            margin-top: 2rem;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .history-date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .history-points {
+            font-weight: bold;
+        }
+
+        .close-player-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-player-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .player-name-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -1077,9 +1172,12 @@
     </div>
 
     <!-- Modal pour les détails des joueurs -->
-    <div id="player-modal" class="modal">
-        <div class="modal-content">
-            <!-- Le contenu sera injecté dynamiquement -->
+    <div id="player-modal" class="player-modal">
+        <div class="player-modal-content">
+            <span class="close-player-modal" onclick="closePlayerModal()">&times;</span>
+            <div id="player-details">
+                <!-- Le contenu sera injecté dynamiquement -->
+            </div>
         </div>
     </div>
 
@@ -1190,84 +1288,53 @@
         }
 
         function displayPlayerDetails(player) {
-            const modalContent = document.querySelector('.player-details-content');
-            modalContent.innerHTML = `
-                <div class="modal-header">
-                    <h2>${player.name}</h2>
-                    <span class="close-modal" onclick="closeModal()">&times;</span>
+            const modal = document.getElementById('player-modal');
+            const playerDetails = document.getElementById('player-details');
+            
+            const totalPoints = player.plePoints.reduce((a, b) => a + b, 0);
+            const averagePoints = (totalPoints / player.plePoints.length).toFixed(1);
+            
+            const content = `
+                <h2 class="player-name-title">${player.name}</h2>
+                <div class="player-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">${totalPoints}</div>
+                        <div class="stat-label">Points Totaux</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${player.plePoints.length}</div>
+                        <div class="stat-label">PLEs Participés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${averagePoints}</div>
+                        <div class="stat-label">Moyenne par PLE</div>
+                    </div>
                 </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <h3>Points Totaux</h3>
-                        <div class="stat-value">${player.totalPoints}</div>
-                    </div>
-                    <div class="stat-box">
-                        <h3>Points PLE</h3>
-                        <div class="stat-value">${player.plePoints}</div>
-                    </div>
-                </div>
-
-                <div class="achievements-section">
-                    <h3>Badges et Récompenses</h3>
-                    <div class="achievements-grid">
-                        ${player.perfectCount ? `
-                            <div class="achievement">
-                                <span class="badge badge-perfect">⭐</span>
-                                <div class="achievement-info">
-                                    <div class="achievement-title">Perfect Score!</div>
-                                    <div class="achievement-count">×${player.perfectCount}</div>
-                                </div>
-                            </div>
-                        ` : ''}
-                        
-                        ${player.streak >= 3 ? `
-                            <div class="achievement">
-                                <span class="badge badge-streak">🔥</span>
-                                <div class="achievement-info">
-                                    <div class="achievement-title">Série de ${player.streak}</div>
-                                    <div class="achievement-count">Victoires consécutives</div>
-                                </div>
-                            </div>
-                        ` : ''}
-                        
-                        ${player.totalWins >= 50 ? `
-                            <div class="achievement">
-                                <span class="badge">👑</span>
-                                <div class="achievement-info">
-                                    <div class="achievement-title">50 Victoires</div>
-                                </div>
-                            </div>
-                        ` : ''}
-                        
-                        ${player.totalWins >= 100 ? `
-                            <div class="achievement">
-                                <span class="badge">🏆</span>
-                                <div class="achievement-info">
-                                    <div class="achievement-title">100 Victoires</div>
-                                </div>
-                            </div>
-                        ` : ''}
-                    </div>
+                <div class="player-history">
+                    <h3>Historique des PLEs</h3>
+                    ${player.plePoints.map((points, index) => `
+                        <div class="history-item">
+                            <span class="history-date">PLE #${index + 1}</span>
+                            <span class="history-points">${points} points</span>
+                        </div>
+                    `).join('')}
                 </div>
             `;
             
-            document.getElementById('player-modal').style.display = 'block';
+            playerDetails.innerHTML = content;
+            modal.style.display = 'block';
         }
 
-        function closeModal() {
-            const modals = document.getElementsByClassName('modal');
-            for (let modal of modals) {
-                modal.style.display = 'none';
-            }
-            document.body.style.overflow = 'auto';
+        function closePlayerModal() {
+            const modal = document.getElementById('player-modal');
+            modal.style.display = 'none';
         }
 
-        // Fermer les modals en cliquant en dehors
+        // Fermer la modal en cliquant en dehors
         window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
+            const modal = document.getElementById('player-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
             }
         }
 
