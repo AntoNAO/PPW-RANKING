@@ -859,22 +859,54 @@
         }
 
         .main-header {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 2rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
             background-color: #1a1a1a;
             border-bottom: 3px solid var(--primary-color);
             margin-bottom: 2rem;
         }
 
-        .next-ple {
+        .logo-section {
+            margin-bottom: 2rem;
+        }
+
+        .site-logo {
+            width: 250px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1400px;
+            align-items: start;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .next-ple, .wwe-news {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            padding: 1rem;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .next-ple {
             text-align: center;
         }
 
@@ -882,6 +914,13 @@
             width: 100%;
             border-radius: 5px;
             margin-bottom: 1rem;
+        }
+
+        .next-ple h2, .wwe-news h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            text-align: center;
         }
 
         .next-ple-title {
@@ -902,27 +941,13 @@
             color: #ffffff;
         }
 
-        .site-title {
-            text-align: center;
-        }
-
-        .site-logo {
-            width: 200px;
-            height: auto;
-            margin: 1rem auto;
-            display: block;
-        }
-
         .wwe-news {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1rem;
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
         }
 
         .news-item {
-            padding: 0.5rem;
+            padding: 0.8rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -936,9 +961,19 @@
         }
 
         @media (max-width: 1024px) {
-            .main-header {
+            .content-section {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
@@ -1040,35 +1075,47 @@
     </div>
 
     <header class="main-header">
-        <div class="next-ple">
-            <h2>Prochain PLE</h2>
-            <img src="./assets/ple-images/survivor-series-2024.jpg" alt="Survivor Series War Games Canada">
-            <div class="next-ple-title">SURVIVOR SERIES WAR GAMES CANADA</div>
-            <div class="next-ple-date">30 novembre 2024</div>
-            <div class="countdown" id="countdown">
-                <!-- Le compte à rebours sera mis à jour par JavaScript -->
-            </div>
-        </div>
-
-        <div class="site-title">
+        <div class="logo-section">
             <img src="./assets/logo.png" alt="PPW Logo" class="site-logo">
-            <h1>PPW</h1>
-            <p>Professional Pronostic Wrestling</p>
-            <div class="nav-buttons">
-                <a href="participate.html" class="button participate-button">
-                    Participer aux pronostics 🎯
-                </a>
-                <button onclick="showRules()" class="button rules-button">
-                    Règles du jeu 📋
-                </button>
-                <a href="history.html" class="button history-button">Historique des PLE</a>
-            </div>
         </div>
 
-        <div class="wwe-news">
-            <h2>Actualités WWE</h2>
-            <div class="news-feed">
-                <!-- Les actualités seront chargées ici -->
+        <div class="nav-buttons">
+            <a href="participate.html" class="button participate-button">
+                Participer aux pronostics 🎯
+            </a>
+            <button onclick="showRules()" class="button rules-button">
+                Règles du jeu 📋
+            </button>
+            <a href="history.html" class="button history-button">Historique des PLE</a>
+        </div>
+
+        <div class="content-section">
+            <div class="next-ple">
+                <h2>Prochain PLE</h2>
+                <img src="./assets/ple-images/survivor-series-2024.jpg" alt="Survivor Series War Games Canada">
+                <div class="next-ple-title">SURVIVOR SERIES WAR GAMES CANADA</div>
+                <div class="next-ple-date">30 novembre 2024</div>
+                <div class="countdown" id="countdown">
+                    <!-- Le compte à rebours sera mis à jour par JavaScript -->
+                </div>
+            </div>
+
+            <div style="width: 100%; height: 100%;"></div>
+
+            <div class="wwe-news">
+                <h2>Actualités WWE</h2>
+                <div class="news-item">
+                    <div class="news-date">23 février 2024</div>
+                    <div class="news-content">The Rock fait son retour à la WWE et défie Roman Reigns</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">22 février 2024</div>
+                    <div class="news-content">Cody Rhodes remporte la Chamber Match</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">21 février 2024</div>
+                    <div class="news-content">Randy Orton de retour sur SmackDown</div>
+                </div>
             </div>
         </div>
     </header>
