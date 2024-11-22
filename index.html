@@ -1189,7 +1189,7 @@
             <a href="participate.html" class="button participate-button">
                 Participer aux pronostics 🎯
             </a>
-            <button onclick="showRules()" class="button rules-button">
+            <button onclick="openRulesModal()" class="button rules-button">
                 Règles du jeu 📋
             </button>
             <a href="history.html" class="button history-button">Historique des PLE</a>
@@ -1215,7 +1215,7 @@
     </main>
 
     <script>
-        function showRules() {
+        function openRulesModal() {
             document.getElementById('rules-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
