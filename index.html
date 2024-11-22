@@ -693,18 +693,36 @@
 
         .player-card {
             position: relative;
-            width: 450px;
-            height: 450px;
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .player-card::after {
+            content: "👆 Cliquez pour plus d'infos";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .player-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .player-card:hover::after {
+            opacity: 1;
         }
 
         .player-card img {
@@ -1291,9 +1309,18 @@
                 card.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
+                    <h3>${player.name}</h3>
+                    <div class="player-stats-preview">
+                        <p>Points Totaux: ${player.totalPoints}</p>
+                        <p>Points Saison: ${player.seasonPoints}</p>
+                        <p>Rang: #${player.rank}</p>
+                    </div>
                 `;
 
-                card.onclick = () => displayPlayerDetails(player);
+                card.addEventListener('click', () => {
+                    displayPlayerDetails(player);
+                });
+
                 container.appendChild(card);
             });
         }
