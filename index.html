@@ -255,32 +255,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .icons-container {
-            position: absolute;
-            top: -35px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            z-index: 10;
-        }
-
-        .floating-icon {
-            font-size: 35px;
-            animation: float 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
         .card-content {
             position: relative;
             width: 100%;
@@ -753,34 +727,6 @@
                 } else if (index < 3) {
                     card.className = `card rank-${index + 1}`;
                 }
-
-                // Création du conteneur d'icônes
-                const iconsContainer = document.createElement('div');
-                iconsContainer.className = 'icons-container';
-
-                // Une seule icône par personne, avec priorité
-                let icon = null;
-                if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
-                    icon = '👑'; // All Time Champion
-                } else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
-                    icon = '🔥'; // PLE Leader
-                } else if (index === 0) {
-                    icon = '🥇'; // 1er
-                } else if (index === 1) {
-                    icon = '🥈'; // 2ème
-                } else if (index === 2) {
-                    icon = '🥉'; // 3ème
-                }
-
-                // Ajout de l'icône si elle existe
-                if (icon) {
-                    const iconElement = document.createElement('span');
-                    iconElement.className = 'floating-icon';
-                    iconElement.textContent = icon;
-                    iconsContainer.appendChild(iconElement);
-                }
-
-                card.appendChild(iconsContainer);
 
                 // Contenu de la carte (juste l'image)
                 const cardContent = document.createElement('div');
