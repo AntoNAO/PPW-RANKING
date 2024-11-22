@@ -221,33 +221,22 @@
             transform: translateY(-1px);
         }
 
-        #rankings {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
         }
 
         .card {
-            background-color: var(--card-bg);
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: var(--card-bg);
             border-radius: 15px;
-            overflow: visible;
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-            position: relative;
-            flex: 1 1 300px;
-            max-width: 300px;
-            margin: 15px;
-        }
-
-        .card.fade-in {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .card:hover {
@@ -256,17 +245,14 @@
         }
 
         .card-content {
-            position: relative;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            border-radius: 15px;
         }
 
         .player-image {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
             border-radius: 15px;
         }
 
@@ -619,7 +605,7 @@
                 font-size: 2rem;
             }
 
-            #rankings {
+            #rankings-container {
                 padding: 1rem;
             }
 
@@ -673,7 +659,7 @@
     </div>
 
     <header class="header">
-        <h1>Professional Pronostic Wrestling</h1>
+        <h1>PPW - Professional Pronostic Wrestling</h1>
         <img src="./assets/logo.png" alt="PPW Logo" class="site-logo">
         <p>Le classement officiel des pronostiqueurs WWE</p>
         <div class="nav-buttons">
@@ -689,8 +675,11 @@
         </div>
     </header>
 
-    <main id="rankings">
-        <!-- Les cartes seront chargées ici dynamiquement -->
+    <main>
+        <div class="container">
+            <h1>PPW - Professional Pronostic Wrestling</h1>
+            <div id="rankings-container" class="rankings-grid"></div>
+        </div>
     </main>
 
     <script>
@@ -712,7 +701,7 @@
         }
 
         function displayRankings(players, maxTotalPoints, maxPlePoints) {
-            const container = document.getElementById('rankings');
+            const container = document.getElementById('rankings-container');
             container.innerHTML = '';
 
             players.forEach((player, index) => {
@@ -732,7 +721,7 @@
                 const cardContent = document.createElement('div');
                 cardContent.className = 'card-content';
                 cardContent.innerHTML = `
-                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
+                    <img src="${player.imageUrl}" alt="${player.name}" onerror="this.src='cards/default.png'" class="player-image">
                 `;
                 card.appendChild(cardContent);
 
