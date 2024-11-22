@@ -447,6 +447,119 @@
             color: var(--primary-color);
         }
 
+        /* Styles pour les cartes du top 3 */
+        .card[data-rank="1"] {
+            animation: goldGlow 2s infinite;
+        }
+
+        .card[data-rank="2"] {
+            animation: silverGlow 2s infinite;
+        }
+
+        .card[data-rank="3"] {
+            animation: bronzeGlow 2s infinite;
+        }
+
+        /* Styles pour les icônes multiples */
+        .multiple-icons {
+            position: relative;
+        }
+
+        .multiple-icons::before {
+            content: attr(data-icons);
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Animations pour les effets de lueur */
+        @keyframes goldGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 15px #ffd700,
+                    0 0 25px #ffd700,
+                    0 0 35px #daa520,
+                    inset 0 0 15px #ffd700;
+                border-color: #ffd700;
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #daa520,
+                    0 0 45px #daa520,
+                    0 0 65px #ffd700,
+                    inset 0 0 25px #daa520;
+                border-color: #daa520;
+            }
+        }
+
+        @keyframes silverGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 15px #c0c0c0,
+                    0 0 25px #c0c0c0,
+                    0 0 35px #a9a9a9,
+                    inset 0 0 15px #c0c0c0;
+                border-color: #c0c0c0;
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #a9a9a9,
+                    0 0 45px #a9a9a9,
+                    0 0 65px #c0c0c0,
+                    inset 0 0 25px #a9a9a9;
+                border-color: #a9a9a9;
+            }
+        }
+
+        @keyframes bronzeGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 15px #cd7f32,
+                    0 0 25px #cd7f32,
+                    0 0 35px #b8860b,
+                    inset 0 0 15px #cd7f32;
+                border-color: #cd7f32;
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #b8860b,
+                    0 0 45px #b8860b,
+                    0 0 65px #cd7f32,
+                    inset 0 0 25px #b8860b;
+                border-color: #b8860b;
+            }
+        }
+
+        @keyframes fire {
+            0% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px #ff4d4d,
+                    0 0 60px #ff4d4d,
+                    0 0 90px #ff8533,
+                    0 0 120px #ff8533;
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+            }
+        }
+
         /* Styles pour la modal */
         .modal {
             display: none;
@@ -877,14 +990,15 @@
                     icons.push('🔥');
                 }
                 
-                // Top 3
+                // Top 3 - Toujours ajouter l'attribut data-rank pour les effets visuels
                 if (player.rank <= 3) {
+                    card.setAttribute('data-rank', player.rank);
                     const medals = ['🥇', '🥈', '🥉'];
                     icons.push(medals[player.rank - 1]);
                 }
 
                 // Si plusieurs icônes, on les affiche toutes
-                if (icons.length > 1) {
+                if (icons.length > 0) {
                     card.classList.add('multiple-icons');
                     card.setAttribute('data-icons', icons.join(' '));
                 }
