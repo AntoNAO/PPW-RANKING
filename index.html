@@ -1042,27 +1042,37 @@
             opacity: 0.8;
         }
 
-        .player-history {
+        .achievements-section {
             margin-top: 2rem;
         }
 
-        .history-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem;
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .achievement-card {
             background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            border-radius: 8px;
         }
 
-        .history-date {
-            color: var(--primary-color);
+        .achievement-title {
             font-size: 0.9rem;
+            color: var(--primary-color);
         }
 
-        .history-points {
-            font-weight: bold;
+        .achievement-days {
+            font-size: 0.8rem;
+            opacity: 0.8;
         }
 
         .close-player-modal {
@@ -1303,23 +1313,34 @@
                         <div class="stat-label">Points Totaux</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">${player.plePoints.length}</div>
-                        <div class="stat-label">PLEs Participés</div>
+                        <div class="stat-value">${player.seasonPoints}</div>
+                        <div class="stat-label">Points Saison</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">${averagePoints}</div>
-                        <div class="stat-label">Moyenne par PLE</div>
+                        <div class="stat-value">#${player.rank}</div>
+                        <div class="stat-label">Classement</div>
                     </div>
-                </div>
-                <div class="player-history">
-                    <h3>Historique des PLEs</h3>
-                    ${player.plePoints.map((points, index) => `
-                        <div class="history-item">
-                            <span class="history-date">PLE #${index + 1}</span>
-                            <span class="history-points">${points} points</span>
+                    ${player.championDays > 0 ? `
+                        <div class="stat-card">
+                            <div class="stat-value">${player.championDays}</div>
+                            <div class="stat-label">Jours en tant que Champion</div>
                         </div>
-                    `).join('')}
+                    ` : ''}
                 </div>
+                ${player.achievements.length > 0 ? `
+                    <div class="achievements-section">
+                        <h3>Récompenses</h3>
+                        <div class="achievements-grid">
+                            ${player.achievements.map(achievement => `
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">🏆</div>
+                                    <div class="achievement-title">${achievement.title}</div>
+                                    <div class="achievement-days">${achievement.days} jours</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
             `;
             
             playerDetails.innerHTML = content;
