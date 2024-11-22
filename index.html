@@ -296,7 +296,7 @@
             animation: bronzeGlow 2s infinite;
         }
 
-        /* Styles pour la modal */
+        /* Styles pour les modals */
         .modal {
             display: none;
             position: fixed;
@@ -319,20 +319,59 @@
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             color: var(--text-color);
-            animation: modalFadeIn 0.3s;
         }
 
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .rules-content {
+            max-width: 1000px;
+            padding: 30px;
         }
 
+        .rules-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .rules-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        .rules-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .rules-section li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .rules-section li:before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: -20px;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        /* Styles pour la modal joueur */
         .modal-header {
             display: flex;
             align-items: center;
@@ -358,20 +397,6 @@
             color: var(--primary-color);
             margin: 0 0 10px 0;
             font-size: 2.5em;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--text-color);
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--primary-color);
         }
 
         .stats-grid {
@@ -434,23 +459,48 @@
         .achievement {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 8px;
-            margin: 4px 0;
-            background: rgba(134, 180, 120, 0.1);
-            border-radius: 4px;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        .achievement-icon {
-            font-size: 24px;
+        .achievement:hover {
+            transform: translateX(10px);
         }
 
-        .achievement small {
-            color: #666;
+        .achievement-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 25px;
         }
 
-        .achievements {
-            margin-top: 20px;
+        .achievement-info {
+            flex-grow: 1;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .achievement-days {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .boost-counter {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
         }
 
         @keyframes float {
@@ -622,42 +672,84 @@
 </head>
 <body>
     <!-- Modal -->
-    <div id="playerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <img src="" alt="" id="modalPlayerImage">
-                <div class="modal-header-info">
-                    <h2 id="modalPlayerName"></h2>
-                    <div id="modalPlayerRank"></div>
-                </div>
+    <div id="rules-modal" class="modal">
+        <div class="modal-content rules-content">
+            <span class="close-modal" onclick="closeRulesModal()">&times;</span>
+            <h2>Règles du jeu - PPW</h2>
+            <div class="rules-section">
+                <h3>Points de Base</h3>
+                <ul>
+                    <li>1 Bon prono sur un match = 1 point</li>
+                    <li>1 Bon prono Bonus = 2 points</li>
+                    <li>3 Bon pronos d'affilés = x2 sur le prochain match</li>
+                    <li>2 Mauvais pronos d'affilés = -0.5 sur le prochain match</li>
+                    <li>PERFECT = 1 point supplémentaire</li>
+                </ul>
             </div>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <h3>SAISON</h3>
-                    <div class="stat-value" id="modalSeasonPoints"></div>
-                </div>
-                <div class="stat-box">
-                    <h3>ALL TIME</h3>
-                    <div class="stat-value" id="modalTotalPoints"></div>
-                </div>
-                <div class="stat-box">
-                    <h3>PLE</h3>
-                    <div class="stat-value" id="modalPlePoints"></div>
-                </div>
-                <div class="stat-box">
-                    <h3>Jours en tant que Champion</h3>
-                    <div class="stat-value" id="modalChampionDays">-</div>
-                </div>
+
+            <div class="rules-section">
+                <h3>Classement Saisonnier</h3>
+                <p>Le premier du classement après chaque PLE devient CHAMPION PPW et obtient :</p>
+                <ul>
+                    <li>La possibilité de booster un pronostic (+1 point)</li>
+                    <li>Cumulable jusqu'à 3 boosts si plusieurs victoires</li>
+                </ul>
+                <p>Le dernier du classement peut annuler le pronostic d'un joueur (sauf top 3)</p>
             </div>
-            <div class="ple-history">
-                <h3>Historique des PLE</h3>
-                <div class="ple-list" id="modalPleHistory">
-                    <!-- Les PLE seront ajoutés ici dynamiquement -->
-                </div>
+
+            <div class="rules-section">
+                <h3>Classement All Time</h3>
+                <p>Le premier devient l'UNDISPUTED ALL TIME PPW CHAMPION :</p>
+                <ul>
+                    <li>Bonus de 2 points sur le prochain PLE</li>
+                    <li>Effectif après Money in the Bank</li>
+                </ul>
             </div>
-            <div class="achievements" id="modalAchievements">
-                <!-- Les achievements seront ajoutés ici dynamiquement -->
+
+            <div class="rules-section">
+                <h3>Champion PLE</h3>
+                <p>Le meilleur score sur un PLE devient Champion PLE</p>
+                <p>En cas d'égalité, le mieux classé l'emporte</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Money in the Bank</h3>
+                <ul>
+                    <li>2 matchs : un pour le top 3, un pour la mallette</li>
+                    <li>Le détenteur peut "cash-in" avant un PLE</li>
+                    <li>Doit battre le score du champion pour gagner</li>
+                    <li>Bonus de 2 points sur les PLE majeurs</li>
+                    <li>Expire à WrestleMania (-5 points de pénalité)</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Royal Rumble</h3>
+                <ul>
+                    <li>Match unique</li>
+                    <li>Le vainqueur devient champion automatiquement</li>
+                    <li>Champion actuel : +2 points bonus</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>PLE Majeurs</h3>
+                <p>Points doublés pour WrestleMania, SummerSlam, Royal Rumble, Survivor Series :</p>
+                <ul>
+                    <li>Match normal = 2 points</li>
+                    <li>Prono Bonus = 4 points</li>
+                    <li>3 bons d'affilée = x4 sur le suivant</li>
+                    <li>2 mauvais d'affilée = -1 point</li>
+                    <li>Perfect = 2 points bonus</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Champion Saisonnier</h3>
+                <ul>
+                    <li>Plus de points à la fin de WrestleMania</li>
+                    <li>Bonus de 5 points sur un pronostic au premier PLE</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -673,9 +765,9 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScZig0AEf57W0UJkm8tEKD-GLc_58KNIH8VsyMwcyqBe0akSA/viewform?usp=sf_link" target="_blank" class="button participate-button">
                 Participer aux pronostics 🎯
             </a>
-            <a href="LIEN_VERS_REGLES" target="_blank" class="button rules-button">
+            <button onclick="showRules()" class="button rules-button">
                 Règles du jeu 📋
-            </a>
+            </button>
         </div>
     </header>
 
@@ -687,140 +779,130 @@
     </main>
 
     <script>
-        async function loadRankings() {
-            try {
-                const response = await fetch('rankings.json');
-                const players = await response.json();
-                
-                // Trouver le plus haut score PLE et Total
-                const maxTotalPoints = Math.max(...players.map(p => Number(p.totalPoints)));
-                const maxPlePoints = Math.max(...players.map(p => Number(p.plePoints)));
-                console.log('Max Total Points:', maxTotalPoints);
-                console.log('Max PLE Points:', maxPlePoints);
-                
-                displayRankings(players, maxTotalPoints, maxPlePoints);
-            } catch (error) {
-                console.error('Erreur lors du chargement des données:', error);
-            }
+        function showRules() {
+            document.getElementById('rules-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRulesModal() {
+            document.getElementById('rules-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function loadRankings() {
+            fetch('rankings.json')
+                .then(response => response.json())
+                .then(data => {
+                    const maxTotalPoints = Math.max(...data.map(p => p.totalPoints));
+                    const maxPlePoints = Math.max(...data.map(p => p.plePoints));
+                    displayRankings(data, maxTotalPoints, maxPlePoints);
+                })
+                .catch(error => console.error('Error:', error));
         }
 
         function displayRankings(players, maxTotalPoints, maxPlePoints) {
             const container = document.getElementById('rankings-container');
             container.innerHTML = '';
 
-            players.forEach((player, index) => {
+            players.forEach(player => {
                 const card = document.createElement('div');
-                card.className = 'card';
-                
-                // Ajout des classes pour les effets spéciaux avec priorité
-                if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
-                    card.className = 'card all-time-champion';
-                } else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
-                    card.className = 'card ple-leader';
-                } else if (index < 3) {
-                    card.className = `card rank-${index + 1}`;
+                card.className = 'player-card';
+                if (player.totalPoints === maxTotalPoints) {
+                    card.classList.add('all-time-champion');
+                }
+                if (player.plePoints === maxPlePoints) {
+                    card.classList.add('ple-leader');
+                }
+                if (player.rank <= 3) {
+                    card.classList.add(`rank-${player.rank}`);
                 }
 
-                // Contenu de la carte (juste l'image)
-                const cardContent = document.createElement('div');
-                cardContent.className = 'card-content';
-                cardContent.innerHTML = `
-                    <img src="${player.imageUrl}" alt="${player.name}" onerror="this.src='cards/default.png'" class="player-image">
+                card.innerHTML = `
+                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
+                         onerror="this.src='default-player.jpg'">
                 `;
-                card.appendChild(cardContent);
 
-                // Ajout de l'événement de clic pour la modal
-                card.addEventListener('click', () => openPlayerModal(player));
-
+                card.onclick = () => displayPlayerDetails(player);
                 container.appendChild(card);
             });
         }
 
-        // Fonction pour ouvrir la modal avec les détails du joueur
-        function openPlayerModal(player) {
-            const modal = document.getElementById('playerModal');
-            const modalImg = document.getElementById('modalPlayerImage');
-            const modalName = document.getElementById('modalPlayerName');
-            const modalRank = document.getElementById('modalPlayerRank');
-            const modalSeasonPoints = document.getElementById('modalSeasonPoints');
-            const modalTotalPoints = document.getElementById('modalTotalPoints');
-            const modalPlePoints = document.getElementById('modalPlePoints');
-            const modalChampionDays = document.getElementById('modalChampionDays');
-            const modalPleHistory = document.getElementById('modalPleHistory');
-            const modalAchievements = document.getElementById('modalAchievements');
+        function displayPlayerDetails(player) {
+            const modal = document.getElementById('player-modal');
+            const content = modal.querySelector('.modal-content');
 
-            // Mise à jour des informations de base
-            modalImg.src = player.imageUrl;
-            modalImg.alt = player.name;
-            modalName.textContent = player.name;
-            modalRank.textContent = `Rang actuel: #${player.rank}`;
-            modalSeasonPoints.textContent = player.seasonPoints;
-            modalTotalPoints.textContent = player.totalPoints;
-            modalPlePoints.textContent = player.plePoints;
-            modalChampionDays.textContent = player.championDays || '0';
-
-            // Mise à jour de l'historique PLE
-            modalPleHistory.innerHTML = '';
-            if (player.pleHistory && player.pleHistory.length > 0) {
-                player.pleHistory.forEach(ple => {
-                    const pleItem = document.createElement('div');
-                    pleItem.className = 'ple-item';
-                    pleItem.innerHTML = `
-                        <div>${ple.name}</div>
-                        <div class="points">${ple.points} pts</div>
-                    `;
-                    modalPleHistory.appendChild(pleItem);
-                });
-            } else {
-                modalPleHistory.innerHTML = '<div class="ple-item">Aucun PLE participé</div>';
-            }
-
-            // Mise à jour des achievements
-            modalAchievements.innerHTML = '<h3>Achievements</h3>';
+            let achievementsHtml = '';
             if (player.achievements && player.achievements.length > 0) {
-                player.achievements.forEach(achievement => {
-                    const achievementEl = document.createElement('div');
-                    achievementEl.className = 'achievement';
-                    achievementEl.innerHTML = `
-                        <span class="achievement-icon">${achievement.icon}</span>
-                        <div>
-                            <div>${achievement.title}</div>
-                            <small>${achievement.date}</small>
+                achievementsHtml = player.achievements.map(achievement => `
+                    <div class="achievement">
+                        ${achievement.imageUrl ? 
+                            `<img src="${achievement.imageUrl}" alt="${achievement.title}" class="achievement-image">` :
+                            `<div class="achievement-image" style="background-color: var(--primary-color)"></div>`
+                        }
+                        <div class="achievement-info">
+                            <div class="achievement-title">${achievement.title}</div>
+                            <div class="achievement-days">${achievement.days} jours</div>
                         </div>
-                    `;
-                    modalAchievements.appendChild(achievementEl);
-                });
-            } else {
-                modalAchievements.innerHTML += '<div class="achievement">Aucun achievement débloqué</div>';
+                    </div>
+                `).join('');
             }
-            
-            // Afficher la modal
-            modal.style.display = 'block';
 
-            // Empêcher le défilement de la page
+            const boostCounter = player.boostCount ? 
+                `<div class="boost-counter">Boosts disponibles : ${player.boostCount}</div>` : '';
+
+            content.innerHTML = `
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <div class="modal-header">
+                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
+                    <h2>${player.name}</h2>
+                </div>
+                ${boostCounter}
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-title">Points de Saison</div>
+                        <div class="stat-value">${player.seasonPoints}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Points Totaux</div>
+                        <div class="stat-value">${player.totalPoints}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Points PLE</div>
+                        <div class="stat-value">${player.plePoints}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Rang</div>
+                        <div class="stat-value">${player.rank}</div>
+                    </div>
+                </div>
+                <div class="achievements-section">
+                    <h3>Achievements</h3>
+                    ${achievementsHtml || '<p>Aucun achievement pour le moment</p>'}
+                </div>
+            `;
+
+            modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        // Fermer la modal
-        document.querySelector('.close-modal').addEventListener('click', () => {
-            document.getElementById('playerModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        // Fermer la modal si on clique en dehors
-        window.addEventListener('click', (event) => {
-            const modal = document.getElementById('playerModal');
-            if (event.target === modal) {
+        function closeModal() {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
                 modal.style.display = 'none';
+            }
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fermer les modals en cliquant en dehors
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
-        });
+        }
 
-        // Charger les données au démarrage
+        // Charger les données au chargement de la page
         loadRankings();
-
-        // Actualiser toutes les 5 minutes
-        setInterval(loadRankings, 300000);
     </script>
 </body>
 </html>

@@ -6,13 +6,14 @@
     "plePoints": 0,
     "rank": 1,
     "imageUrl": "cards/AURELIEN.png",
-    "championDays": 0,
+    "championDays": 181,
+    "boostCount": 2,
     "pleHistory": [],
     "achievements": [
       {
-        "title": "Premier du classement",
-        "icon": "👑",
-        "date": "2024"
+        "title": "Champion WORLD PPW",
+        "days": 181,
+        "imageUrl": "achievements/world_champion.png"
       }
     ]
   },
@@ -24,6 +25,7 @@
     "rank": 2,
     "imageUrl": "cards/JASON.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -34,9 +36,21 @@
     "plePoints": 0,
     "rank": 3,
     "imageUrl": "cards/MATHIS.png",
-    "championDays": 0,
+    "championDays": 151,
+    "boostCount": 1,
     "pleHistory": [],
-    "achievements": []
+    "achievements": [
+      {
+        "title": "Champion ALL TIME PPW",
+        "days": 151,
+        "imageUrl": "achievements/all_time_champion.png"
+      },
+      {
+        "title": "Champion WORLD PPW",
+        "days": 48,
+        "imageUrl": "achievements/world_champion.png"
+      }
+    ]
   },
   {
     "name": "ANTO",
@@ -46,8 +60,15 @@
     "rank": 4,
     "imageUrl": "cards/ANTO.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
-    "achievements": []
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 56,
+        "imageUrl": "achievements/ple_champion.png"
+      }
+    ]
   },
   {
     "name": "QUENTIN",
@@ -57,8 +78,15 @@
     "rank": 5,
     "imageUrl": "cards/QUENTIN.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
-    "achievements": []
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 35,
+        "imageUrl": "achievements/ple_champion.png"
+      }
+    ]
   },
   {
     "name": "BRANDON",
@@ -68,13 +96,20 @@
     "rank": 6,
     "imageUrl": "cards/BRANDON.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [
       {
-        "name": "Royal Rumble 2024",
+        "name": "Crown Jewel 2024",
         "points": 7
       }
     ],
-    "achievements": []
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 28,
+        "imageUrl": "achievements/ple_champion.png"
+      }
+    ]
   },
   {
     "name": "NEK",
@@ -84,6 +119,7 @@
     "rank": 7,
     "imageUrl": "cards/NEK.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -95,6 +131,7 @@
     "rank": 8,
     "imageUrl": "cards/ONI.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -106,6 +143,7 @@
     "rank": 9,
     "imageUrl": "cards/NATHAN.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -117,6 +155,7 @@
     "rank": 10,
     "imageUrl": "cards/MIZOU.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -128,8 +167,15 @@
     "rank": 11,
     "imageUrl": "cards/RYOLAIT12.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
-    "achievements": []
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 27,
+        "imageUrl": "achievements/ple_champion.png"
+      }
+    ]
   },
   {
     "name": "BEN",
@@ -139,6 +185,7 @@
     "rank": 12,
     "imageUrl": "cards/BEN.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -150,6 +197,7 @@
     "rank": 13,
     "imageUrl": "cards/LUDOPOUL.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   },
@@ -161,6 +209,7 @@
     "rank": 14,
     "imageUrl": "cards/ELCHAPO.png",
     "championDays": 0,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": []
   }
