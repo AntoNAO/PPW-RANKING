@@ -257,20 +257,28 @@
 
         .icons-container {
             position: absolute;
-            top: -30px;
+            top: -35px;
             left: 0;
             right: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             z-index: 10;
         }
 
         .floating-icon {
-            font-size: 40px;
+            font-size: 35px;
             animation: float 2s ease-in-out infinite;
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
-            margin: 0 5px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .card-content {
@@ -288,581 +296,35 @@
             border-radius: 15px;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
         /* Effets spéciaux avec priorité */
         .all-time-champion {
             box-shadow: 0 0 15px #00bfff,
                        0 0 25px #00bfff,
                        0 0 35px #0099ff;
-            animation: diamondGlow 2s infinite !important;
         }
 
         .ple-leader {
-            box-shadow: 0 0 20px #ff4d4d,
-                       0 0 40px #ff4d4d,
-                       0 0 60px #ff8533;
-            animation: fire 2s infinite !important;
+            box-shadow: 0 0 15px #ff4d4d,
+                       0 0 25px #ff4d4d,
+                       0 0 35px #ff8533;
         }
 
         .rank-1 {
             box-shadow: 0 0 15px #ffd700,
                        0 0 25px #ffd700,
                        0 0 35px #ffd700;
-            animation: goldGlow 2s infinite;
         }
 
         .rank-2 {
             box-shadow: 0 0 15px #c0c0c0,
                        0 0 25px #c0c0c0,
                        0 0 35px #c0c0c0;
-            animation: silverGlow 2s infinite;
         }
 
         .rank-3 {
             box-shadow: 0 0 15px #cd7f32,
                        0 0 25px #cd7f32,
                        0 0 35px #cd7f32;
-            animation: bronzeGlow 2s infinite;
-        }
-
-        @keyframes diamondGlow {
-            0%, 100% {
-                box-shadow: 0 0 15px #00bfff,
-                           0 0 25px #00bfff,
-                           0 0 35px #0099ff;
-            }
-            50% {
-                box-shadow: 0 0 25px #0099ff,
-                           0 0 45px #0099ff,
-                           0 0 65px #00bfff;
-            }
-        }
-
-        @keyframes fire {
-            0% {
-                box-shadow: 0 0 20px #ff4d4d,
-                           0 0 40px #ff4d4d,
-                           0 0 60px #ff8533;
-            }
-            50% {
-                box-shadow: 0 0 30px #ff4d4d,
-                           0 0 60px #ff4d4d,
-                           0 0 90px #ff8533;
-            }
-            100% {
-                box-shadow: 0 0 20px #ff4d4d,
-                           0 0 40px #ff4d4d,
-                           0 0 60px #ff8533;
-            }
-        }
-
-        @keyframes goldGlow {
-            0%, 100% {
-                box-shadow: 0 0 15px #ffd700,
-                           0 0 25px #ffd700,
-                           0 0 35px #ffd700;
-            }
-            50% {
-                box-shadow: 0 0 25px #ffd700,
-                           0 0 45px #ffd700,
-                           0 0 65px #ffd700;
-            }
-        }
-
-        @keyframes silverGlow {
-            0%, 100% {
-                box-shadow: 0 0 15px #c0c0c0,
-                           0 0 25px #c0c0c0,
-                           0 0 35px #c0c0c0;
-            }
-            50% {
-                box-shadow: 0 0 25px #c0c0c0,
-                           0 0 45px #c0c0c0,
-                           0 0 65px #c0c0c0;
-            }
-        }
-
-        @keyframes bronzeGlow {
-            0%, 100% {
-                box-shadow: 0 0 15px #cd7f32,
-                           0 0 25px #cd7f32,
-                           0 0 35px #cd7f32;
-            }
-            50% {
-                box-shadow: 0 0 25px #cd7f32,
-                           0 0 45px #cd7f32,
-                           0 0 65px #cd7f32;
-            }
-        }
-
-        /* Styles pour la modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: var(--card-bg);
-            margin: 50px auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            color: var(--text-color);
-            animation: modalFadeIn 0.3s;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .modal-header img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 75px;
-            margin-right: 20px;
-            border: 3px solid var(--primary-color);
-        }
-
-        .modal-header-info {
-            flex-grow: 1;
-        }
-
-        .modal-header-info h2 {
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--text-color);
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .stat-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .stat-box h3 {
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-        }
-
-        .stat-value {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .ple-history {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .ple-history h3 {
-            color: var(--primary-color);
-            margin: 0 0 15px 0;
-        }
-
-        .ple-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-
-        .ple-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            margin: 4px 0;
-            background: rgba(134, 180, 120, 0.1);
-            border-radius: 4px;
-        }
-
-        .ple-item .points {
-            font-weight: bold;
-            color: #86b478;
-        }
-
-        .achievement {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px;
-            margin: 4px 0;
-            background: rgba(134, 180, 120, 0.1);
-            border-radius: 4px;
-        }
-
-        .achievement-icon {
-            font-size: 24px;
-        }
-
-        .achievement small {
-            color: #666;
-        }
-
-        .achievements {
-            margin-top: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        .all-time-champion {
-            position: relative;
-            overflow: visible !important;
-            animation: diamondGlow 2s infinite !important;
-        }
-
-        .ple-leader {
-            position: relative;
-            overflow: visible !important;
-            animation: fire 2s infinite !important;
-        }
-
-        .rank-1 {
-            animation: goldGlow 2s infinite;
-        }
-
-        .rank-2 {
-            animation: silverGlow 2s infinite;
-        }
-
-        .rank-3 {
-            animation: bronzeGlow 2s infinite;
-        }
-
-        @keyframes diamondGlow {
-            0%, 100% {
-                box-shadow: 
-                    0 0 15px #00bfff,
-                    0 0 25px #00bfff,
-                    0 0 35px #0099ff,
-                    inset 0 0 15px #00bfff;
-                border-color: #00bfff;
-            }
-            50% {
-                box-shadow: 
-                    0 0 25px #0099ff,
-                    0 0 45px #0099ff,
-                    0 0 65px #00bfff,
-                    inset 0 0 25px #0099ff;
-                border-color: #0099ff;
-            }
-        }
-
-        @keyframes fire {
-            0% {
-                box-shadow: 
-                    0 0 20px #ff4d4d,
-                    0 0 40px #ff4d4d,
-                    0 0 60px #ff8533;
-            }
-            50% {
-                box-shadow: 
-                    0 0 30px #ff4d4d,
-                    0 0 60px #ff4d4d,
-                    0 0 90px #ff8533,
-                    0 0 120px #ff8533;
-            }
-            100% {
-                box-shadow: 
-                    0 0 20px #ff4d4d,
-                    0 0 40px #ff4d4d,
-                    0 0 60px #ff8533;
-            }
-        }
-
-        /* Styles pour la modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: var(--card-bg);
-            margin: 50px auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            color: var(--text-color);
-            animation: modalFadeIn 0.3s;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .modal-header img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 75px;
-            margin-right: 20px;
-            border: 3px solid var(--primary-color);
-        }
-
-        .modal-header-info {
-            flex-grow: 1;
-        }
-
-        .modal-header-info h2 {
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--text-color);
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .stat-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .stat-box h3 {
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-        }
-
-        .stat-value {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .ple-history {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .ple-history h3 {
-            color: var(--primary-color);
-            margin: 0 0 15px 0;
-        }
-
-        .ple-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-
-        .ple-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            margin: 4px 0;
-            background: rgba(134, 180, 120, 0.1);
-            border-radius: 4px;
-        }
-
-        .ple-item .points {
-            font-weight: bold;
-            color: #86b478;
-        }
-
-        .achievement {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px;
-            margin: 4px 0;
-            background: rgba(134, 180, 120, 0.1);
-            border-radius: 4px;
-        }
-
-        .achievement-icon {
-            font-size: 24px;
-        }
-
-        .achievement small {
-            color: #666;
-        }
-
-        .achievements {
-            margin-top: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        .all-time-champion {
-            position: relative;
-            overflow: visible !important;
-            animation: diamondGlow 2s infinite !important;
-        }
-
-        .ple-leader {
-            position: relative;
-            overflow: visible !important;
-            animation: fire 2s infinite !important;
-        }
-
-        .rank-1 {
-            animation: goldGlow 2s infinite;
-        }
-
-        .rank-2 {
-            animation: silverGlow 2s infinite;
-        }
-
-        .rank-3 {
-            animation: bronzeGlow 2s infinite;
-        }
-
-        @keyframes diamondGlow {
-            0%, 100% {
-                box-shadow: 
-                    0 0 15px #00bfff,
-                    0 0 25px #00bfff,
-                    0 0 35px #0099ff,
-                    inset 0 0 15px #00bfff;
-                border-color: #00bfff;
-            }
-            50% {
-                box-shadow: 
-                    0 0 25px #0099ff,
-                    0 0 45px #0099ff,
-                    0 0 65px #00bfff,
-                    inset 0 0 25px #0099ff;
-                border-color: #0099ff;
-            }
-        }
-
-        @keyframes fire {
-            0% {
-                box-shadow: 
-                    0 0 20px #ff4d4d,
-                    0 0 40px #ff4d4d,
-                    0 0 60px #ff8533;
-            }
-            50% {
-                box-shadow: 
-                    0 0 30px #ff4d4d,
-                    0 0 60px #ff4d4d,
-                    0 0 90px #ff8533,
-                    0 0 120px #ff8533;
-            }
-            100% {
-                box-shadow: 
-                    0 0 20px #ff4d4d,
-                    0 0 40px #ff4d4d,
-                    0 0 60px #ff8533;
-            }
         }
 
         /* Styles pour la modal */
@@ -1278,42 +740,45 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 
-                // Gestion des effets spéciaux et des icônes
-                let icons = [];
+                // Ajout des classes pour les effets spéciaux
+                if (player.championDays > 0) {
+                    card.classList.add('all-time-champion');
+                } else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                    card.classList.add('ple-leader');
+                } else if (index < 3) {
+                    card.classList.add(`rank-${index + 1}`);
+                }
+
+                // Création du conteneur d'icônes
+                const iconsContainer = document.createElement('div');
+                iconsContainer.className = 'icons-container';
+
+                // Ajout des icônes selon la priorité
+                const icons = [];
                 
-                // All Time Champion (priorité la plus haute pour l'effet visuel)
-                if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
-                    card.className = 'card all-time-champion';
-                    icons.unshift('👑'); // Ajoute l'icône au début du tableau
+                // All Time Champion (priorité la plus haute)
+                if (player.championDays > 0) {
+                    icons.push('👑');
                 }
-                // PLE leader (deuxième priorité pour l'effet visuel)
+                // PLE Leader (deuxième priorité)
                 else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
-                    card.className = 'card ple-leader';
-                    icons.unshift('🔥'); // Ajoute l'icône au début du tableau
+                    icons.push('🔥');
                 }
-                // Top 3 (dernière priorité pour l'effet visuel)
-                else if (player.rank <= 3) {
-                    card.className = `card rank-${player.rank}`;
-                }
+                
+                // Médailles pour le top 3 (toujours ajoutées si applicable)
+                if (index === 0) icons.push('🥇');
+                else if (index === 1) icons.push('🥈');
+                else if (index === 2) icons.push('🥉');
 
-                // Ajout des médailles pour le top 3 (toujours affiché si dans le top 3)
-                if (player.rank <= 3) {
-                    const medals = ['🥇', '🥈', '🥉'];
-                    icons.push(medals[player.rank - 1]); // Ajoute la médaille à la fin
-                }
+                // Création des éléments d'icône
+                icons.forEach(icon => {
+                    const iconElement = document.createElement('span');
+                    iconElement.className = 'floating-icon';
+                    iconElement.textContent = icon;
+                    iconsContainer.appendChild(iconElement);
+                });
 
-                // Création du conteneur d'icônes si nécessaire
-                if (icons.length > 0) {
-                    const iconsContainer = document.createElement('div');
-                    iconsContainer.className = 'icons-container';
-                    icons.forEach(icon => {
-                        const iconElement = document.createElement('span');
-                        iconElement.className = 'floating-icon';
-                        iconElement.textContent = icon;
-                        iconsContainer.appendChild(iconElement);
-                    });
-                    card.appendChild(iconsContainer);
-                }
+                card.appendChild(iconsContainer);
 
                 // Contenu de la carte
                 const cardContent = document.createElement('div');
