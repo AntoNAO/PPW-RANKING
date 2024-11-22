@@ -301,30 +301,35 @@
             box-shadow: 0 0 15px #00bfff,
                        0 0 25px #00bfff,
                        0 0 35px #0099ff;
+            animation: diamondGlow 2s infinite !important;
         }
 
         .ple-leader {
             box-shadow: 0 0 15px #ff4d4d,
                        0 0 25px #ff4d4d,
                        0 0 35px #ff8533;
+            animation: fire 2s infinite !important;
         }
 
         .rank-1 {
             box-shadow: 0 0 15px #ffd700,
                        0 0 25px #ffd700,
                        0 0 35px #ffd700;
+            animation: goldGlow 2s infinite;
         }
 
         .rank-2 {
             box-shadow: 0 0 15px #c0c0c0,
                        0 0 25px #c0c0c0,
                        0 0 35px #c0c0c0;
+            animation: silverGlow 2s infinite;
         }
 
         .rank-3 {
             box-shadow: 0 0 15px #cd7f32,
                        0 0 25px #cd7f32,
                        0 0 35px #cd7f32;
+            animation: bronzeGlow 2s infinite;
         }
 
         /* Styles pour la modal */
@@ -740,13 +745,13 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 
-                // Ajout des classes pour les effets spéciaux
+                // Ajout des classes pour les effets spéciaux avec priorité
                 if (player.championDays > 0) {
-                    card.classList.add('all-time-champion');
+                    card.className = 'card all-time-champion';
                 } else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
-                    card.classList.add('ple-leader');
+                    card.className = 'card ple-leader';
                 } else if (index < 3) {
-                    card.classList.add(`rank-${index + 1}`);
+                    card.className = `card rank-${index + 1}`;
                 }
 
                 // Création du conteneur d'icônes
@@ -756,16 +761,17 @@
                 // Ajout des icônes selon la priorité
                 const icons = [];
                 
-                // All Time Champion (priorité la plus haute)
+                // All Time Champion (toujours affiché si applicable)
                 if (player.championDays > 0) {
                     icons.push('👑');
                 }
-                // PLE Leader (deuxième priorité)
-                else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                
+                // PLE Leader (affiché si pas All Time Champion)
+                if (!player.championDays && player.plePoints === maxPlePoints && maxPlePoints > 0) {
                     icons.push('🔥');
                 }
                 
-                // Médailles pour le top 3 (toujours ajoutées si applicable)
+                // Médailles pour le top 3 (toujours affichées si applicable)
                 if (index === 0) icons.push('🥇');
                 else if (index === 1) icons.push('🥈');
                 else if (index === 2) icons.push('🥉');
