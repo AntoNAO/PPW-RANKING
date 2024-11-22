@@ -866,6 +866,9 @@
             padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
+            background-color: #1a1a1a;
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 2rem;
         }
 
         .next-ple {
@@ -884,22 +887,30 @@
         .next-ple-title {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: var(--primary-color);
+            color: #ffffff;
         }
 
         .next-ple-date {
             font-size: 0.9rem;
             opacity: 0.8;
+            color: #ffffff;
         }
 
         .countdown {
             margin-top: 1rem;
             font-weight: bold;
-            color: var(--primary-color);
+            color: #ffffff;
         }
 
         .site-title {
             text-align: center;
+        }
+
+        .site-logo {
+            width: 200px;
+            height: auto;
+            margin: 1rem auto;
+            display: block;
         }
 
         .wwe-news {
@@ -1033,13 +1044,14 @@
             <h2>Prochain PLE</h2>
             <img src="./assets/ple-images/survivor-series-2024.jpg" alt="Survivor Series War Games Canada">
             <div class="next-ple-title">SURVIVOR SERIES WAR GAMES CANADA</div>
-            <div class="next-ple-date">23 novembre 2024</div>
+            <div class="next-ple-date">30 novembre 2024</div>
             <div class="countdown" id="countdown">
                 <!-- Le compte à rebours sera mis à jour par JavaScript -->
             </div>
         </div>
 
         <div class="site-title">
+            <img src="./assets/logo.png" alt="PPW Logo" class="site-logo">
             <h1>PPW</h1>
             <p>Professional Pronostic Wrestling</p>
             <div class="nav-buttons">
@@ -1218,7 +1230,7 @@
 
         // Mise à jour du compte à rebours
         function updateCountdown() {
-            const eventDate = new Date('2024-11-23T00:00:00');
+            const eventDate = new Date('2024-11-30T00:00:00');
             const now = new Date();
             const diff = eventDate - now;
 
