@@ -77,6 +77,9 @@
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
             color: white;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .ple-title {
@@ -143,6 +146,75 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
+        .results-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .results-modal.active {
+            display: flex;
+        }
+
+        .results-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .results-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-results {
+            position: absolute;
+            top: -2rem;
+            right: -2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .close-results:hover {
+            background: #6b9060;
+        }
+
+        .view-results-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .view-results-btn:hover {
+            background: #6b9060;
+        }
+
         @media (max-width: 768px) {
             .ple-grid {
                 grid-template-columns: 1fr;
@@ -176,76 +248,112 @@
         </div>
     </div>
 
+    <!-- Modal pour les résultats -->
+    <div id="resultsModal" class="results-modal">
+        <div class="results-content">
+            <button class="close-results" onclick="closeResultsModal()">×</button>
+            <img id="resultsImage" src="" alt="Résultats du PLE" class="results-image">
+        </div>
+    </div>
+
     <script>
-        // Données des PLE avec les images par défaut
         const pleEvents = [
             {
                 name: "Royal Rumble 2024",
                 date: "2024-01-27",
                 image: "https://www.wwe.com/f/styles/og_image/public/2024/01/20240127_RoyalRumble--82ff5b87f9c1a25c848613140bf9b643.jpg",
-                status: "Terminé"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Royal+Rumble+2024"
             },
             {
                 name: "Elimination Chamber 2024",
                 date: "2024-02-24",
                 image: "https://www.wwe.com/f/styles/og_image/public/2024/02/20240224_EC_LOGO--6c2c48e9c7f1e1c48876c61b3a64fc78.jpg",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Elimination+Chamber+2024"
             },
             {
                 name: "WrestleMania 40",
                 date: "2024-04-06",
                 image: "https://www.wwe.com/f/styles/og_image/public/2024/02/20240406_WM_Logo--3e8c3a3c2b4c2a4e9e9a2a6a5e8f2c1d.jpg",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+WrestleMania+40"
             },
             {
                 name: "BACKLASH FRANCE",
                 date: "2024-05-05",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=BACKLASH+FRANCE+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Backlash+France"
             },
             {
                 name: "KING & QUEEN OF THE RING",
                 date: "2024-05-25",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=KING+%26+QUEEN+OF+THE+RING+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+King+%26+Queen+of+the+Ring"
             },
             {
                 name: "CLASH AT THE CASTLE SCOTLAND",
                 date: "2024-06-15",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=CLASH+AT+THE+CASTLE+SCOTLAND+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Clash+at+the+Castle"
             },
             {
                 name: "MONEY IN THE BANK TORONTO",
                 date: "2024-07-06",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=MONEY+IN+THE+BANK+TORONTO+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Money+in+the+Bank"
             },
             {
                 name: "SUMMER SLAM CLEVELAND",
                 date: "2024-08-03",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=SUMMER+SLAM+CLEVELAND+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Summer+Slam"
             },
             {
                 name: "BASH IN BERLIN",
                 date: "2024-08-31",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=BASH+IN+BERLIN+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Bash+in+Berlin"
             },
             {
                 name: "BAD BLOOD 2024",
                 date: "2024-10-05",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=BAD+BLOOD+2024",
-                status: "À venir"
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Bad+Blood"
             },
             {
                 name: "CROWN JEWEL 2024",
                 date: "2024-11-02",
                 image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=CROWN+JEWEL+2024",
+                status: "Terminé",
+                resultsImage: "https://via.placeholder.com/1920x1080/86b478/FFFFFF?text=Résultats+Crown+Jewel"
+            },
+            {
+                name: "SURVIVOR SERIES WAR GAMES CANADA",
+                date: "2024-11-23",
+                image: "https://via.placeholder.com/800x450/86b478/FFFFFF?text=SURVIVOR+SERIES+WAR+GAMES+2024",
                 status: "À venir"
             }
         ];
+
+        function showResultsModal(resultsImage) {
+            const modal = document.getElementById('resultsModal');
+            const image = document.getElementById('resultsImage');
+            image.src = resultsImage;
+            modal.classList.add('active');
+        }
+
+        function closeResultsModal() {
+            const modal = document.getElementById('resultsModal');
+            modal.classList.remove('active');
+        }
 
         function displayPLEs(events) {
             const grid = document.getElementById('pleGrid');
@@ -261,6 +369,11 @@
                             month: 'long',
                             day: 'numeric'
                         })}</div>
+                        ${event.status === 'Terminé' ? `
+                            <button class="view-results-btn" onclick="showResultsModal('${event.resultsImage}')">
+                                Voir les résultats
+                            </button>
+                        ` : ''}
                     </div>
                 </div>
             `).join('');
@@ -278,6 +391,20 @@
 
             displayPLEs(filtered);
         }
+
+        // Fermer la modal quand on clique en dehors
+        document.getElementById('resultsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeResultsModal();
+            }
+        });
+
+        // Fermer la modal avec la touche Echap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeResultsModal();
+            }
+        });
 
         // Initialisation
         document.getElementById('searchInput').addEventListener('input', filterPLEs);
