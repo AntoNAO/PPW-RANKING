@@ -870,13 +870,27 @@
 
         .logo-section {
             margin-bottom: 2rem;
+            width: 100%;
+            text-align: center;
         }
 
         .site-logo {
-            width: 250px;
+            width: 600px;
             height: auto;
             display: block;
             margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .site-logo {
+                width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-logo {
+                width: 300px;
+            }
         }
 
         .content-section {
