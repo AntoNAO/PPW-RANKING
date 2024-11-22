@@ -233,32 +233,58 @@
             transform: translateY(-1px);
         }
 
-        .rankings {
-            display: flex;
-            flex-wrap: wrap;
+        #rankings {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             padding: 2rem;
-            justify-content: center;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .card {
-            position: relative;
-            width: 300px;
-            height: 420px;
-            background-color: #2a2a2a;
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
         }
 
-        .card-image {
+        .card.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card[data-rank="1"] {
+            animation: goldGlow 2s infinite;
+        }
+
+        .card[data-rank="2"] {
+            animation: silverGlow 2s infinite;
+        }
+
+        .card[data-rank="3"] {
+            animation: bronzeGlow 2s infinite;
+        }
+
+        .card-content {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
+        }
+
+        .player-image {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .card-info {
@@ -266,122 +292,69 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
-            padding: 1rem;
-            border-radius: 0 0 10px 10px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+            padding: 1.5rem;
+            color: white;
         }
 
-        .rank {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+        .player-name {
+            font-size: 1.5rem;
             font-weight: bold;
-            z-index: 1;
+            margin: 0;
+            text-align: center;
+            text-transform: uppercase;
         }
 
-        .card.fade-in {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card[data-rank="1"] {
-            position: relative;
-            overflow: visible !important;
-        }
-
-        .card[data-rank="2"] {
-            position: relative;
-            overflow: visible !important;
-        }
-
-        .card[data-rank="3"] {
-            position: relative;
-            overflow: visible !important;
-        }
-
-        .card[data-rank="1"]::after {
-            content: '';
+        .player-rank {
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 3px solid #ffd700;
-            border-radius: 12px;
-            animation: goldGlow 2s infinite;
-            pointer-events: none;
+            top: -30px;
+            right: 10px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
-        .card[data-rank="2"]::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 3px solid #c0c0c0;
-            border-radius: 12px;
-            animation: silverGlow 2s infinite;
-            pointer-events: none;
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
-        .card[data-rank="3"]::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 3px solid #cd7f32;
-            border-radius: 12px;
-            animation: bronzeGlow 2s infinite;
-            pointer-events: none;
+        .stat {
+            text-align: center;
         }
 
-        .card[data-rank="1"] .rank::after {
-            content: '🥇';
-            margin-left: 5px;
-            font-size: 1.2em;
+        .stat-label {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
         }
 
-        .card[data-rank="2"] .rank::after {
-            content: '🥈';
-            margin-left: 5px;
-            font-size: 1.2em;
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
-        .card[data-rank="3"] .rank::after {
-            content: '🥉';
-            margin-left: 5px;
-            font-size: 1.2em;
+        .progress-bars {
+            margin-top: 1rem;
         }
 
-        .card[data-rank="1"] .card-info {
-            background: linear-gradient(to top, 
-                rgba(255, 215, 0, 0.9), 
-                rgba(218, 165, 32, 0.7)
-            );
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 4px;
+            overflow: hidden;
         }
 
-        .card[data-rank="2"] .card-info {
-            background: linear-gradient(to top, 
-                rgba(192, 192, 192, 0.9), 
-                rgba(169, 169, 169, 0.7)
-            );
-        }
-
-        .card[data-rank="3"] .card-info {
-            background: linear-gradient(to top, 
-                rgba(205, 127, 50, 0.9), 
-                rgba(184, 134, 11, 0.7)
-            );
+        .progress {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
         }
 
         .ple-leader {
@@ -637,7 +610,7 @@
                 font-size: 2rem;
             }
 
-            .rankings {
+            #rankings {
                 padding: 1rem;
             }
 
@@ -707,7 +680,7 @@
         </div>
     </header>
 
-    <main class="rankings" id="rankings">
+    <main id="rankings">
         <!-- Les cartes seront chargées ici dynamiquement -->
     </main>
 
@@ -736,45 +709,46 @@
             players.forEach((player, index) => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                
-                // All Time Champion prend la priorité sur le Top 3
-                if (player.totalPoints == maxTotalPoints) {
-                    console.log('Adding All Time Champion class to:', player.name);
-                    card.classList.add('all-time-champion');
-                }
-                // PLE leader
-                else if (player.plePoints == maxPlePoints && maxPlePoints > 0) {
-                    console.log('Adding PLE leader class to:', player.name);
-                    card.classList.add('ple-leader');
-                }
-                // Top 3 seulement si pas All Time Champion
-                else if (player.rank <= 3) {
-                    card.setAttribute('data-rank', player.rank);
-                }
-                
-                const imagePath = `./cards/${player.name}.png`;
-                
+                card.setAttribute('data-rank', player.rank);
+
+                // Calculer les pourcentages pour les barres de progression
+                const plePercentage = (maxPlePoints > 0) ? (player.plePoints / maxPlePoints) * 100 : 0;
+                const totalPercentage = (maxTotalPoints > 0) ? (player.totalPoints / maxTotalPoints) * 100 : 0;
+
                 card.innerHTML = `
-                    <div class="rank">#${player.rank}</div>
-                    <img class="card-image" src="${imagePath}" alt="${player.name}" onerror="this.src='https://via.placeholder.com/320x400/2a2a2a/d4af37?text=${player.name}'">
-                    <div class="card-info">
-                        <h3 class="player-name">${player.name}</h3>
-                        <div class="stats">
-                            <div class="stat">
-                                <span class="stat-label">SAISON</span>
-                                <span class="stat-value">${player.seasonPoints}</span>
+                    <div class="card-content">
+                        <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
+                        <div class="card-info">
+                            <div class="player-name">${player.name}</div>
+                            <div class="player-rank">#${player.rank}</div>
+                            <div class="stats">
+                                <div class="stat">
+                                    <div class="stat-label">SAISON</div>
+                                    <div class="stat-value">${player.seasonPoints}</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-label">ALL TIME</div>
+                                    <div class="stat-value">${player.totalPoints}</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-label">PLE</div>
+                                    <div class="stat-value">${player.plePoints}</div>
+                                </div>
                             </div>
-                            <div class="stat">
-                                <span class="stat-label">ALL TIME</span>
-                                <span class="stat-value">${player.totalPoints}</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">PLE</span>
-                                <span class="stat-value">${player.plePoints}</span>
+                            <div class="progress-bars">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: ${plePercentage}%"></div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: ${totalPercentage}%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `;
+
+                // Ajouter l'événement de clic pour ouvrir la modal
+                card.addEventListener('click', () => openPlayerModal(player));
 
                 container.appendChild(card);
                 
@@ -863,27 +837,6 @@
                 document.body.style.overflow = 'auto';
             }
         });
-
-        function displayRankings(players, maxPlePoints, maxTotalPoints) {
-            const container = document.getElementById('rankings');
-            container.innerHTML = '';
-
-            players.forEach((player, index) => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                
-                // ... (reste du code existant pour la création des cartes)
-
-                // Ajouter l'événement de clic pour ouvrir la modal
-                card.addEventListener('click', () => openPlayerModal(player));
-
-                container.appendChild(card);
-                
-                setTimeout(() => {
-                    card.classList.add('fade-in');
-                }, index * 200);
-            });
-        }
 
         // Charger les données au démarrage
         loadRankings();
