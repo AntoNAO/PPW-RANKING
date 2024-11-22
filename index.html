@@ -846,6 +846,17 @@
                 max-height: 300px;
             }
         }
+        
+        .history-button {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            margin-left: 1rem;
+        }
+
+        .history-button:hover {
+            background: linear-gradient(45deg, #357abd, #2868a0);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -978,6 +989,7 @@
             <button onclick="showRules()" class="button rules-button">
                 Règles du jeu 📋
             </button>
+            <a href="history.html" class="button history-button">Historique des PLE</a>
         </div>
     </header>
 
