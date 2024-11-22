@@ -1250,39 +1250,77 @@
         }
 
         function loadRankings() {
-            fetch('rankings.json')
-                .then(response => response.json())
-                .then(data => {
-                    const maxTotalPoints = Math.max(...data.map(p => p.totalPoints));
-                    const maxPlePoints = Math.max(...data.map(p => p.plePoints));
-                    displayRankings(data, maxTotalPoints, maxPlePoints);
-                })
-                .catch(error => console.error('Error:', error));
+            // Données de test
+            const players = [
+                {
+                    name: "John Doe",
+                    totalPoints: 150,
+                    plePoints: [20, 15, 25, 30, 20, 40],
+                    streak: 3
+                },
+                {
+                    name: "Jane Smith",
+                    totalPoints: 140,
+                    plePoints: [15, 25, 20, 30, 25, 25],
+                    streak: 2
+                },
+                {
+                    name: "Bob Johnson",
+                    totalPoints: 130,
+                    plePoints: [20, 20, 20, 25, 25, 20],
+                    streak: 0
+                },
+                {
+                    name: "Alice Brown",
+                    totalPoints: 120,
+                    plePoints: [15, 20, 25, 20, 20, 20],
+                    streak: 1
+                }
+            ];
+
+            const maxTotalPoints = Math.max(...players.map(p => p.totalPoints));
+            const maxPlePoints = Math.max(...players.map(p => Math.max(...p.plePoints)));
+
+            displayRankings(players, maxTotalPoints, maxPlePoints);
         }
 
         function displayRankings(players, maxTotalPoints, maxPlePoints) {
             const container = document.getElementById('rankings-container');
             container.innerHTML = '';
 
-            players.forEach(player => {
+            players.forEach((player, index) => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
-                if (player.totalPoints === maxTotalPoints) {
-                    card.classList.add('all-time-champion');
-                }
-                if (player.plePoints === maxPlePoints) {
-                    card.classList.add('ple-leader');
-                }
-                if (player.rank <= 3) {
-                    card.classList.add(`rank-${player.rank}`);
-                }
+                if (index === 0) card.classList.add('gold');
+                if (index === 1) card.classList.add('silver');
+                if (index === 2) card.classList.add('bronze');
 
+                const rankClass = index < 3 ? 'top-rank' : 'normal-rank';
+                
                 card.innerHTML = `
-                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
-                         onerror="this.src='default-player.jpg'">
+                    <div class="rank ${rankClass}">#${index + 1}</div>
+                    <h2 class="player-name">${player.name}</h2>
+                    <div class="points-section">
+                        <div class="points total-points">
+                            <span class="points-label">Total</span>
+                            <span class="points-value">${player.totalPoints}</span>
+                        </div>
+                        <div class="points ple-points">
+                            <span class="points-label">PLE</span>
+                            <span class="points-value">${player.plePoints.reduce((a, b) => a + b, 0)}</span>
+                        </div>
+                    </div>
+                    ${player.streak >= 3 ? '<div class="streak-badge">🔥 ' + player.streak + '</div>' : ''}
                 `;
 
-                card.onclick = () => displayPlayerDetails(player);
+                // Ajout de l'événement de clic pour ouvrir la modal
+                card.addEventListener('click', () => {
+                    displayPlayerDetails(player);
+                });
+
+                // Animation d'entrée
+                card.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s both`;
+
                 container.appendChild(card);
             });
         }
