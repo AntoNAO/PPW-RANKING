@@ -693,36 +693,18 @@
 
         .player-card {
             position: relative;
-            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-            border-radius: 15px;
-            padding: 1rem;
-            margin: 1rem;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 450px;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
             cursor: pointer;
-        }
-
-        .player-card::after {
-            content: "👆 Cliquez pour plus d'infos";
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            color: var(--primary-color);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto;
         }
 
         .player-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .player-card:hover::after {
-            opacity: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .player-card img {
@@ -1203,9 +1185,7 @@
     <div id="player-modal" class="player-modal">
         <div class="player-modal-content">
             <span class="close-player-modal" onclick="closePlayerModal()">&times;</span>
-            <div id="player-details">
-                <!-- Le contenu sera injecté dynamiquement -->
-            </div>
+            <div id="player-details"></div>
         </div>
     </div>
 
@@ -1309,69 +1289,56 @@
                 card.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
-                    <h3>${player.name}</h3>
-                    <div class="player-stats-preview">
-                        <p>Points Totaux: ${player.totalPoints}</p>
-                        <p>Points Saison: ${player.seasonPoints}</p>
-                        <p>Rang: #${player.rank}</p>
-                    </div>
                 `;
 
-                card.addEventListener('click', () => {
-                    displayPlayerDetails(player);
+                card.addEventListener('click', function() {
+                    console.log('Card clicked:', player.name); // Debug log
+                    const modal = document.getElementById('player-modal');
+                    const playerDetails = document.getElementById('player-details');
+                    
+                    playerDetails.innerHTML = `
+                        <h2 class="player-name-title">${player.name}</h2>
+                        <div class="player-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">${player.totalPoints}</div>
+                                <div class="stat-label">Points Totaux</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${player.seasonPoints}</div>
+                                <div class="stat-label">Points Saison</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">#${player.rank}</div>
+                                <div class="stat-label">Classement</div>
+                            </div>
+                            ${player.championDays > 0 ? `
+                                <div class="stat-card">
+                                    <div class="stat-value">${player.championDays}</div>
+                                    <div class="stat-label">Jours en tant que Champion</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                        ${player.achievements && player.achievements.length > 0 ? `
+                            <div class="achievements-section">
+                                <h3>Récompenses</h3>
+                                <div class="achievements-grid">
+                                    ${player.achievements.map(achievement => `
+                                        <div class="achievement-card">
+                                            <div class="achievement-icon">🏆</div>
+                                            <div class="achievement-title">${achievement.title}</div>
+                                            <div class="achievement-days">${achievement.days} jours</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    `;
+                    
+                    modal.style.display = 'block';
                 });
 
                 container.appendChild(card);
             });
-        }
-
-        function displayPlayerDetails(player) {
-            const modal = document.getElementById('player-modal');
-            const playerDetails = document.getElementById('player-details');
-            
-            const totalPoints = player.plePoints.reduce((a, b) => a + b, 0);
-            const averagePoints = (totalPoints / player.plePoints.length).toFixed(1);
-            
-            const content = `
-                <h2 class="player-name-title">${player.name}</h2>
-                <div class="player-stats">
-                    <div class="stat-card">
-                        <div class="stat-value">${totalPoints}</div>
-                        <div class="stat-label">Points Totaux</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">${player.seasonPoints}</div>
-                        <div class="stat-label">Points Saison</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">#${player.rank}</div>
-                        <div class="stat-label">Classement</div>
-                    </div>
-                    ${player.championDays > 0 ? `
-                        <div class="stat-card">
-                            <div class="stat-value">${player.championDays}</div>
-                            <div class="stat-label">Jours en tant que Champion</div>
-                        </div>
-                    ` : ''}
-                </div>
-                ${player.achievements.length > 0 ? `
-                    <div class="achievements-section">
-                        <h3>Récompenses</h3>
-                        <div class="achievements-grid">
-                            ${player.achievements.map(achievement => `
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">🏆</div>
-                                    <div class="achievement-title">${achievement.title}</div>
-                                    <div class="achievement-days">${achievement.days} jours</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                ` : ''}
-            `;
-            
-            playerDetails.innerHTML = content;
-            modal.style.display = 'block';
         }
 
         function closePlayerModal() {
@@ -1383,7 +1350,7 @@
         window.onclick = function(event) {
             const modal = document.getElementById('player-modal');
             if (event.target === modal) {
-                modal.style.display = 'none';
+                closePlayerModal();
             }
         }
 
