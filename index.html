@@ -789,8 +789,26 @@
                 // Contenu de la carte
                 const cardContent = document.createElement('div');
                 cardContent.className = 'card-content';
+
+                // Construction du HTML pour les achievements sans afficher les icônes
+                const achievementsHTML = player.achievements && player.achievements.length > 0
+                    ? `<div class="achievements">
+                        ${player.achievements.map(achievement => 
+                            `<div class="achievement">
+                                <div class="achievement-text">${achievement.title}</div>
+                                <small>${achievement.date}</small>
+                            </div>`
+                        ).join('')}
+                       </div>`
+                    : '';
+
                 cardContent.innerHTML = `
-                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
+                    <img src="${player.imageUrl}" alt="${player.name}" onerror="this.src='cards/default.png'">
+                    <h3>${player.name}</h3>
+                    <p class="points">Points de la saison : ${player.seasonPoints}</p>
+                    <p class="points">Points totaux : ${player.totalPoints}</p>
+                    <p class="points">Points PLE : ${player.plePoints}</p>
+                    ${achievementsHTML}
                 `;
                 card.appendChild(cardContent);
 
