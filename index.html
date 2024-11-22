@@ -726,18 +726,18 @@
                 const players = await response.json();
                 
                 // Trouver le plus haut score PLE et Total
-                const maxPlePoints = Math.max(...players.map(p => Number(p.plePoints)));
                 const maxTotalPoints = Math.max(...players.map(p => Number(p.totalPoints)));
-                console.log('Max PLE Points:', maxPlePoints);
+                const maxPlePoints = Math.max(...players.map(p => Number(p.plePoints)));
                 console.log('Max Total Points:', maxTotalPoints);
+                console.log('Max PLE Points:', maxPlePoints);
                 
-                displayRankings(players, maxPlePoints, maxTotalPoints);
+                displayRankings(players, maxTotalPoints, maxPlePoints);
             } catch (error) {
                 console.error('Erreur lors du chargement des données:', error);
             }
         }
 
-        function displayRankings(players, maxPlePoints, maxTotalPoints) {
+        function displayRankings(players, maxTotalPoints, maxPlePoints) {
             const container = document.getElementById('rankings');
             container.innerHTML = '';
 
@@ -746,7 +746,7 @@
                 card.className = 'card';
                 
                 // Ajout des classes pour les effets spéciaux avec priorité
-                if (player.championDays > 0) {
+                if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
                     card.className = 'card all-time-champion';
                 } else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
                     card.className = 'card ple-leader';
@@ -762,12 +762,12 @@
                 const icons = [];
                 
                 // All Time Champion (toujours affiché si applicable)
-                if (player.championDays > 0) {
+                if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
                     icons.push('👑');
                 }
                 
                 // PLE Leader (affiché si pas All Time Champion)
-                if (!player.championDays && player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                if (player.totalPoints !== maxTotalPoints && player.plePoints === maxPlePoints && maxPlePoints > 0) {
                     icons.push('🔥');
                 }
                 
