@@ -245,7 +245,7 @@
         .card {
             background-color: var(--card-bg);
             border-radius: 15px;
-            overflow: hidden;
+            overflow: visible;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             opacity: 0;
@@ -253,20 +253,29 @@
             position: relative;
         }
 
-        .card.fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        .icons-container {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 10;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .floating-icon {
+            font-size: 40px;
+            animation: float 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
 
         .card-content {
             position: relative;
             width: 100%;
             height: 100%;
+            overflow: hidden;
+            border-radius: 15px;
         }
 
         .player-image {
@@ -729,6 +738,237 @@
         .all-time-champion {
             position: relative;
             overflow: visible !important;
+            animation: diamondGlow 2s infinite !important;
+        }
+
+        .ple-leader {
+            position: relative;
+            overflow: visible !important;
+            animation: fire 2s infinite !important;
+        }
+
+        .rank-1 {
+            animation: goldGlow 2s infinite;
+        }
+
+        .rank-2 {
+            animation: silverGlow 2s infinite;
+        }
+
+        .rank-3 {
+            animation: bronzeGlow 2s infinite;
+        }
+
+        @keyframes diamondGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 15px #00bfff,
+                    0 0 25px #00bfff,
+                    0 0 35px #0099ff,
+                    inset 0 0 15px #00bfff;
+                border-color: #00bfff;
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #0099ff,
+                    0 0 45px #0099ff,
+                    0 0 65px #00bfff,
+                    inset 0 0 25px #0099ff;
+                border-color: #0099ff;
+            }
+        }
+
+        @keyframes fire {
+            0% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px #ff4d4d,
+                    0 0 60px #ff4d4d,
+                    0 0 90px #ff8533,
+                    0 0 120px #ff8533;
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+            }
+        }
+
+        /* Styles pour la modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--card-bg);
+            margin: 50px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: var(--text-color);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .modal-header img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 75px;
+            margin-right: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .modal-header-info {
+            flex-grow: 1;
+        }
+
+        .modal-header-info h2 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .ple-history {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .ple-history h3 {
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+        }
+
+        .ple-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .ple-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(134, 180, 120, 0.1);
+            border-radius: 4px;
+        }
+
+        .ple-item .points {
+            font-weight: bold;
+            color: #86b478;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(134, 180, 120, 0.1);
+            border-radius: 4px;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+        }
+
+        .achievement small {
+            color: #666;
+        }
+
+        .achievements {
+            margin-top: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .all-time-champion {
+            position: relative;
+            overflow: visible !important;
         }
 
         .all-time-champion::before {
@@ -975,39 +1215,55 @@
                 
                 // Gestion des icônes multiples
                 let icons = [];
+                let hasSpecialEffect = false;
                 
-                // All Time Champion
+                // All Time Champion (priorité la plus haute)
                 if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
                     console.log('Adding All Time Champion class to:', player.name);
-                    card.classList.add('all-time-champion');
+                    card.className = 'card all-time-champion';
                     icons.push('👑');
+                    hasSpecialEffect = true;
                 }
                 
-                // PLE leader
-                if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                // PLE leader (deuxième priorité)
+                else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
                     console.log('Adding PLE leader class to:', player.name);
-                    card.classList.add('ple-leader');
+                    card.className = 'card ple-leader';
                     icons.push('🔥');
+                    hasSpecialEffect = true;
                 }
                 
-                // Top 3 - Toujours ajouter l'attribut data-rank pour les effets visuels
-                if (player.rank <= 3) {
+                // Top 3 (dernière priorité)
+                if (!hasSpecialEffect && player.rank <= 3) {
+                    card.className = `card rank-${player.rank}`;
                     card.setAttribute('data-rank', player.rank);
+                }
+
+                // Ajout des médailles aux icônes si dans le top 3
+                if (player.rank <= 3) {
                     const medals = ['🥇', '🥈', '🥉'];
                     icons.push(medals[player.rank - 1]);
                 }
 
-                // Si plusieurs icônes, on les affiche toutes
+                // Configuration des icônes
                 if (icons.length > 0) {
-                    card.classList.add('multiple-icons');
-                    card.setAttribute('data-icons', icons.join(' '));
+                    const iconsContainer = document.createElement('div');
+                    iconsContainer.className = 'icons-container';
+                    icons.forEach(icon => {
+                        const iconElement = document.createElement('span');
+                        iconElement.className = 'floating-icon';
+                        iconElement.textContent = icon;
+                        iconsContainer.appendChild(iconElement);
+                    });
+                    card.appendChild(iconsContainer);
                 }
 
-                card.innerHTML = `
-                    <div class="card-content">
-                        <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
-                    </div>
+                const cardContent = document.createElement('div');
+                cardContent.className = 'card-content';
+                cardContent.innerHTML = `
+                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
                 `;
+                card.appendChild(cardContent);
 
                 // Ajouter l'événement de clic pour ouvrir la modal
                 card.addEventListener('click', () => openPlayerModal(player));
