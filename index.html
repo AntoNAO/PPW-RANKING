@@ -758,41 +758,35 @@
                 const iconsContainer = document.createElement('div');
                 iconsContainer.className = 'icons-container';
 
-                // Ajout des icônes selon la priorité
-                const icons = [];
-                
-                // All Time Champion (toujours affiché si applicable)
+                // Une seule icône par personne, avec priorité
+                let icon = null;
                 if (player.totalPoints === maxTotalPoints && maxTotalPoints > 0) {
-                    icons.push('👑');
+                    icon = '👑'; // All Time Champion
+                } else if (player.plePoints === maxPlePoints && maxPlePoints > 0) {
+                    icon = '🔥'; // PLE Leader
+                } else if (index === 0) {
+                    icon = '🥇'; // 1er
+                } else if (index === 1) {
+                    icon = '🥈'; // 2ème
+                } else if (index === 2) {
+                    icon = '🥉'; // 3ème
                 }
-                
-                // PLE Leader (affiché si pas All Time Champion)
-                if (player.totalPoints !== maxTotalPoints && player.plePoints === maxPlePoints && maxPlePoints > 0) {
-                    icons.push('🔥');
-                }
-                
-                // Médailles pour le top 3 (toujours affichées si applicable)
-                if (index === 0) icons.push('🥇');
-                else if (index === 1) icons.push('🥈');
-                else if (index === 2) icons.push('🥉');
 
-                // Création des éléments d'icône
-                icons.forEach(icon => {
+                // Ajout de l'icône si elle existe
+                if (icon) {
                     const iconElement = document.createElement('span');
                     iconElement.className = 'floating-icon';
                     iconElement.textContent = icon;
                     iconsContainer.appendChild(iconElement);
-                });
+                }
 
                 card.appendChild(iconsContainer);
 
-                // Contenu de la carte
+                // Contenu de la carte (juste l'image)
                 const cardContent = document.createElement('div');
                 cardContent.className = 'card-content';
-
                 cardContent.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image">
-                    <h3>${player.name}</h3>
                 `;
                 card.appendChild(cardContent);
 
@@ -800,11 +794,6 @@
                 card.addEventListener('click', () => openPlayerModal(player));
 
                 container.appendChild(card);
-                
-                // Animation d'apparition
-                setTimeout(() => {
-                    card.classList.add('fade-in');
-                }, index * 100);
             });
         }
 
