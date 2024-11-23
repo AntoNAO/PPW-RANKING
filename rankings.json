@@ -7,7 +7,7 @@
     "rank": 1,
     "imageUrl": "cards/AURELIEN.png",
     "championDays": 181,
-    "boostCount": 2,
+    "boostCount": 1,
     "pleHistory": [],
     "achievements": [
       {
@@ -22,7 +22,7 @@
     "seasonPoints": 63,
     "totalPoints": 54,
     "plePoints": 0,
-    "rank": 2,
+    "rank": 0,
     "imageUrl": "cards/JASON.png",
     "championDays": 0,
     "boostCount": 0,
@@ -37,7 +37,7 @@
     "rank": 3,
     "imageUrl": "cards/MATHIS.png",
     "championDays": 151,
-    "boostCount": 1,
+    "boostCount": 0,
     "pleHistory": [],
     "achievements": [
       {
