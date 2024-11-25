@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPW - Professional Pronostic Wrestling</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #86b478;
+            --secondary-color: #1a1a1a;
+            --text-color: #ffffff;
+            --gold: #ffd700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+            --card-bg: #2a2a2a;
+        }
+
+        /* Thème clair */
+        [data-theme="light"] {
+            --primary-color: #75a067;
+            --secondary-color: #ffffff;
+            --text-color: #000000;
+            --card-bg: #f5f5f5;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes holographic {
+            0% {
+                filter: brightness(1) contrast(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(1.2) contrast(1.1);
+                transform: scale(1.02);
+            }
+            100% {
+                filter: brightness(1) contrast(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fire {
+            0% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px #ff4d4d,
+                    0 0 60px #ff4d4d,
+                    0 0 90px #ff8533,
+                    0 0 120px #ff8533;
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #ff4d4d,
+                    0 0 40px #ff4d4d,
+                    0 0 60px #ff8533;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes auraGlow {
+            0% { box-shadow: 0 0 20px var(--color); }
+            50% { box-shadow: 0 0 40px var(--color), 0 0 60px var(--color); }
+            100% { box-shadow: 0 0 20px var(--color); }
+        }
+
+        @keyframes diamondGlow {
+            0% {
+                box-shadow: 
+                    0 0 20px #00bfff,
+                    0 0 40px #00bfff,
+                    0 0 60px #0099ff;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px #00bfff,
+                    0 0 60px #00bfff,
+                    0 0 90px #0099ff,
+                    0 0 120px #0099ff;
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #00bfff,
+                    0 0 40px #00bfff,
+                    0 0 60px #0099ff;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes goldGlow {
+            0% {
+                box-shadow: 
+                    0 0 15px #ffd700,
+                    0 0 25px #ffd700,
+                    0 0 35px #ffd700;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #ffd700,
+                    0 0 45px #ffd700,
+                    0 0 65px #ffd700;
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 
+                    0 0 15px #ffd700,
+                    0 0 25px #ffd700,
+                    0 0 35px #ffd700;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes silverGlow {
+            0% {
+                box-shadow: 0 0 15px #C0C0C0,
+                           0 0 25px #C0C0C0,
+                           0 0 35px #C0C0C0;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 25px #C0C0C0,
+                           0 0 45px #C0C0C0,
+                           0 0 65px #C0C0C0;
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 0 15px #C0C0C0,
+                           0 0 25px #C0C0C0,
+                           0 0 35px #C0C0C0;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bronzeGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 15px #cd7f32,
+                    0 0 25px #cd7f32,
+                    0 0 35px #cd7f32;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #cd7f32,
+                    0 0 45px #cd7f32,
+                    0 0 65px #cd7f32;
+                transform: scale(1.02);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .header {
+            background: linear-gradient(to right, var(--secondary-color), #000);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .site-logo {
+            width: 750px;
+            height: auto;
+            margin-bottom: 3rem;
+            display: block;
+            margin: 0 auto 3rem auto;
+            max-width: 90vw;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: var(--text-color);
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .participate-button {
+            background: linear-gradient(45deg, #86b478, #75a067);
+            color: #000;
+        }
+
+        .join-button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .rules-button {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(-1px);
+        }
+
+        .next-ple {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .next-ple img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .next-ple img:hover {
+            transform: scale(1.02);
+        }
+
+        .next-ple-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            text-transform: uppercase;
+        }
+
+        .next-ple-date {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .nav-button {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-button:active {
+            transform: translateY(-1px);
+        }
+
+        #rankings-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 30px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .card {
+            position: relative;
+            flex: 1 1 400px;
+            max-width: 400px;
+            margin: 20px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-content {
+            width: 100%;
+            height: 100%;
+        }
+
+        .player-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Effets spéciaux avec priorité */
+        .player-card {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto;
+        }
+
+        /* Aura ALL TIME (priorité la plus haute) */
+        .all-time-champion {
+            box-shadow: 
+                0 0 20px #00bfff,
+                0 0 40px #00bfff,
+                0 0 60px #0099ff !important;
+            animation: diamondGlow 2s infinite !important;
+            z-index: 3;
+            position: relative;
+        }
+
+        /* Aura PLE Leader (priorité moyenne) */
+        .ple-leader {
+            box-shadow: 
+                0 0 15px #ff4d4d,
+                0 0 25px #ff4d4d,
+                0 0 35px #ff8533 !important;
+            animation: fire 2s infinite !important;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Auras de rang (priorité basse) */
+        .rank-1 {
+            box-shadow: 0 0 15px var(--gold),
+                       0 0 25px var(--gold),
+                       0 0 35px var(--gold);
+            animation: goldGlow 2s infinite;
+            z-index: 1;
+        }
+
+        .rank-2 {
+            box-shadow: 0 0 15px #C0C0C0,
+                       0 0 25px #C0C0C0,
+                       0 0 35px #C0C0C0;
+            animation: silverGlow 2s infinite !important;
+            z-index: 1;
+            position: relative;
+        }
+
+        .rank-3 {
+            box-shadow: 0 0 15px var(--bronze),
+                       0 0 25px var(--bronze),
+                       0 0 35px var(--bronze);
+            animation: bronzeGlow 2s infinite;
+            z-index: 1;
+        }
+
+        /* Styles pour les modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--card-bg);
+            margin: 50px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: var(--text-color);
+        }
+
+        .rules-content {
+            max-width: 1000px;
+            padding: 30px;
+        }
+
+        .rules-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .rules-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        .rules-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .rules-section li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .rules-section li:before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: -20px;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        /* Styles pour la modal joueur */
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .modal-header img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 75px;
+            margin-right: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .modal-header-info {
+            flex-grow: 1;
+        }
+
+        .modal-header-info h2 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .ple-history {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .ple-history h3 {
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+        }
+
+        .ple-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .ple-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(134, 180, 120, 0.1);
+            border-radius: 4px;
+        }
+
+        .ple-item .points {
+            font-weight: bold;
+            color: #86b478;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement:hover {
+            transform: translateX(10px);
+        }
+
+        .achievement-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 25px;
+        }
+
+        .achievement-info {
+            flex-grow: 1;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .achievement-days {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .boost-counter {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .badge {
+            font-size: 2em;
+            margin-right: 10px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+
+        .badge-perfect {
+            color: #ffd700;
+            animation: pulse 2s infinite;
+        }
+
+        .badge-streak {
+            color: #ff4d4d;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .all-time-champion {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .all-time-champion::before {
+            content: '👑';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #00bfff);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .all-time-champion::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #00bfff;
+            border-radius: 12px;
+            animation: diamondGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .ple-leader {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .ple-leader::before {
+            content: '🔥';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #ff4d4d);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .ple-leader::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #ff4d4d;
+            border-radius: 12px;
+            animation: fire 2s infinite;
+            pointer-events: none;
+        }
+
+        .card[data-rank="1"]::before {
+            content: '🥇';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #ffd700);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .card[data-rank="2"]::before {
+            content: '🥈';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #c0c0c0);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .card[data-rank="3"]::before {
+            content: '🥉';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px #cd7f32);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .card[data-rank="1"]::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #ffd700;
+            border-radius: 12px;
+            animation: goldGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .card[data-rank="2"]::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #c0c0c0;
+            border-radius: 12px;
+            animation: silverGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .card[data-rank="3"]::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #cd7f32;
+            border-radius: 12px;
+            animation: bronzeGlow 2s infinite;
+            pointer-events: none;
+        }
+
+        .multiple-icons::before {
+            content: attr(data-icons);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+            justify-items: center;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .player-card {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .player-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            #rankings-container {
+                padding: 1rem;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        .side-content {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            padding: 1rem;
+            overflow-y: auto;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 1rem;
+            right: 320px;
+            z-index: 1000;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            padding: 10px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 1.5em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .ple-preview {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .ple-preview-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .ple-preview-info {
+            padding: 1rem;
+        }
+
+        .ple-preview-info h4 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .countdown {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        .content-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .next-ple {
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .next-ple img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .next-ple-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .next-ple-date {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 0.5rem 0;
+        }
+
+        .main-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background-color: #1a1a1a;
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .logo-section {
+            margin-bottom: 2rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .site-logo {
+            width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .site-logo {
+                width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-logo {
+                width: 300px;
+            }
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .next-ple {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .next-ple {
+            text-align: center;
+        }
+
+        .next-ple img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .next-ple h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .next-ple-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .next-ple-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: #ffffff;
+        }
+
+        .countdown {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Styles pour la modal des cartes */
+        .player-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .player-modal-content {
+            position: relative;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .player-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .achievements-section {
+            margin-top: 2rem;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-title {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        .achievement-days {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .close-player-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-player-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .player-name-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .achievement-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .achievement-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 25px;
+            margin-bottom: 10px;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal -->
+    <div id="rules-modal" class="modal">
+        <div class="modal-content rules-content">
+            <span class="close-modal" onclick="closeRulesModal()">&times;</span>
+            <h2>Règles du jeu - PPW</h2>
+            <div class="rules-section">
+                <h3>Points de Base</h3>
+                <ul>
+                    <li>1 Bon prono sur un match = 1 point</li>
+                    <li>1 Bon prono Bonus = 2 points</li>
+                    <li>3 Bon pronos d'affilés = x2 sur le prochain match</li>
+                    <li>2 Mauvais pronos d'affilés = -0.5 sur le prochain match</li>
+                    <li>PERFECT = 1 point supplémentaire</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Classement Saisonnier</h3>
+                <p>Le premier du classement après chaque PLE devient CHAMPION PPW et obtient :</p>
+                <ul>
+                    <li>La possibilité de booster un pronostic (+1 point)</li>
+                    <li>Cumulable jusqu'à 3 boosts si plusieurs victoires</li>
+                </ul>
+                <p>Le dernier du classement peut annuler le pronostic d'un joueur (sauf top 3)</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Classement All Time</h3>
+                <p>Le premier devient l'UNDISPUTED ALL TIME PPW CHAMPION :</p>
+                <ul>
+                    <li>Bonus de 2 points sur le prochain PLE</li>
+                    <li>Effectif après Money in the Bank</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Champion PLE</h3>
+                <p>Le meilleur score sur un PLE devient Champion PLE</p>
+                <p>En cas d'égalité, le mieux classé l'emporte</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Money in the Bank</h3>
+                <ul>
+                    <li>2 matchs : un pour le top 3, un pour la mallette</li>
+                    <li>Le détenteur peut "cash-in" avant un PLE</li>
+                    <li>Doit battre le score du champion pour gagner</li>
+                    <li>Bonus de 2 points sur les PLE majeurs</li>
+                    <li>Expire à WrestleMania (-5 points de pénalité)</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Royal Rumble</h3>
+                <ul>
+                    <li>Match unique</li>
+                    <li>Le vainqueur devient champion automatiquement</li>
+                    <li>Champion actuel : +2 points bonus</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>PLE Majeurs</h3>
+                <p>Points doublés pour WrestleMania, SummerSlam, Royal Rumble, Survivor Series :</p>
+                <ul>
+                    <li>Match normal = 2 points</li>
+                    <li>Prono Bonus = 4 points</li>
+                    <li>3 bons d'affilée = x4 sur le suivant</li>
+                    <li>2 mauvais d'affilée = -1 point</li>
+                    <li>Perfect = 2 points bonus</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Champion Saisonnier</h3>
+                <ul>
+                    <li>Plus de points à la fin de WrestleMania</li>
+                    <li>Bonus de 5 points sur un pronostic au premier PLE</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour les détails des joueurs -->
+    <div id="player-modal" class="player-modal">
+        <div class="player-modal-content">
+            <span class="close-player-modal" onclick="closePlayerModal()">&times;</span>
+            <div id="player-details"></div>
+        </div>
+    </div>
+
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle">🌓</label>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-section">
+            <img src="assets/logo.png" alt="PPW Logo" class="site-logo">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="participate.html" class="button participate-button">
+                Participer aux pronostics 🎯
+            </a>
+            <button onclick="openRulesModal()" class="button rules-button">
+                Règles du jeu 📋
+            </button>
+            <a href="history.html" class="button history-button">Historique des PLE</a>
+        </div>
+
+        <div class="content-section">
+            <div class="next-ple">
+                <h2>Prochain PLE</h2>
+                <img src="assets/ple-images/survivor-series-2024.jpg" alt="Survivor Series War Games Canada">
+                <div class="next-ple-title">SURVIVOR SERIES WAR GAMES CANADA</div>
+                <div class="next-ple-date">30 novembre 2024</div>
+                <div class="countdown" id="countdown">
+                    <!-- Le compte à rebours sera mis à jour par JavaScript -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="rankings-container" class="rankings-grid"></div>
+        </div>
+    </main>
+
+    <script>
+        function openRulesModal() {
+            document.getElementById('rules-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRulesModal() {
+            document.getElementById('rules-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function loadRankings() {
+            fetch('rankings.json')
+                .then(response => response.json())
+                .then(data => {
+                    const maxTotalPoints = Math.max(...data.map(p => p.totalPoints));
+                    const maxPlePoints = Math.max(...data.map(p => p.plePoints));
+                    displayRankings(data, maxTotalPoints, maxPlePoints);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayRankings(players, maxTotalPoints, maxPlePoints) {
+            const container = document.getElementById('rankings-container');
+            container.innerHTML = '';
+
+            players.forEach(player => {
+                const card = document.createElement('div');
+                card.className = 'player-card';
+
+                // Appliquer les effets de rang
+                if (player.rank === 1) {
+                    card.classList.add('rank-1');
+                    console.log('Added rank-1 to', player.name); // Debug
+                } else if (player.rank === 2) {
+                    card.classList.add('rank-2');
+                    console.log('Added rank-2 to', player.name); // Debug
+                } else if (player.rank === 3) {
+                    card.classList.add('rank-3');
+                    console.log('Added rank-3 to', player.name); // Debug
+                }
+
+                // Effets spéciaux
+                if (player.plePoints === maxPlePoints) {
+                    card.classList.add('ple-leader');
+                }
+                if (player.totalPoints === maxTotalPoints) {
+                    card.classList.add('all-time-champion');
+                }
+
+                card.innerHTML = `
+                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
+                         onerror="this.src='default-player.jpg'">
+                `;
+                
+                card.addEventListener('click', function() {
+                    const modal = document.getElementById('player-modal');
+                    const playerDetails = document.getElementById('player-details');
+                    
+                    playerDetails.innerHTML = `
+                        <h2 class="player-name-title">${player.name}</h2>
+                        <div class="player-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">${player.totalPoints}</div>
+                                <div class="stat-label">Points Totaux</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${player.seasonPoints}</div>
+                                <div class="stat-label">Points Saison</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">#${player.rank}</div>
+                                <div class="stat-label">Classement</div>
+                            </div>
+                            ${player.championDays > 0 ? `
+                                <div class="stat-card">
+                                    <div class="stat-value">${player.championDays}</div>
+                                    <div class="stat-label">Jours en tant que Champion</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                        ${player.achievements && player.achievements.length > 0 ? `
+                            <div class="achievements-section">
+                                <h3>Récompenses</h3>
+                                <div class="achievements-grid">
+                                    ${player.achievements.map(achievement => `
+                                        <div class="achievement-card">
+                                            <img src="${achievement.imageUrl}" alt="${achievement.title}" class="achievement-image">
+                                            <div class="achievement-title">${achievement.title}</div>
+                                            <div class="achievement-days">${achievement.days} jours</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    `;
+                    
+                    modal.style.display = 'block';
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        function closePlayerModal() {
+            const modal = document.getElementById('player-modal');
+            modal.style.display = 'none';
+        }
+
+        // Fermer la modal en cliquant en dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('player-modal');
+            if (event.target === modal) {
+                closePlayerModal();
+            }
+        }
+
+        // Charger les données au chargement de la page
+        loadRankings();
+
+        // Mode clair/sombre
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.setAttribute('data-theme', 
+                themeToggle.checked ? 'light' : 'dark');
+            localStorage.setItem('theme', themeToggle.checked ? 'light' : 'dark');
+        });
+
+        // Restaurer le thème préféré
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            themeToggle.checked = savedTheme === 'light';
+        }
+
+        // Mise à jour du compte à rebours
+        function updateCountdown() {
+            const eventDate = new Date('2024-11-30T00:00:00');
+            const now = new Date();
+            const diff = eventDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('countdown').innerHTML = `
+                Dans ${days} jours ${hours}h ${minutes}m
+            `;
+        }
+
+        // Mettre à jour le compte à rebours toutes les minutes
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    </script>
+</body>
+</html>
