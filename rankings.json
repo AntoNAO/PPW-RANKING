@@ -7,13 +7,13 @@
     "rank": 1,
     "imageUrl": "cards/AURELIEN.png",
     "championDays": 181,
-    "boostCount": 1,
+    "boostCount": 2,
     "pleHistory": [],
     "achievements": [
       {
         "title": "Champion WORLD PPW",
         "days": 181,
-        "imageUrl": "achievements/world_champion.png"
+        "imageUrl": "assets/achievements/world_champion.png"
       }
     ]
   },
@@ -37,18 +37,18 @@
     "rank": 3,
     "imageUrl": "cards/MATHIS.png",
     "championDays": 151,
-    "boostCount": 0,
+    "boostCount": 1,
     "pleHistory": [],
     "achievements": [
       {
         "title": "Champion ALL TIME PPW",
         "days": 151,
-        "imageUrl": "achievements/all_time_champion.png"
+        "imageUrl": "assets/achievements/all_time_champion.png"
       },
       {
         "title": "Champion WORLD PPW",
         "days": 48,
-        "imageUrl": "achievements/world_champion.png"
+        "imageUrl": "assets/achievements/world_champion.png"
       }
     ]
   },
@@ -66,7 +66,7 @@
       {
         "title": "Champion PLE",
         "days": 56,
-        "imageUrl": "achievements/ple_champion.png"
+        "imageUrl": "assets/achievements/ple_champion.png"
       }
     ]
   },
@@ -84,7 +84,7 @@
       {
         "title": "Champion PLE",
         "days": 35,
-        "imageUrl": "achievements/ple_champion.png"
+        "imageUrl": "assets/achievements/ple_champion.png"
       }
     ]
   },
@@ -107,7 +107,7 @@
       {
         "title": "Champion PLE",
         "days": 28,
-        "imageUrl": "achievements/ple_champion.png"
+        "imageUrl": "assets/achievements/ple_champion.png"
       }
     ]
   },
@@ -173,7 +173,7 @@
       {
         "title": "Champion PLE",
         "days": 27,
-        "imageUrl": "achievements/ple_champion.png"
+        "imageUrl": "assets/achievements/ple_champion.png"
       }
     ]
   },
