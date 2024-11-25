@@ -10,7 +10,7 @@
             --primary-color: #86b478;
             --secondary-color: #1a1a1a;
             --text-color: #ffffff;
-            --gold: #86b478;
+            --gold: #ffd700;
             --silver: #C0C0C0;
             --bronze: #CD7F32;
             --card-bg: #2a2a2a;
@@ -115,19 +115,21 @@
             }
         }
 
-        @keyframes silverAura {
+        @keyframes silverGlow {
             0% {
-                box-shadow: 0 0 15px var(--silver),
-                           0 0 25px var(--silver);
+                box-shadow: 0 0 10px #C0C0C0,
+                           0 0 20px #C0C0C0,
+                           0 0 30px #C0C0C0;
             }
             50% {
-                box-shadow: 0 0 25px var(--silver),
-                           0 0 45px var(--silver),
-                           0 0 65px var(--silver);
+                box-shadow: 0 0 20px #C0C0C0,
+                           0 0 40px #C0C0C0,
+                           0 0 60px #C0C0C0;
             }
             100% {
-                box-shadow: 0 0 15px var(--silver),
-                           0 0 25px var(--silver);
+                box-shadow: 0 0 10px #C0C0C0,
+                           0 0 20px #C0C0C0,
+                           0 0 30px #C0C0C0;
             }
         }
 
@@ -368,7 +370,10 @@
         }
 
         .rank-2 {
-            animation: silverAura 2s infinite !important;
+            box-shadow: 0 0 15px #C0C0C0,
+                       0 0 25px #C0C0C0,
+                       0 0 35px #C0C0C0;
+            animation: silverGlow 2s infinite !important;
             z-index: 1;
         }
 
@@ -735,7 +740,7 @@
             bottom: -5px;
             border: 3px solid #c0c0c0;
             border-radius: 12px;
-            animation: silverAura 2s infinite;
+            animation: silverGlow 2s infinite;
             pointer-events: none;
         }
 
@@ -1269,21 +1274,22 @@
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
-                // Appliquer d'abord les effets de rang (priorité basse)
+                // Appliquer les effets de rang
                 if (player.rank === 1) {
                     card.classList.add('rank-1');
+                    console.log('Added rank-1 to', player.name); // Debug
                 } else if (player.rank === 2) {
                     card.classList.add('rank-2');
+                    console.log('Added rank-2 to', player.name); // Debug
                 } else if (player.rank === 3) {
                     card.classList.add('rank-3');
+                    console.log('Added rank-3 to', player.name); // Debug
                 }
 
-                // Ensuite les effets spéciaux (priorité plus haute)
+                // Effets spéciaux
                 if (player.plePoints === maxPlePoints) {
                     card.classList.add('ple-leader');
                 }
-                
-                // ALL TIME en dernier pour avoir la priorité la plus haute
                 if (player.totalPoints === maxTotalPoints) {
                     card.classList.add('all-time-champion');
                 }
@@ -1292,7 +1298,7 @@
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
                 `;
-
+                
                 card.addEventListener('click', function() {
                     const modal = document.getElementById('player-modal');
                     const playerDetails = document.getElementById('player-details');
