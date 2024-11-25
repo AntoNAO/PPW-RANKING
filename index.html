@@ -16,6 +16,14 @@
             --card-bg: #2a2a2a;
         }
 
+        /* Thème clair */
+        [data-theme="light"] {
+            --primary-color: #75a067;
+            --secondary-color: #ffffff;
+            --text-color: #000000;
+            --card-bg: #f5f5f5;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -107,18 +115,19 @@
             }
         }
 
-        @keyframes silverGlow {
-            0%, 100% {
-                box-shadow: 
-                    0 0 15px #c0c0c0,
-                    0 0 25px #c0c0c0,
-                    0 0 35px #c0c0c0;
+        @keyframes silverAura {
+            0% {
+                box-shadow: 0 0 15px var(--silver),
+                           0 0 25px var(--silver);
             }
             50% {
-                box-shadow: 
-                    0 0 25px #c0c0c0,
-                    0 0 45px #c0c0c0,
-                    0 0 65px #c0c0c0;
+                box-shadow: 0 0 25px var(--silver),
+                           0 0 45px var(--silver),
+                           0 0 65px var(--silver);
+            }
+            100% {
+                box-shadow: 0 0 15px var(--silver),
+                           0 0 25px var(--silver);
             }
         }
 
@@ -320,39 +329,57 @@
         }
 
         /* Effets spéciaux avec priorité */
+        .player-card {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto;
+        }
+
+        /* Aura ALL TIME (priorité la plus haute) */
         .all-time-champion {
             box-shadow: 0 0 15px #00bfff,
                        0 0 25px #00bfff,
-                       0 0 35px #0099ff;
+                       0 0 35px #0099ff !important;
             animation: diamondGlow 2s infinite !important;
+            z-index: 3;
         }
 
+        /* Aura PLE Leader (priorité moyenne) */
         .ple-leader {
             box-shadow: 0 0 15px #ff4d4d,
                        0 0 25px #ff4d4d,
-                       0 0 35px #ff8533;
+                       0 0 35px #ff8533 !important;
             animation: fire 2s infinite !important;
+            z-index: 2;
         }
 
+        /* Auras de rang (priorité basse) */
         .rank-1 {
-            box-shadow: 0 0 15px #ffd700,
-                       0 0 25px #ffd700,
-                       0 0 35px #ffd700;
+            box-shadow: 0 0 15px var(--gold),
+                       0 0 25px var(--gold),
+                       0 0 35px var(--gold);
             animation: goldGlow 2s infinite;
+            z-index: 1;
         }
 
         .rank-2 {
-            box-shadow: 0 0 15px #c0c0c0,
-                       0 0 25px #c0c0c0,
-                       0 0 35px #c0c0c0;
-            animation: silverGlow 2s infinite;
+            box-shadow: 0 0 15px var(--silver),
+                       0 0 25px var(--silver);
+            animation: silverAura 2s infinite;
+            z-index: 1;
         }
 
         .rank-3 {
-            box-shadow: 0 0 15px #cd7f32,
-                       0 0 25px #cd7f32,
-                       0 0 35px #cd7f32;
+            box-shadow: 0 0 15px var(--bronze),
+                       0 0 25px var(--bronze),
+                       0 0 35px var(--bronze);
             animation: bronzeGlow 2s infinite;
+            z-index: 1;
         }
 
         /* Styles pour les modals */
@@ -710,7 +737,7 @@
             bottom: -5px;
             border: 3px solid #c0c0c0;
             border-radius: 12px;
-            animation: silverGlow 2s infinite;
+            animation: silverAura 2s infinite;
             pointer-events: none;
         }
 
@@ -1244,14 +1271,23 @@
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
-                if (player.totalPoints === maxTotalPoints) {
-                    card.classList.add('all-time-champion');
+                // Appliquer d'abord les effets de rang (priorité basse)
+                if (player.rank === 1) {
+                    card.classList.add('rank-1');
+                } else if (player.rank === 2) {
+                    card.classList.add('rank-2');
+                } else if (player.rank === 3) {
+                    card.classList.add('rank-3');
                 }
+
+                // Ensuite les effets spéciaux (priorité plus haute)
                 if (player.plePoints === maxPlePoints) {
                     card.classList.add('ple-leader');
                 }
-                if (player.rank <= 3) {
-                    card.classList.add(`rank-${player.rank}`);
+                
+                // ALL TIME en dernier pour avoir la priorité la plus haute
+                if (player.totalPoints === maxTotalPoints) {
+                    card.classList.add('all-time-champion');
                 }
 
                 card.innerHTML = `
@@ -1260,7 +1296,6 @@
                 `;
 
                 card.addEventListener('click', function() {
-                    console.log('Card clicked:', player.name); // Debug log
                     const modal = document.getElementById('player-modal');
                     const playerDetails = document.getElementById('player-details');
                     
