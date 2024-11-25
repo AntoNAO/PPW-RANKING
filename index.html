@@ -1136,6 +1136,31 @@
             margin-bottom: 1rem;
             text-align: center;
         }
+
+        .achievement-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .achievement-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 25px;
+            margin-bottom: 10px;
+        }
+
+        .achievement-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -1356,7 +1381,7 @@
                                 <div class="achievements-grid">
                                     ${player.achievements.map(achievement => `
                                         <div class="achievement-card">
-                                            <div class="achievement-icon">🏆</div>
+                                            <img src="${achievement.imageUrl}" alt="${achievement.title}" class="achievement-image">
                                             <div class="achievement-title">${achievement.title}</div>
                                             <div class="achievement-days">${achievement.days} jours</div>
                                         </div>
