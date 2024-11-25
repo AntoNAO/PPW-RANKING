@@ -82,21 +82,27 @@
         }
 
         @keyframes diamondGlow {
-            0%, 100% {
+            0% {
                 box-shadow: 
-                    0 0 15px #00bfff,
-                    0 0 25px #00bfff,
-                    0 0 35px #0099ff,
-                    inset 0 0 15px #00bfff;
-                border-color: #00bfff;
+                    0 0 20px #00bfff,
+                    0 0 40px #00bfff,
+                    0 0 60px #0099ff;
+                transform: scale(1);
             }
             50% {
                 box-shadow: 
-                    0 0 25px #0099ff,
-                    0 0 45px #0099ff,
-                    0 0 65px #00bfff,
-                    inset 0 0 25px #0099ff;
-                border-color: #0099ff;
+                    0 0 30px #00bfff,
+                    0 0 60px #00bfff,
+                    0 0 90px #0099ff,
+                    0 0 120px #0099ff;
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #00bfff,
+                    0 0 40px #00bfff,
+                    0 0 60px #0099ff;
+                transform: scale(1);
             }
         }
 
@@ -358,18 +364,21 @@
 
         /* Aura ALL TIME (priorité la plus haute) */
         .all-time-champion {
-            box-shadow: 0 0 15px #00bfff,
-                       0 0 25px #00bfff,
-                       0 0 35px #0099ff !important;
+            box-shadow: 
+                0 0 20px #00bfff,
+                0 0 40px #00bfff,
+                0 0 60px #0099ff !important;
             animation: diamondGlow 2s infinite !important;
             z-index: 3;
+            position: relative;
         }
 
         /* Aura PLE Leader (priorité moyenne) */
         .ple-leader {
-            box-shadow: 0 0 15px #ff4d4d,
-                       0 0 25px #ff4d4d,
-                       0 0 35px #ff8533 !important;
+            box-shadow: 
+                0 0 15px #ff4d4d,
+                0 0 25px #ff4d4d,
+                0 0 35px #ff8533 !important;
             animation: fire 2s infinite !important;
             z-index: 2;
             position: relative;
