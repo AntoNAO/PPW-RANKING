@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPW - Professional Pronostic Wrestling</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #86b478;
@@ -216,16 +217,29 @@
         }
 
         .button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 30px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #45a049, #388E3C);
+        }
+
+        .button i {
+            font-size: 1.2em;
         }
 
         .participate-button {
@@ -241,11 +255,6 @@
         .rules-button {
             background: linear-gradient(45deg, #2196F3, #1976D2);
             color: white;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
         .button:active {
@@ -1273,10 +1282,10 @@
 
         <div class="nav-buttons">
             <a href="participate.html" class="button">
-                Participer aux pronostics 🎯
+                <i class="fas fa-pen-to-square"></i> Participer aux pronostics
             </a>
-            <button onclick="openRulesModal()" class="button rules-button">
-                Règles du jeu 📋
+            <button onclick="openRulesModal()" class="button">
+                <i class="fas fa-book"></i> Règles du jeu
             </button>
             <a href="history.html" class="button history-button">Historique des PLE</a>
         </div>
