@@ -1348,13 +1348,14 @@
             container.innerHTML = '';
 
             players.forEach(player => {
+                console.log('Checking player:', player.name);  // Debug log
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
                 // Effets spéciaux - Money in the Bank en premier
-                if (player.name.toLowerCase() === 'jason') {
+                if (player.name === 'JASON') {  // Exact match avec majuscules
+                    console.log('Found JASON, adding MITB effect');  // Debug log
                     card.classList.add('mitb-master');
-                    console.log('Added MITB effect to Jason');  // Debug log
                 }
 
                 // Appliquer les effets de rang
@@ -1377,6 +1378,16 @@
                 card.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
+                    <div class="player-info">
+                        <h3 class="player-name">
+                            ${player.name}
+                            ${player.totalPoints === maxTotalPoints ? '👑' : ''}
+                            ${player.plePoints === maxPlePoints ? '🏆' : ''}
+                            ${player.name === 'JASON' ? '💼' : ''}
+                        </h3>
+                        <p class="player-points">Points: ${player.totalPoints}</p>
+                        <p class="player-rank">Rang: ${player.rank}</p>
+                    </div>
                 `;
                 
                 card.addEventListener('click', function() {
