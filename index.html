@@ -376,8 +376,8 @@
             box-shadow: 
                 0 0 20px #00bfff,
                 0 0 40px #00bfff,
-                0 0 60px #0099ff !important;
-            animation: diamondGlow 2s infinite !important;
+                0 0 60px #00bfff;
+            animation: diamondGlow 2s infinite;
             z-index: 3;
             position: relative;
         }
@@ -385,12 +385,20 @@
         /* Aura PLE Leader (priorité moyenne) */
         .ple-leader {
             box-shadow: 
-                0 0 15px #ff4d4d,
-                0 0 25px #ff4d4d,
-                0 0 35px #ff8533 !important;
-            animation: fire 2s infinite !important;
+                0 0 20px #ff4d4d,
+                0 0 40px #ff4d4d,
+                0 0 60px #ff8533;
+            animation: fire 2s infinite;
             z-index: 2;
             position: relative;
+        }
+
+        /* Aura Money in the Bank */
+        .mitb-master {
+            box-shadow: 
+                0 0 20px #00A36C,
+                0 0 40px #00A36C,
+                0 0 60px #00A36C;
         }
 
         /* Auras de rang (priorité basse) */
@@ -406,9 +414,8 @@
             box-shadow: 0 0 15px #C0C0C0,
                        0 0 25px #C0C0C0,
                        0 0 35px #C0C0C0;
-            animation: silverGlow 2s infinite !important;
+            animation: silverGlow 2s infinite;
             z-index: 1;
-            position: relative;
         }
 
         .rank-3 {
@@ -1342,13 +1349,10 @@
                 // Appliquer les effets de rang
                 if (player.rank === 1) {
                     card.classList.add('rank-1');
-                    console.log('Added rank-1 to', player.name); // Debug
                 } else if (player.rank === 2) {
                     card.classList.add('rank-2');
-                    console.log('Added rank-2 to', player.name); // Debug
                 } else if (player.rank === 3) {
                     card.classList.add('rank-3');
-                    console.log('Added rank-3 to', player.name); // Debug
                 }
 
                 // Effets spéciaux
@@ -1357,6 +1361,10 @@
                 }
                 if (player.totalPoints === maxTotalPoints) {
                     card.classList.add('all-time-champion');
+                }
+                // Ajouter l'effet Money in the Bank pour Jason
+                if (player.name.toUpperCase() === 'JASON') {
+                    card.classList.add('mitb-master');
                 }
 
                 card.innerHTML = `
