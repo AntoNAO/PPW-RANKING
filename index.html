@@ -399,6 +399,8 @@
                 0 0 20px #00A36C,
                 0 0 40px #00A36C,
                 0 0 60px #00A36C;
+            z-index: 2;
+            position: relative;
         }
 
         /* Auras de rang (priorité basse) */
@@ -1346,6 +1348,12 @@
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
+                // Effets spéciaux - Money in the Bank en premier
+                if (player.name.toLowerCase() === 'jason') {
+                    card.classList.add('mitb-master');
+                    console.log('Added MITB effect to Jason');  // Debug log
+                }
+
                 // Appliquer les effets de rang
                 if (player.rank === 1) {
                     card.classList.add('rank-1');
@@ -1355,16 +1363,12 @@
                     card.classList.add('rank-3');
                 }
 
-                // Effets spéciaux
+                // Autres effets spéciaux
                 if (player.plePoints === maxPlePoints) {
                     card.classList.add('ple-leader');
                 }
                 if (player.totalPoints === maxTotalPoints) {
                     card.classList.add('all-time-champion');
-                }
-                // Ajouter l'effet Money in the Bank pour Jason
-                if (player.name.toUpperCase() === 'JASON') {
-                    card.classList.add('mitb-master');
                 }
 
                 card.innerHTML = `
