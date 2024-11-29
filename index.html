@@ -86,23 +86,22 @@
             0% {
                 box-shadow: 
                     0 0 20px #00bfff,
-                    0 0 40px #00bfff,
-                    0 0 60px #0099ff;
+                    0 0 35px #00bfff,
+                    0 0 50px #0099ff;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
-                    0 0 30px #00bfff,
-                    0 0 60px #00bfff,
-                    0 0 90px #0099ff,
-                    0 0 120px #0099ff;
+                    0 0 25px #00bfff,
+                    0 0 40px #00bfff,
+                    0 0 55px #0099ff;
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
                     0 0 20px #00bfff,
-                    0 0 40px #00bfff,
-                    0 0 60px #0099ff;
+                    0 0 35px #00bfff,
+                    0 0 50px #0099ff;
                 transform: scale(1);
             }
         }
@@ -110,44 +109,44 @@
         @keyframes goldGlow {
             0% {
                 box-shadow: 
-                    0 0 15px #ffd700,
-                    0 0 25px #ffd700,
-                    0 0 35px #ffd700;
+                    0 0 20px #ffd700,
+                    0 0 35px #ffd700,
+                    0 0 50px #ffd700;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
                     0 0 25px #ffd700,
-                    0 0 45px #ffd700,
-                    0 0 65px #ffd700;
+                    0 0 40px #ffd700,
+                    0 0 55px #ffd700;
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
-                    0 0 15px #ffd700,
-                    0 0 25px #ffd700,
-                    0 0 35px #ffd700;
+                    0 0 20px #ffd700,
+                    0 0 35px #ffd700,
+                    0 0 50px #ffd700;
                 transform: scale(1);
             }
         }
 
         @keyframes silverGlow {
             0% {
-                box-shadow: 0 0 15px #C0C0C0,
-                           0 0 25px #C0C0C0,
-                           0 0 35px #C0C0C0;
+                box-shadow: 0 0 20px #C0C0C0,
+                           0 0 35px #C0C0C0,
+                           0 0 50px #C0C0C0;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 0 0 25px #C0C0C0,
-                           0 0 45px #C0C0C0,
-                           0 0 65px #C0C0C0;
+                           0 0 40px #C0C0C0,
+                           0 0 55px #C0C0C0;
                 transform: scale(1.02);
             }
             100% {
-                box-shadow: 0 0 15px #C0C0C0,
-                           0 0 25px #C0C0C0,
-                           0 0 35px #C0C0C0;
+                box-shadow: 0 0 20px #C0C0C0,
+                           0 0 35px #C0C0C0,
+                           0 0 50px #C0C0C0;
                 transform: scale(1);
             }
         }
@@ -155,17 +154,38 @@
         @keyframes bronzeGlow {
             0%, 100% {
                 box-shadow: 
-                    0 0 15px #cd7f32,
-                    0 0 25px #cd7f32,
-                    0 0 35px #cd7f32;
+                    0 0 20px #cd7f32,
+                    0 0 35px #cd7f32,
+                    0 0 50px #cd7f32;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
                     0 0 25px #cd7f32,
-                    0 0 45px #cd7f32,
-                    0 0 65px #cd7f32;
+                    0 0 40px #cd7f32,
+                    0 0 55px #cd7f32;
                 transform: scale(1.02);
+            }
+        }
+
+        @keyframes emeraldGlow {
+            0% {
+                box-shadow: 
+                    0 0 20px #00A36C,
+                    0 0 35px #00A36C,
+                    0 0 50px #00A36C;
+            }
+            50% {
+                box-shadow: 
+                    0 0 25px #00A36C,
+                    0 0 40px #00A36C,
+                    0 0 55px #00A36C;
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #00A36C,
+                    0 0 35px #00A36C,
+                    0 0 50px #00A36C;
             }
         }
 
@@ -375,19 +395,19 @@
         .all-time-champion {
             box-shadow: 
                 0 0 20px #00bfff,
-                0 0 40px #00bfff,
-                0 0 60px #00bfff;
+                0 0 35px #00bfff,
+                0 0 50px #00bfff;
             animation: diamondGlow 2s infinite;
             z-index: 4;
             position: relative;
         }
 
-        /* Aura PLE Leader (priorité moyenne) */
+        /* Aura PLE Leader */
         .ple-leader {
             box-shadow: 
                 0 0 20px #ff4d4d,
-                0 0 40px #ff4d4d,
-                0 0 60px #ff8533;
+                0 0 35px #ff4d4d,
+                0 0 50px #ff8533;
             animation: fire 2s infinite;
             z-index: 3;
             position: relative;
@@ -397,35 +417,39 @@
         .mitb-master {
             box-shadow: 
                 0 0 20px #00A36C,
-                0 0 40px #00A36C,
-                0 0 60px #00A36C !important;
+                0 0 35px #00A36C,
+                0 0 50px #00A36C !important;
+            animation: emeraldGlow 2s infinite;
             z-index: 2;
             position: relative;
         }
 
         /* Auras de rang (priorité basse) */
         .rank-1 {
-            box-shadow: 0 0 15px var(--gold),
-                       0 0 25px var(--gold),
-                       0 0 35px var(--gold);
+            box-shadow: 
+                0 0 20px var(--gold),
+                0 0 35px var(--gold),
+                0 0 50px var(--gold);
             animation: goldGlow 2s infinite;
             z-index: 1;
             position: relative;
         }
 
         .rank-2 {
-            box-shadow: 0 0 15px var(--silver),
-                       0 0 25px var(--silver),
-                       0 0 35px var(--silver);
+            box-shadow: 
+                0 0 20px var(--silver),
+                0 0 35px var(--silver),
+                0 0 50px var(--silver);
             animation: silverGlow 2s infinite;
             z-index: 1;
             position: relative;
         }
 
         .rank-3 {
-            box-shadow: 0 0 15px var(--bronze),
-                       0 0 25px var(--bronze),
-                       0 0 35px var(--bronze);
+            box-shadow: 
+                0 0 20px var(--bronze),
+                0 0 35px var(--bronze),
+                0 0 50px var(--bronze);
             animation: bronzeGlow 2s infinite;
             z-index: 1;
             position: relative;
