@@ -1504,7 +1504,10 @@
 
         function closePlayerModal() {
             const modal = document.getElementById('player-modal');
-            modal.style.display = 'none';
+            if (modal) {
+                modal.style.display = 'none';
+                modal.remove();
+            }
         }
 
         /* Fermer la modal en cliquant en dehors */
