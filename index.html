@@ -1294,6 +1294,15 @@
                     card.setAttribute('data-rank', '3');
                 }
 
+                // Appliquer les effets de rang
+                if (player.rank === 1) {
+                    card.classList.add('rank-1');
+                } else if (player.rank === 2) {
+                    card.classList.add('rank-2');
+                } else if (player.rank === 3) {
+                    card.classList.add('rank-3');
+                }
+
                 // Effets spéciaux - Money in the Bank en premier
                 if (player.name === 'JASON' || player.name === 'Jason') {
                     card.classList.add('mitb-master');
