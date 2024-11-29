@@ -350,24 +350,6 @@
             }
         }
 
-        /* EMOJI SYSTEM - DO NOT MODIFY */
-        .emoji-badge {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-            animation: float 2s ease-in-out infinite;
-            z-index: 1000;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
-        }
-        /* FIN EMOJI SYSTEM */
-
         body {
             margin: 0;
             padding: 0;
@@ -1251,6 +1233,65 @@
             margin-bottom: 10px;
             color: var(--primary-color);
         }
+
+        /* CARD INTERACTION SYSTEM - DO NOT MODIFY */
+        .player-card {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--card-bg);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        /* FIN CARD INTERACTION SYSTEM */
     </style>
 </head>
 <body>
@@ -1415,23 +1456,7 @@
                 card.className = 'player-card';
                 card.style.position = 'relative';  
 
-                // Emoji System
-                let emojis = '';
-                if (player.totalPoints === maxTotalPoints) emojis += '👑 ';
-                if (player.plePoints === maxPlePoints) emojis += '🔥 ';
-                if (player.name === 'JASON' || player.name === 'Jason') emojis += '💰 ';
-                if (player.rank === 1) emojis += '🥇';
-                else if (player.rank === 2) emojis += '🥈';
-                else if (player.rank === 3) emojis += '🥉';
-
-                if (emojis) {
-                    const badge = document.createElement('div');
-                    badge.className = 'emoji-badge';
-                    badge.textContent = emojis.trim();
-                    card.appendChild(badge);
-                }
-
-                // AURA SYSTEM - Application des auras
+                /* AURA SYSTEM - Application des auras */
                 if (player.totalPoints === maxTotalPoints) {
                     card.classList.add('all-time-champion');
                 }
@@ -1449,7 +1474,7 @@
                     card.classList.add('rank-3');
                 }
 
-                // Contenu de la carte
+                /* Contenu de la carte */
                 const cardContent = document.createElement('div');
                 cardContent.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
@@ -1470,12 +1495,10 @@
                 `;
                 card.appendChild(cardContent);
 
-                container.appendChild(card);
+                /* CARD INTERACTION SYSTEM - Ajout de l'événement de clic */
+                card.addEventListener('click', () => showPlayerModal(player));
 
-                // Modal click event
-                card.addEventListener('click', function() {
-                    showPlayerModal(player);
-                });
+                container.appendChild(card);
             });
         }
 
@@ -1484,7 +1507,7 @@
             modal.style.display = 'none';
         }
 
-        // Fermer la modal en cliquant en dehors
+        /* Fermer la modal en cliquant en dehors */
         window.onclick = function(event) {
             const modal = document.getElementById('player-modal');
             if (event.target === modal) {
@@ -1492,10 +1515,10 @@
             }
         }
 
-        // Charger les données au chargement de la page
+        /* Charger les données au chargement de la page */
         loadRankings();
 
-        // Mode clair/sombre
+        /* Mode clair/sombre */
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('change', () => {
             document.body.setAttribute('data-theme', 
@@ -1503,14 +1526,14 @@
             localStorage.setItem('theme', themeToggle.checked ? 'light' : 'dark');
         });
 
-        // Restaurer le thème préféré
+        /* Restaurer le thème préféré */
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.body.setAttribute('data-theme', savedTheme);
             themeToggle.checked = savedTheme === 'light';
         }
 
-        // Mise à jour du compte à rebours
+        /* Mise à jour du compte à rebours */
         function updateCountdown() {
             const eventDate = new Date('2024-11-30T00:00:00');
             const now = new Date();
@@ -1525,9 +1548,44 @@
             `;
         }
 
-        // Mettre à jour le compte à rebours toutes les minutes
+        /* Mettre à jour le compte à rebours toutes les minutes */
         updateCountdown();
         setInterval(updateCountdown, 60000);
+
+        function showPlayerModal(player) {
+            const modal = document.createElement('div');
+            modal.id = 'player-modal';
+            modal.className = 'modal';
+            
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal" onclick="closePlayerModal()">&times;</span>
+                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
+                         onerror="this.src='default-player.jpg'" style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px; margin: 0 auto; display: block;">
+                    <h2 style="text-align: center; color: var(--text-color);">${player.name}</h2>
+                    <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                        <div style="text-align: center;">
+                            <h3 style="color: var(--primary-color);">Points Totaux</h3>
+                            <p style="font-size: 24px; color: var(--text-color);">${player.totalPoints}</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3 style="color: var(--primary-color);">Points Saison</h3>
+                            <p style="font-size: 24px; color: var(--text-color);">${player.seasonPoints}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
+
+            // Fermer en cliquant en dehors
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closePlayerModal();
+                }
+            });
+        }
     </script>
 </body>
 </html>
