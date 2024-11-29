@@ -1456,9 +1456,19 @@
                             ${player.name}
                             ${player.totalPoints === maxTotalPoints ? '👑' : ''}
                             ${player.plePoints === maxPlePoints ? '🏆' : ''}
+                            ${player.rank === 1 ? '🥇' : ''}
+                            ${(player.name === 'JASON' || player.name === 'Jason') ? '💼' : ''}
                         </h3>
-                        <p class="player-points">Points: ${player.totalPoints}</p>
-                        <p class="player-rank">Rang: ${player.rank}</p>
+                        <div class="player-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">${player.totalPoints}</div>
+                                <div class="stat-label">Points Totaux</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${player.seasonPoints}</div>
+                                <div class="stat-label">Points Saison</div>
+                            </div>
+                        </div>
                     </div>
                 `;
 
