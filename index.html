@@ -1381,16 +1381,6 @@
                 card.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
-                    <div class="player-info">
-                        <h3 class="player-name">
-                            ${player.name}
-                            ${player.totalPoints === maxTotalPoints ? '👑' : ''}
-                            ${player.plePoints === maxPlePoints ? '🏆' : ''}
-                            ${hasMITBBadge ? '💼' : ''}
-                        </h3>
-                        <p class="player-points">Points: ${player.totalPoints}</p>
-                        <p class="player-rank">Rang: ${player.rank}</p>
-                    </div>
                 `;
 
                 container.appendChild(card);
