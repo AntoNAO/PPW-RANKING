@@ -351,73 +351,20 @@
         }
 
         /* EMOJI SYSTEM - DO NOT MODIFY */
-        /* Variables pour les emojis */
-        :root {
-            --emoji-offset-top: -35px;
-            --emoji-size: 30px;
-            --emoji-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Container principal des emojis */
-        .emoji-container {
+        .emoji-badge {
             position: absolute;
-            top: var(--emoji-offset-top);
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 9999;  
-            pointer-events: none;
-            width: 100%;
-            justify-content: center;
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            animation: float 2s ease-in-out infinite;
+            z-index: 1000;
         }
 
-        /* Style de base pour tous les emojis */
-        .emoji {
-            font-size: var(--emoji-size);
-            text-shadow: var(--emoji-shadow);
-            animation: floatingEmoji 2s ease-in-out infinite;
-            line-height: 1;
-            display: block;
-            position: relative;
-            z-index: 9999;  
-        }
-
-        /* S'assurer que les images restent en dessous */
-        .player-image {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Animation des emojis */
-        @keyframes floatingEmoji {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* Définition des emojis spécifiques */
-        .emoji-alltime {
-            content: '👑';
-        }
-
-        .emoji-ple {
-            content: '🔥';
-        }
-
-        .emoji-mitb {
-            content: '💰';
-        }
-
-        .emoji-rank1 {
-            content: '🥇';
-        }
-
-        .emoji-rank2 {
-            content: '🥈';
-        }
-
-        .emoji-rank3 {
-            content: '🥉';
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
         }
         /* FIN EMOJI SYSTEM */
 
@@ -1468,62 +1415,20 @@
                 card.className = 'player-card';
                 card.style.position = 'relative';  
 
-                // EMOJI SYSTEM - Construction du container d'emojis
-                const emojiContainer = document.createElement('div');
-                emojiContainer.className = 'emoji-container';
-                let hasEmojis = false;
+                // Emoji System
+                let emojis = '';
+                if (player.totalPoints === maxTotalPoints) emojis += '👑 ';
+                if (player.plePoints === maxPlePoints) emojis += '🔥 ';
+                if (player.name === 'JASON' || player.name === 'Jason') emojis += '💰 ';
+                if (player.rank === 1) emojis += '🥇';
+                else if (player.rank === 2) emojis += '🥈';
+                else if (player.rank === 3) emojis += '🥉';
 
-                // ALL TIME Champion (priorité la plus haute)
-                if (player.totalPoints === maxTotalPoints) {
-                    const emoji = document.createElement('span');
-                    emoji.className = 'emoji emoji-alltime';
-                    emoji.textContent = '👑';
-                    emojiContainer.appendChild(emoji);
-                    hasEmojis = true;
-                }
-
-                // PLE Leader
-                if (player.plePoints === maxPlePoints) {
-                    const emoji = document.createElement('span');
-                    emoji.className = 'emoji emoji-ple';
-                    emoji.textContent = '🔥';
-                    emojiContainer.appendChild(emoji);
-                    hasEmojis = true;
-                }
-
-                // Money in the Bank
-                if (player.name === 'JASON' || player.name === 'Jason') {
-                    const emoji = document.createElement('span');
-                    emoji.className = 'emoji emoji-mitb';
-                    emoji.textContent = '💰';
-                    emojiContainer.appendChild(emoji);
-                    hasEmojis = true;
-                }
-
-                // TOP 1/2/3
-                if (player.rank === 1) {
-                    const emoji = document.createElement('span');
-                    emoji.className = 'emoji emoji-rank1';
-                    emoji.textContent = '🥇';
-                    emojiContainer.appendChild(emoji);
-                    hasEmojis = true;
-                } else if (player.rank === 2) {
-                    const emoji = document.createElement('span');
-                    emoji.className = 'emoji emoji-rank2';
-                    emoji.textContent = '🥈';
-                    emojiContainer.appendChild(emoji);
-                    hasEmojis = true;
-                } else if (player.rank === 3) {
-                    const emoji = document.createElement('span');
-                    emoji.className = 'emoji emoji-rank3';
-                    emoji.textContent = '🥉';
-                    emojiContainer.appendChild(emoji);
-                    hasEmojis = true;
-                }
-
-                // Ajouter le container d'emojis seulement s'il y en a
-                if (hasEmojis) {
-                    card.appendChild(emojiContainer);
+                if (emojis) {
+                    const badge = document.createElement('div');
+                    badge.className = 'emoji-badge';
+                    badge.textContent = emojis.trim();
+                    card.appendChild(badge);
                 }
 
                 // AURA SYSTEM - Application des auras
