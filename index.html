@@ -878,7 +878,7 @@
         }
 
         /* Styles pour les emojis au-dessus des cartes */
-        .player-card[data-rank="1"]::before {
+        .rank-1::before {
             content: '🥇';
             position: absolute;
             top: -25px;
@@ -888,27 +888,7 @@
             z-index: 5;
         }
 
-        .player-card[data-rank="2"]::before {
-            content: '🥈';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            z-index: 5;
-        }
-
-        .player-card[data-rank="3"]::before {
-            content: '🥉';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            z-index: 5;
-        }
-
-        .player-card.mitb-master::after {
+        .mitb-master::before {
             content: '💼';
             position: absolute;
             top: -25px;
@@ -919,11 +899,8 @@
         }
 
         /* Décaler l'emoji MITB si c'est aussi le TOP 1 */
-        .player-card[data-rank="1"].mitb-master::after {
-            left: calc(50% + 20px);
-        }
-        .player-card[data-rank="1"].mitb-master::before {
-            left: calc(50% - 20px);
+        .rank-1.mitb-master::before {
+            content: '🥇💼';
         }
 
         @media (max-width: 768px) {
