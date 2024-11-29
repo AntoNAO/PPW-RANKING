@@ -398,7 +398,7 @@
             box-shadow: 
                 0 0 20px #00A36C,
                 0 0 40px #00A36C,
-                0 0 60px #00A36C;
+                0 0 60px #00A36C !important;
             z-index: 2;
             position: relative;
         }
@@ -1353,8 +1353,8 @@
                 card.className = 'player-card';
 
                 // Effets spéciaux - Money in the Bank en premier
-                if (player.name === 'JASON') {  // Exact match avec majuscules
-                    console.log('Found JASON, adding MITB effect');  // Debug log
+                if (player.name === 'JASON' || player.name === 'Jason') {  // Check both cases
+                    console.log('Found JASON/Jason, adding MITB effect');  // Debug log
                     card.classList.add('mitb-master');
                 }
 
@@ -1375,6 +1375,11 @@
                     card.classList.add('all-time-champion');
                 }
 
+                // Vérifier les badges pour l'emoji MITB
+                const hasMITBBadge = player.achievements && player.achievements.some(
+                    achievement => achievement.title === 'Mr. Money in the Bank'
+                );
+
                 card.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
@@ -1383,7 +1388,7 @@
                             ${player.name}
                             ${player.totalPoints === maxTotalPoints ? '👑' : ''}
                             ${player.plePoints === maxPlePoints ? '🏆' : ''}
-                            ${player.name === 'JASON' ? '💼' : ''}
+                            ${hasMITBBadge ? '💼' : ''}
                         </h3>
                         <p class="player-points">Points: ${player.totalPoints}</p>
                         <p class="player-rank">Rang: ${player.rank}</p>
