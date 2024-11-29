@@ -1348,13 +1348,11 @@
             container.innerHTML = '';
 
             players.forEach(player => {
-                console.log('Checking player:', player.name);  // Debug log
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
                 // Effets spéciaux - Money in the Bank en premier
-                if (player.name === 'JASON' || player.name === 'Jason') {  // Check both cases
-                    console.log('Found JASON/Jason, adding MITB effect');  // Debug log
+                if (player.name === 'JASON' || player.name === 'Jason') {
                     card.classList.add('mitb-master');
                 }
 
@@ -1394,13 +1392,33 @@
                         <p class="player-rank">Rang: ${player.rank}</p>
                     </div>
                 `;
-                
+
+                container.appendChild(card);
+
+                // Ajouter l'événement click pour la modal
                 card.addEventListener('click', function() {
                     const modal = document.getElementById('player-modal');
                     const playerDetails = document.getElementById('player-details');
                     
+                    let achievementsHtml = '';
+                    if (player.achievements && player.achievements.length > 0) {
+                        achievementsHtml = `
+                            <div class="achievements-section">
+                                <h3>Badges</h3>
+                                <div class="achievements-grid">
+                                    ${player.achievements.map(achievement => `
+                                        <div class="achievement-item" title="${achievement.description}">
+                                            <img src="${achievement.imageUrl}" alt="${achievement.title}">
+                                            <span>${achievement.title}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
                     playerDetails.innerHTML = `
-                        <h2 class="player-name-title">${player.name}</h2>
+                        <h2>${player.name}</h2>
                         <div class="player-stats">
                             <div class="stat-card">
                                 <div class="stat-value">${player.totalPoints}</div>
@@ -1410,37 +1428,12 @@
                                 <div class="stat-value">${player.seasonPoints}</div>
                                 <div class="stat-label">Points Saison</div>
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-value">#${player.rank}</div>
-                                <div class="stat-label">Classement</div>
-                            </div>
-                            ${player.championDays > 0 ? `
-                                <div class="stat-card">
-                                    <div class="stat-value">${player.championDays}</div>
-                                    <div class="stat-label">Jours en tant que Champion</div>
-                                </div>
-                            ` : ''}
                         </div>
-                        ${player.achievements && player.achievements.length > 0 ? `
-                            <div class="achievements-section">
-                                <h3>Récompenses</h3>
-                                <div class="achievements-grid">
-                                    ${player.achievements.map(achievement => `
-                                        <div class="achievement-card">
-                                            <img src="${achievement.imageUrl}" alt="${achievement.title}" class="achievement-image">
-                                            <div class="achievement-title">${achievement.title}</div>
-                                            <div class="achievement-days">${achievement.days} jours</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        ` : ''}
+                        ${achievementsHtml}
                     `;
-                    
+
                     modal.style.display = 'block';
                 });
-
-                container.appendChild(card);
             });
         }
 
