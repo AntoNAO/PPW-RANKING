@@ -351,30 +351,48 @@
         }
 
         /* EMOJI SYSTEM - DO NOT MODIFY */
-        /* Position commune pour tous les emojis */
+        /* Variables pour les emojis */
+        :root {
+            --emoji-offset-top: -35px;
+            --emoji-size: 30px;
+            --emoji-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Container principal des emojis */
+        .player-card {
+            position: relative;  /* Important pour le positionnement des emojis */
+        }
+
         .emoji-container {
             position: absolute;
-            top: -30px;
+            top: var(--emoji-offset-top);
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 5px;
-            z-index: 10;
+            gap: 10px;
+            z-index: 20;  /* Au-dessus de tout */
+            pointer-events: none;  /* Pour ne pas interférer avec les clics */
         }
 
+        /* Style de base pour tous les emojis */
         .emoji-icon {
-            font-size: 24px;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            width: var(--emoji-size);
+            height: var(--emoji-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: var(--emoji-shadow);
             animation: floatingEmoji 2s ease-in-out infinite;
+            font-size: 24px;
         }
 
-        /* Animation flottante pour les emojis */
+        /* Animation des emojis */
         @keyframes floatingEmoji {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
 
-        /* Styles spécifiques pour chaque type d'emoji */
+        /* Définition des emojis spécifiques */
         .emoji-alltime::before {
             content: '👑';
         }
@@ -398,6 +416,7 @@
         .emoji-rank3::before {
             content: '🥉';
         }
+        /* FIN EMOJI SYSTEM */
 
         body {
             margin: 0;
@@ -1445,64 +1464,68 @@
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
-                // Container pour les emojis
+                // EMOJI SYSTEM - Construction du container d'emojis
                 const emojiContainer = document.createElement('div');
                 emojiContainer.className = 'emoji-container';
+                let hasEmojis = false;
 
-                // Ajouter les emojis en fonction des accomplissements
+                // ALL TIME Champion (priorité la plus haute)
                 if (player.totalPoints === maxTotalPoints) {
-                    const allTimeEmoji = document.createElement('span');
-                    allTimeEmoji.className = 'emoji-icon emoji-alltime';
-                    emojiContainer.appendChild(allTimeEmoji);
+                    const emoji = document.createElement('span');
+                    emoji.className = 'emoji-icon emoji-alltime';
+                    emojiContainer.appendChild(emoji);
+                    hasEmojis = true;
                 }
 
+                // PLE Leader
                 if (player.plePoints === maxPlePoints) {
-                    const pleEmoji = document.createElement('span');
-                    pleEmoji.className = 'emoji-icon emoji-ple';
-                    emojiContainer.appendChild(pleEmoji);
+                    const emoji = document.createElement('span');
+                    emoji.className = 'emoji-icon emoji-ple';
+                    emojiContainer.appendChild(emoji);
+                    hasEmojis = true;
                 }
 
+                // Money in the Bank
                 if (player.name === 'JASON' || player.name === 'Jason') {
-                    const mitbEmoji = document.createElement('span');
-                    mitbEmoji.className = 'emoji-icon emoji-mitb';
-                    emojiContainer.appendChild(mitbEmoji);
+                    const emoji = document.createElement('span');
+                    emoji.className = 'emoji-icon emoji-mitb';
+                    emojiContainer.appendChild(emoji);
+                    hasEmojis = true;
                 }
 
+                // TOP 1/2/3
                 if (player.rank === 1) {
-                    const rank1Emoji = document.createElement('span');
-                    rank1Emoji.className = 'emoji-icon emoji-rank1';
-                    emojiContainer.appendChild(rank1Emoji);
+                    const emoji = document.createElement('span');
+                    emoji.className = 'emoji-icon emoji-rank1';
+                    emojiContainer.appendChild(emoji);
+                    hasEmojis = true;
                 } else if (player.rank === 2) {
-                    const rank2Emoji = document.createElement('span');
-                    rank2Emoji.className = 'emoji-icon emoji-rank2';
-                    emojiContainer.appendChild(rank2Emoji);
+                    const emoji = document.createElement('span');
+                    emoji.className = 'emoji-icon emoji-rank2';
+                    emojiContainer.appendChild(emoji);
+                    hasEmojis = true;
                 } else if (player.rank === 3) {
-                    const rank3Emoji = document.createElement('span');
-                    rank3Emoji.className = 'emoji-icon emoji-rank3';
-                    emojiContainer.appendChild(rank3Emoji);
+                    const emoji = document.createElement('span');
+                    emoji.className = 'emoji-icon emoji-rank3';
+                    emojiContainer.appendChild(emoji);
+                    hasEmojis = true;
                 }
 
-                // Ajouter le container d'emoji seulement s'il y a des emojis
-                if (emojiContainer.children.length > 0) {
+                // Ajouter le container d'emojis seulement s'il y en a
+                if (hasEmojis) {
                     card.appendChild(emojiContainer);
                 }
 
-                // Effets spéciaux - ALL TIME en premier (priorité la plus haute)
+                // AURA SYSTEM - Application des auras
                 if (player.totalPoints === maxTotalPoints) {
                     card.classList.add('all-time-champion');
                 }
-
-                // Effets spéciaux - PLE Leader ensuite
                 if (player.plePoints === maxPlePoints) {
                     card.classList.add('ple-leader');
                 }
-
-                // Effets spéciaux - Money in the Bank ensuite
                 if (player.name === 'JASON' || player.name === 'Jason') {
                     card.classList.add('mitb-master');
                 }
-
-                // Effets de rang en dernier (priorité la plus basse)
                 if (player.rank === 1) {
                     card.classList.add('rank-1');
                 } else if (player.rank === 2) {
@@ -1511,7 +1534,9 @@
                     card.classList.add('rank-3');
                 }
 
-                card.innerHTML += `
+                // Contenu de la carte
+                const cardContent = document.createElement('div');
+                cardContent.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
                     <div class="player-info">
@@ -1528,6 +1553,7 @@
                         </div>
                     </div>
                 `;
+                card.appendChild(cardContent);
 
                 container.appendChild(card);
 
