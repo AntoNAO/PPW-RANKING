@@ -877,6 +877,35 @@
             border-radius: 10px;
         }
 
+        /* Styles pour les emojis au-dessus des cartes */
+        .player-card[data-rank="1"]::before {
+            content: '🥇';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            z-index: 5;
+        }
+
+        .player-card.mitb-master::after {
+            content: '💼';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            z-index: 5;
+        }
+
+        /* Décaler l'emoji MITB si c'est aussi le TOP 1 */
+        .player-card[data-rank="1"].mitb-master::after {
+            left: calc(50% + 20px);
+        }
+        .player-card[data-rank="1"].mitb-master::before {
+            left: calc(50% - 20px);
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -1376,6 +1405,11 @@
             players.forEach(player => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
+
+                // Ajouter l'attribut data-rank pour le TOP 1
+                if (player.rank === 1) {
+                    card.setAttribute('data-rank', '1');
+                }
 
                 // Effets spéciaux - Money in the Bank en premier
                 if (player.name === 'JASON' || player.name === 'Jason') {
