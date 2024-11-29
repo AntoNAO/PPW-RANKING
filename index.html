@@ -158,7 +158,7 @@
         }
 
         @keyframes bronzeGlow {
-            0%, 100% {
+            0% {
                 box-shadow: 
                     0 0 20px #cd7f32,
                     0 0 35px #cd7f32,
@@ -171,6 +171,13 @@
                     0 0 40px #cd7f32,
                     0 0 55px #cd7f32;
                 transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #cd7f32,
+                    0 0 35px #cd7f32,
+                    0 0 50px #cd7f32;
+                transform: scale(1);
             }
         }
 
@@ -341,6 +348,55 @@
                     0 0 35px var(--bronze);
                 transform: scale(1);
             }
+        }
+
+        /* EMOJI SYSTEM - DO NOT MODIFY */
+        /* Position commune pour tous les emojis */
+        .emoji-container {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .emoji-icon {
+            font-size: 24px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            animation: floatingEmoji 2s ease-in-out infinite;
+        }
+
+        /* Animation flottante pour les emojis */
+        @keyframes floatingEmoji {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Styles spécifiques pour chaque type d'emoji */
+        .emoji-alltime::before {
+            content: '👑';
+        }
+
+        .emoji-ple::before {
+            content: '🔥';
+        }
+
+        .emoji-mitb::before {
+            content: '💰';
+        }
+
+        .emoji-rank1::before {
+            content: '🥇';
+        }
+
+        .emoji-rank2::before {
+            content: '🥈';
+        }
+
+        .emoji-rank3::before {
+            content: '🥉';
         }
 
         body {
@@ -1389,13 +1445,46 @@
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
-                // Ajouter l'attribut data-rank pour le TOP 1-2-3
+                // Container pour les emojis
+                const emojiContainer = document.createElement('div');
+                emojiContainer.className = 'emoji-container';
+
+                // Ajouter les emojis en fonction des accomplissements
+                if (player.totalPoints === maxTotalPoints) {
+                    const allTimeEmoji = document.createElement('span');
+                    allTimeEmoji.className = 'emoji-icon emoji-alltime';
+                    emojiContainer.appendChild(allTimeEmoji);
+                }
+
+                if (player.plePoints === maxPlePoints) {
+                    const pleEmoji = document.createElement('span');
+                    pleEmoji.className = 'emoji-icon emoji-ple';
+                    emojiContainer.appendChild(pleEmoji);
+                }
+
+                if (player.name === 'JASON' || player.name === 'Jason') {
+                    const mitbEmoji = document.createElement('span');
+                    mitbEmoji.className = 'emoji-icon emoji-mitb';
+                    emojiContainer.appendChild(mitbEmoji);
+                }
+
                 if (player.rank === 1) {
-                    card.setAttribute('data-rank', '1');
+                    const rank1Emoji = document.createElement('span');
+                    rank1Emoji.className = 'emoji-icon emoji-rank1';
+                    emojiContainer.appendChild(rank1Emoji);
                 } else if (player.rank === 2) {
-                    card.setAttribute('data-rank', '2');
+                    const rank2Emoji = document.createElement('span');
+                    rank2Emoji.className = 'emoji-icon emoji-rank2';
+                    emojiContainer.appendChild(rank2Emoji);
                 } else if (player.rank === 3) {
-                    card.setAttribute('data-rank', '3');
+                    const rank3Emoji = document.createElement('span');
+                    rank3Emoji.className = 'emoji-icon emoji-rank3';
+                    emojiContainer.appendChild(rank3Emoji);
+                }
+
+                // Ajouter le container d'emoji seulement s'il y a des emojis
+                if (emojiContainer.children.length > 0) {
+                    card.appendChild(emojiContainer);
                 }
 
                 // Effets spéciaux - ALL TIME en premier (priorité la plus haute)
@@ -1422,7 +1511,7 @@
                     card.classList.add('rank-3');
                 }
 
-                card.innerHTML = `
+                card.innerHTML += `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
                     <div class="player-info">
