@@ -877,32 +877,6 @@
             border-radius: 10px;
         }
 
-        /* Styles pour les emojis au-dessus des cartes */
-        .rank-1::before {
-            content: '🥇';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            z-index: 5;
-        }
-
-        .mitb-master::before {
-            content: '💼';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            z-index: 5;
-        }
-
-        /* Décaler l'emoji MITB si c'est aussi le TOP 1 */
-        .rank-1.mitb-master::before {
-            content: '🥇💼';
-        }
-
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
