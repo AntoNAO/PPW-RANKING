@@ -204,21 +204,21 @@
                 box-shadow: 
                     0 0 15px var(--aura-alltime),
                     0 0 25px var(--aura-alltime),
-                    0 0 35px var(--aura-alltime-glow);
+                    0 0 35px var(--aura-alltime-glow) !important;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
                     0 0 20px var(--aura-alltime),
                     0 0 30px var(--aura-alltime),
-                    0 0 40px var(--aura-alltime-glow);
+                    0 0 40px var(--aura-alltime-glow) !important;
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
                     0 0 15px var(--aura-alltime),
                     0 0 25px var(--aura-alltime),
-                    0 0 35px var(--aura-alltime-glow);
+                    0 0 35px var(--aura-alltime-glow) !important;
                 transform: scale(1);
             }
         }
@@ -228,21 +228,21 @@
                 box-shadow: 
                     0 0 15px var(--aura-ple),
                     0 0 25px var(--aura-ple),
-                    0 0 35px var(--aura-ple-glow);
+                    0 0 35px var(--aura-ple-glow) !important;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
                     0 0 20px var(--aura-ple),
                     0 0 30px var(--aura-ple),
-                    0 0 40px var(--aura-ple-glow);
+                    0 0 40px var(--aura-ple-glow) !important;
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
                     0 0 15px var(--aura-ple),
                     0 0 25px var(--aura-ple),
-                    0 0 35px var(--aura-ple-glow);
+                    0 0 35px var(--aura-ple-glow) !important;
                 transform: scale(1);
             }
         }
@@ -252,21 +252,21 @@
                 box-shadow: 
                     0 0 15px var(--aura-mitb),
                     0 0 25px var(--aura-mitb),
-                    0 0 35px var(--aura-mitb);
+                    0 0 35px var(--aura-mitb) !important;
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
                     0 0 20px var(--aura-mitb),
                     0 0 30px var(--aura-mitb),
-                    0 0 40px var(--aura-mitb);
+                    0 0 40px var(--aura-mitb) !important;
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
                     0 0 15px var(--aura-mitb),
                     0 0 25px var(--aura-mitb),
-                    0 0 35px var(--aura-mitb);
+                    0 0 35px var(--aura-mitb) !important;
                 transform: scale(1);
             }
         }
@@ -543,6 +543,7 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin: 0 auto;
+            background: var(--card-bg);
         }
 
         /* AURA SYSTEM - DO NOT MODIFY */
@@ -551,9 +552,9 @@
             box-shadow: 
                 0 0 15px var(--aura-alltime),
                 0 0 25px var(--aura-alltime),
-                0 0 35px var(--aura-alltime-glow);
+                0 0 35px var(--aura-alltime-glow) !important;
             animation: diamondGlow 2s infinite;
-            z-index: 4;
+            z-index: 4 !important;
             position: relative;
         }
 
@@ -562,9 +563,9 @@
             box-shadow: 
                 0 0 15px var(--aura-ple),
                 0 0 25px var(--aura-ple),
-                0 0 35px var(--aura-ple-glow);
+                0 0 35px var(--aura-ple-glow) !important;
             animation: fire 2s infinite;
-            z-index: 3;
+            z-index: 3 !important;
             position: relative;
         }
 
@@ -573,9 +574,9 @@
             box-shadow: 
                 0 0 15px var(--aura-mitb),
                 0 0 25px var(--aura-mitb),
-                0 0 35px var(--aura-mitb);
+                0 0 35px var(--aura-mitb) !important;
             animation: emeraldGlow 2s infinite;
-            z-index: 2;
+            z-index: 2 !important;
             position: relative;
         }
 
