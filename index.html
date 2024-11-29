@@ -366,8 +366,10 @@
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            z-index: 100;  
+            z-index: 9999;  
             pointer-events: none;
+            width: 100%;
+            justify-content: center;
         }
 
         /* Style de base pour tous les emojis */
@@ -377,6 +379,14 @@
             animation: floatingEmoji 2s ease-in-out infinite;
             line-height: 1;
             display: block;
+            position: relative;
+            z-index: 9999;  
+        }
+
+        /* S'assurer que les images restent en dessous */
+        .player-image {
+            position: relative;
+            z-index: 1;
         }
 
         /* Animation des emojis */
@@ -1456,7 +1466,7 @@
             players.forEach(player => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
-                card.style.position = 'relative';  // Important pour le positionnement des emojis
+                card.style.position = 'relative';  
 
                 // EMOJI SYSTEM - Construction du container d'emojis
                 const emojiContainer = document.createElement('div');
