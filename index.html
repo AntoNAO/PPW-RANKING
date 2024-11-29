@@ -888,6 +888,26 @@
             z-index: 5;
         }
 
+        .player-card[data-rank="2"]::before {
+            content: '🥈';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            z-index: 5;
+        }
+
+        .player-card[data-rank="3"]::before {
+            content: '🥉';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            z-index: 5;
+        }
+
         .player-card.mitb-master::after {
             content: '💼';
             position: absolute;
@@ -1406,23 +1426,18 @@
                 const card = document.createElement('div');
                 card.className = 'player-card';
 
-                // Ajouter l'attribut data-rank pour le TOP 1
+                // Ajouter l'attribut data-rank pour le TOP 1-2-3
                 if (player.rank === 1) {
                     card.setAttribute('data-rank', '1');
+                } else if (player.rank === 2) {
+                    card.setAttribute('data-rank', '2');
+                } else if (player.rank === 3) {
+                    card.setAttribute('data-rank', '3');
                 }
 
                 // Effets spéciaux - Money in the Bank en premier
                 if (player.name === 'JASON' || player.name === 'Jason') {
                     card.classList.add('mitb-master');
-                }
-
-                // Appliquer les effets de rang
-                if (player.rank === 1) {
-                    card.classList.add('rank-1');
-                } else if (player.rank === 2) {
-                    card.classList.add('rank-2');
-                } else if (player.rank === 3) {
-                    card.classList.add('rank-3');
                 }
 
                 // Autres effets spéciaux
@@ -1433,56 +1448,25 @@
                     card.classList.add('all-time-champion');
                 }
 
-                // Vérifier les badges pour l'emoji MITB
-                const hasMITBBadge = player.achievements && player.achievements.some(
-                    achievement => achievement.title === 'Mr. Money in the Bank'
-                );
-
                 card.innerHTML = `
                     <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
                          onerror="this.src='default-player.jpg'">
+                    <div class="player-info">
+                        <h3 class="player-name">
+                            ${player.name}
+                            ${player.totalPoints === maxTotalPoints ? '👑' : ''}
+                            ${player.plePoints === maxPlePoints ? '🏆' : ''}
+                        </h3>
+                        <p class="player-points">Points: ${player.totalPoints}</p>
+                        <p class="player-rank">Rang: ${player.rank}</p>
+                    </div>
                 `;
 
                 container.appendChild(card);
 
-                // Ajouter l'événement click pour la modal
+                // Modal click event
                 card.addEventListener('click', function() {
-                    const modal = document.getElementById('player-modal');
-                    const playerDetails = document.getElementById('player-details');
-                    
-                    let achievementsHtml = '';
-                    if (player.achievements && player.achievements.length > 0) {
-                        achievementsHtml = `
-                            <div class="achievements-section">
-                                <h3>Badges</h3>
-                                <div class="achievements-grid">
-                                    ${player.achievements.map(achievement => `
-                                        <div class="achievement-item" title="${achievement.description}">
-                                            <img src="${achievement.imageUrl}" alt="${achievement.title}">
-                                            <span>${achievement.title}</span>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    playerDetails.innerHTML = `
-                        <h2>${player.name}</h2>
-                        <div class="player-stats">
-                            <div class="stat-card">
-                                <div class="stat-value">${player.totalPoints}</div>
-                                <div class="stat-label">Points Totaux</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value">${player.seasonPoints}</div>
-                                <div class="stat-label">Points Saison</div>
-                            </div>
-                        </div>
-                        ${achievementsHtml}
-                    `;
-
-                    modal.style.display = 'block';
+                    showPlayerModal(player);
                 });
             });
         }
