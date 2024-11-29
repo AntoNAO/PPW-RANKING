@@ -398,7 +398,7 @@
             box-shadow: 
                 0 0 20px #00bfff,
                 0 0 35px #00bfff,
-                0 0 50px #00bfff;
+                0 0 50px #0099ff;
             animation: diamondGlow 2s infinite;
             z-index: 4;
             position: relative;
@@ -1294,26 +1294,28 @@
                     card.setAttribute('data-rank', '3');
                 }
 
-                // Appliquer les effets de rang
+                // Effets spéciaux - ALL TIME en premier (priorité la plus haute)
+                if (player.totalPoints === maxTotalPoints) {
+                    card.classList.add('all-time-champion');
+                }
+
+                // Effets spéciaux - PLE Leader ensuite
+                if (player.plePoints === maxPlePoints) {
+                    card.classList.add('ple-leader');
+                }
+
+                // Effets spéciaux - Money in the Bank ensuite
+                if (player.name === 'JASON' || player.name === 'Jason') {
+                    card.classList.add('mitb-master');
+                }
+
+                // Effets de rang en dernier (priorité la plus basse)
                 if (player.rank === 1) {
                     card.classList.add('rank-1');
                 } else if (player.rank === 2) {
                     card.classList.add('rank-2');
                 } else if (player.rank === 3) {
                     card.classList.add('rank-3');
-                }
-
-                // Effets spéciaux - Money in the Bank en premier
-                if (player.name === 'JASON' || player.name === 'Jason') {
-                    card.classList.add('mitb-master');
-                }
-
-                // Autres effets spéciaux
-                if (player.plePoints === maxPlePoints) {
-                    card.classList.add('ple-leader');
-                }
-                if (player.totalPoints === maxTotalPoints) {
-                    card.classList.add('all-time-champion');
                 }
 
                 card.innerHTML = `
