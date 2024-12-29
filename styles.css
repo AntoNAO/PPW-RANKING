@@ -39,9 +39,24 @@
     border-radius: 5px;
     margin-bottom: 10px;
     background: rgba(255, 255, 255, 0.1);
+    color: #888; /* Texte plus gris */
 }
 
 .badge-container p {
     margin: 0;
-    color: var(--text-color);
+    color: #888; /* Texte plus gris */
+}
+
+.badges {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.badge-perfect {
+    color: #ffd700;
+}
+
+.badge-streak {
+    color: #ff4d4d;
 }
