@@ -1,0 +1,47 @@
+:root {
+    --primary-color: #86b478;
+    --secondary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --gold: #ffd700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+    --card-bg: #2a2a2a;
+    
+    /* Couleurs des auras - NE PAS MODIFIER */
+    --aura-alltime: #00bfff;
+    --aura-alltime-glow: #0099ff;
+    --aura-ple: #ff4d4d;
+    --aura-ple-glow: #ff8533;
+    --aura-mitb: #00A36C;
+}
+
+/* Thème clair */
+[data-theme="light"] {
+    --primary-color: #75a067;
+    --secondary-color: #ffffff;
+    --text-color: #000000;
+    --card-bg: #f5f5f5;
+}
+
+/* Styles pour les badges grisés */
+.badge {
+    font-size: 2em;
+    margin-right: 10px;
+    filter: grayscale(100%);
+}
+
+.badge-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.badge-container p {
+    margin: 0;
+    color: var(--text-color);
+}
