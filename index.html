@@ -1292,6 +1292,36 @@
             color: var(--primary-color);
         }
         /* FIN CARD INTERACTION SYSTEM */
+
+        /* Styles pour les badges grisés */
+        .badge {
+            font-size: 2em;
+            margin-right: 10px;
+            filter: grayscale(100%);
+        }
+
+        .badge-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid var(--text-color);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .badge-container p {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .badge-perfect {
+            color: #ffd700;
+        }
+
+        .badge-streak {
+            color: #ff4d4d;
+        }
     </style>
 </head>
 <body>
@@ -1585,7 +1615,7 @@
                             </div>
                             <div class="badge-container">
                                 <i class="fas fa-star badge badge-perfect"></i>
-                                <p>🌟 ON_FIRE : 5 bonnes prédictions consécutives</p>
+                                <p>🌟 ON FIRE : 5 bonnes prédictions consécutives</p>
                             </div>
                             <div class="badge-container">
                                 <i class="fas fa-snowflake badge badge-streak"></i>
