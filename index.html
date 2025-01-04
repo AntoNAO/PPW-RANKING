@@ -1325,24 +1325,6 @@
     </style>
 </head>
 <body>
-    <!-- Hub d'arrivée -->
-    <div id="landing-hub" class="modal">
-        <div class="modal-content">
-            <h2>Bienvenue sur PPW</h2>
-            <div class="hub-buttons">
-                <a href="login.html" class="button">
-                    <i class="fas fa-sign-in-alt"></i> Se connecter
-                </a>
-                <a href="register.html" class="button">
-                    <i class="fas fa-user-plus"></i> S'inscrire
-                </a>
-                <a href="about.html" class="button">
-                    <i class="fas fa-info-circle"></i> À propos
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal -->
     <div id="rules-modal" class="modal">
         <div class="modal-content rules-content">
@@ -1474,11 +1456,6 @@
     </main>
 
     <script>
-        // Afficher le hub d'arrivée au chargement de la page
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('landing-hub').style.display = 'block';
-        });
-
         function openRulesModal() {
             document.getElementById('rules-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
