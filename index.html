@@ -1589,7 +1589,7 @@
             const modal = document.createElement('div');
             modal.id = 'player-modal';
             modal.className = 'modal';
-            
+
             modal.innerHTML = `
                 <div class="modal-content">
                     <span class="close-modal" onclick="closePlayerModal()">&times;</span>
@@ -1606,53 +1606,16 @@
                             <p style="font-size: 24px; color: var(--text-color);">${player.seasonPoints}</p>
                         </div>
                     </div>
+                    <div style="margin-top: 20px; text-align: center; color: var(--primary-color);">
+                        <h3>Compteur des Titres</h3>
+                        <p><strong>Titres Saison :</strong> ${player.seasonTitles || 1}</p>
+                        <p><strong>Titres All-Time :</strong> ${player.allTimeTitles || 0}</p>
+                        <p><strong>Titres PLE :</strong> ${player.pleTitles || 0}</p>
+                    </div>
                     <div style="text-align: center; margin-top: 20px;">
                         <h3 style="color: var(--primary-color);">Badges</h3>
                         <div class="badges">
-                            <div class="badge-container">
-                                <i class="fas fa-fire badge badge-streak"></i>
-                                <p>🔥 HOT STREAK : 3 bonnes prédictions consécutives</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-star badge badge-perfect"></i>
-                                <p>🌟 ON FIRE : 5 bonnes prédictions consécutives</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-snowflake badge badge-streak"></i>
-                                <p>❄️ ICE COLD : 3 mauvaises prédictions consécutives</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-bullseye badge badge-perfect"></i>
-                                <p>🎯 BONUS MASTER : 3 pronos bonus corrects</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-trophy badge badge-perfect"></i>
-                                <p>🏆 MAJOR PLAYER : Perfect sur un PLE majeur</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-theater-masks badge badge-perfect"></i>
-                                <p>🎭 WRESTLEMANIA SPECIALIST : Perfect score à WrestleMania</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-crown badge badge-perfect"></i>
-                                <p>👑 RUMBLE EXPERT : Prédiction correcte du vainqueur du Royal Rumble</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-sun badge badge-perfect"></i>
-                                <p>☀️ SUMMERSLAM MASTER : Perfect score à SummerSlam</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-shield-alt badge badge-perfect"></i>
-                                <p>🛡️ SURVIVOR CHAMPION : Perfect score à Survivor Series</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-undo badge badge-perfect"></i>
-                                <p>🔄 COMEBACK KID : Remontée de 3 places après une série de mauvais pronos</p>
-                            </div>
-                            <div class="badge-container">
-                                <i class="fas fa-star badge badge-perfect"></i>
-                                <p>🌟 SEASON CHAMPION : Premier du classement de la saison</p>
-                            </div>
+                            <!-- ...existing code for badges... -->
                         </div>
                     </div>
                 </div>
