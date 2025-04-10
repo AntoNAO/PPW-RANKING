@@ -1452,6 +1452,10 @@
     <main>
         <div class="container">
             <div id="rankings-container" class="rankings-grid"></div>
+            <div class="counter-container" id="counter-container">
+                <h2>Compteur des Titres</h2>
+                <!-- Les compteurs seront insérés dynamiquement ici -->
+            </div>
         </div>
     </main>
 
@@ -1688,6 +1692,29 @@
                 }
             });
         }
+    </script>
+    <script type="module">
+        import scores from './data/scores.js';
+
+        const counterContainer = document.getElementById('counter-container');
+
+        const createCounterSection = (title, data) => {
+            const section = document.createElement('div');
+            section.classList.add('counter-category');
+            section.innerHTML = `<h3>${title}</h3>`;
+            const list = document.createElement('ul');
+            for (const [player, score] of Object.entries(data)) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${player.charAt(0).toUpperCase() + player.slice(1)} : ${score}`;
+                list.appendChild(listItem);
+            }
+            section.appendChild(list);
+            return section;
+        };
+
+        counterContainer.appendChild(createCounterSection('Titres PLE', scores.ple));
+        counterContainer.appendChild(createCounterSection('Titres All Time', scores.allTime));
+        counterContainer.appendChild(createCounterSection('Titres Season', scores.season));
     </script>
 </body>
 </html>

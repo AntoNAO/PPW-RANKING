@@ -90,6 +90,32 @@
             border: none;
         }
 
+        .scores-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .scores-category {
+            margin-bottom: 20px;
+        }
+
+        .scores-category h3 {
+            margin-bottom: 10px;
+        }
+
+        .scores-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .scores-category li {
+            margin: 5px 0;
+        }
+
         .theme-switch {
             position: fixed;
             top: 20px;
@@ -139,8 +165,37 @@
     </header>
 
     <div class="form-container">
-        <iframe src="https://forms.gle/j5tXi1P4Bh5eGKgo9" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZig0AEf57W0UJkm8tEKD-GLc_58KNIH8VsyMwcyqBe0akSA/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
     </div>
+
+    <div class="scores-container" id="scores-container">
+        <h2>Scores des Titres</h2>
+        <!-- Les scores seront insérés dynamiquement ici -->
+    </div>
+
+    <script type="module">
+        import scores from './data/scores.js';
+
+        const scoresContainer = document.getElementById('scores-container');
+
+        const createScoreSection = (title, data) => {
+            const section = document.createElement('div');
+            section.classList.add('scores-category');
+            section.innerHTML = `<h3>${title}</h3>`;
+            const list = document.createElement('ul');
+            for (const [player, score] of Object.entries(data)) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${player.charAt(0).toUpperCase() + player.slice(1)} : ${score}`;
+                list.appendChild(listItem);
+            }
+            section.appendChild(list);
+            return section;
+        };
+
+        scoresContainer.appendChild(createScoreSection('Titres PLE', scores.ple));
+        scoresContainer.appendChild(createScoreSection('Titres All Time', scores.allTime));
+        scoresContainer.appendChild(createScoreSection('Titres Season', scores.season));
+    </script>
 
     <script>
         // Mode clair/sombre
