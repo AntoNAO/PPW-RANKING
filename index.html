@@ -1026,6 +1026,8 @@
             margin-bottom: 2rem;
             width: 100%;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .site-logo {
@@ -1033,6 +1035,8 @@
             height: auto;
             display: block;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         @media (max-width: 1024px) {
@@ -1045,282 +1049,6 @@
             .site-logo {
                 width: 300px;
             }
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
-            padding: 1rem 0;
-            width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .next-ple {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            height: 100%;
-        }
-
-        .next-ple {
-            text-align: center;
-        }
-
-        .next-ple img {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-        }
-
-        .next-ple h2 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .next-ple-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        .next-ple-date {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            color: #ffffff;
-        }
-
-        .countdown {
-            margin-top: 1rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        /* Styles pour la modal des cartes */
-        .player-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            overflow: auto;
-        }
-
-        .player-modal-content {
-            position: relative;
-            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-            margin: 5% auto;
-            padding: 2rem;
-            width: 80%;
-            max-width: 800px;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .player-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin: 0.5rem 0;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .achievements-section {
-            margin-top: 2rem;
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .achievement-card {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            margin: 10px;
-            flex: 1;
-            min-width: 200px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .achievement-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-title {
-            font-size: 0.9rem;
-            color: var(--primary-color);
-        }
-
-        .achievement-days {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .close-player-modal {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 2rem;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-player-modal:hover {
-            color: var(--primary-color);
-        }
-
-        .player-name-title {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .achievement-card {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            margin: 10px;
-            flex: 1;
-            min-width: 200px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .achievement-image {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50px;
-            margin-bottom: 10px;
-        }
-
-        .achievement-icon {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        /* CARD INTERACTION SYSTEM - DO NOT MODIFY */
-        .player-card {
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .player-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            overflow: auto;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: var(--card-bg);
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--text-color);
-            cursor: pointer;
-        }
-
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
-        /* FIN CARD INTERACTION SYSTEM */
-
-        /* Styles pour les badges grisés */
-        .badge {
-            font-size: 2em;
-            margin-right: 10px;
-            filter: grayscale(100%);
-        }
-
-        .badge-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            border: 1px solid var(--text-color);
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .badge-container p {
-            margin: 0;
-            color: rgba(255, 255, 255, 0.3); /* Texte plus grisé */
-        }
-
-        .badge-perfect {
-            color: #ffd700;
-        }
-
-        .badge-streak {
-            color: #ff4d4d;
         }
     </style>
 </head>
@@ -1340,7 +1068,6 @@
                     <li>PERFECT = 1 point supplémentaire</li>
                 </ul>
             </div>
-
             <div class="rules-section">
                 <h3>Classement Saisonnier</h3>
                 <p>Le premier du classement après chaque PLE devient CHAMPION PPW et obtient :</p>
@@ -1350,7 +1077,6 @@
                 </ul>
                 <p>Le dernier du classement peut annuler le pronostic d'un joueur (sauf top 3)</p>
             </div>
-
             <div class="rules-section">
                 <h3>Classement All Time</h3>
                 <p>Le premier devient l'UNDISPUTED ALL TIME PPW CHAMPION :</p>
@@ -1359,13 +1085,11 @@
                     <li>Effectif après Money in the Bank</li>
                 </ul>
             </div>
-
             <div class="rules-section">
                 <h3>Champion PLE</h3>
                 <p>Le meilleur score sur un PLE devient Champion PLE</p>
                 <p>En cas d'égalité, le mieux classé l'emporte</p>
             </div>
-
             <div class="rules-section">
                 <h3>Money in the Bank</h3>
                 <ul>
@@ -1376,7 +1100,6 @@
                     <li>Expire à WrestleMania (-5 points de pénalité)</li>
                 </ul>
             </div>
-
             <div class="rules-section">
                 <h3>Royal Rumble</h3>
                 <ul>
@@ -1385,7 +1108,6 @@
                     <li>Champion actuel : +2 points bonus</li>
                 </ul>
             </div>
-
             <div class="rules-section">
                 <h3>PLE Majeurs</h3>
                 <p>Points doublés pour WrestleMania, SummerSlam, Royal Rumble, Survivor Series :</p>
@@ -1397,7 +1119,6 @@
                     <li>Perfect = 2 points bonus</li>
                 </ul>
             </div>
-
             <div class="rules-section">
                 <h3>Champion Saisonnier</h3>
                 <ul>
@@ -1422,10 +1143,15 @@
     </div>
 
     <header class="main-header">
-        <div class="logo-section">
-            <img src="assets/logo.png" alt="PPW Logo" class="site-logo">
+        <div class="logo-section" style="position: relative; overflow: hidden;">
+            <!-- Vidéo en arrière-plan -->
+            <video id="background-video" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                <source src="assets/video1.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas les vidéos HTML5.
+            </video>
+            <!-- Logo -->
+            <img src="assets/logo.png" alt="PPW Logo" class="site-logo" style="position: relative; z-index: 1;">
         </div>
-
         <div class="nav-buttons">
             <a href="participate.html" class="button">
                 <i class="fas fa-pen-to-square"></i> Participer aux pronostics
@@ -1435,7 +1161,6 @@
             </button>
             <a href="history.html" class="button history-button">Historique des PLE</a>
         </div>
-
         <div class="content-section">
             <div class="next-ple">
                 <h2>Prochain PLE</h2>
@@ -1484,11 +1209,10 @@
         function displayRankings(players, maxTotalPoints, maxPlePoints) {
             const container = document.getElementById('rankings-container');
             container.innerHTML = '';
-
             players.forEach(player => {
                 const card = document.createElement('div');
                 card.className = 'player-card';
-                card.style.position = 'relative';  
+                card.style.position = 'relative';
 
                 /* AURA SYSTEM - Application des auras */
                 if (player.totalPoints === maxTotalPoints) {
@@ -1531,7 +1255,6 @@
 
                 /* CARD INTERACTION SYSTEM - Ajout de l'événement de clic */
                 card.addEventListener('click', () => showPlayerModal(player));
-
                 container.appendChild(card);
             });
         }
@@ -1681,7 +1404,6 @@
                     </div>
                 </div>
             `;
-
             document.body.appendChild(modal);
             modal.style.display = 'block';
 
@@ -1692,12 +1414,26 @@
                 }
             });
         }
+
+        const videoElement = document.getElementById('background-video');
+        const videoSources = [
+            'assets/video1.mp4',
+            'assets/video2.mp4',
+            'assets/video3.mp4'
+        ];
+        let currentVideoIndex = 0;
+
+        videoElement.addEventListener('ended', () => {
+            // Passer à la vidéo suivante
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+            videoElement.src = videoSources[currentVideoIndex];
+            videoElement.play();
+        });
     </script>
     <script type="module">
         import scores from './data/scores.js';
 
         const counterContainer = document.getElementById('counter-container');
-
         const createCounterSection = (title, data) => {
             const section = document.createElement('div');
             section.classList.add('counter-category');
