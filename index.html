@@ -857,6 +857,12 @@
             }
         }
 
+        .badge-disabled {
+            color: gray;
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
         .container {
             max-width: 100%;
             margin: 0 auto;
@@ -1028,6 +1034,17 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            height: 100vh; /* La vidéo occupe toute la hauteur de l'écran */
+        }
+
+        #background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Assurez-vous que la vidéo est derrière tous les autres éléments */
         }
 
         .site-logo {
@@ -1036,7 +1053,7 @@
             display: block;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Le logo reste visible au-dessus de la vidéo */
         }
 
         @media (max-width: 1024px) {
@@ -1335,71 +1352,51 @@
                             <p style="font-size: 24px; color: var(--text-color);">${player.seasonPoints}</p>
                         </div>
                     </div>
-                    <div style="margin-top: 20px; text-align: center; color: var(--primary-color);">
-                        <h3>Compteur des Titres</h3>
-                        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
-                            <div style="text-align: center;">
-                                <img src="assets/icons/season_champion.png" alt="Season Champion" 
-                                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-                                <p><strong>Titres Saison :</strong> ${player.seasonTitles || 0}</p>
-                            </div>
-                            <div style="text-align: center;">
-                                <img src="assets/icons/all_time_champion.png" alt="All Time Champion" 
-                                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-                                <p><strong>Titres All-Time :</strong> ${player.allTimeTitles || 0}</p>
-                            </div>
-                            <div style="text-align: center;">
-                                <img src="assets/icons/ple_champion.png" alt="PLE Champion" 
-                                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-                                <p><strong>Titres PLE :</strong> ${player.pleTitles || 0}</p>
-                            </div>
-                        </div>
-                    </div>
                     <div style="text-align: center; margin-top: 20px;">
                         <h3 style="color: var(--primary-color);">Badges</h3>
                         <div class="badges">
                             <div class="badge-container">
-                                <i class="fas fa-fire badge badge-streak"></i>
+                                <i class="fas fa-fire badge badge-streak badge-disabled"></i>
                                 <p>🔥 HOT STREAK : 3 bonnes prédictions consécutives</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-star badge badge-perfect"></i>
+                                <i class="fas fa-star badge badge-perfect badge-disabled"></i>
                                 <p>🌟 ON FIRE : 5 bonnes prédictions consécutives</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-snowflake badge badge-streak"></i>
+                                <i class="fas fa-snowflake badge badge-streak badge-disabled"></i>
                                 <p>❄️ ICE COLD : 3 mauvaises prédictions consécutives</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-bullseye badge badge-perfect"></i>
+                                <i class="fas fa-bullseye badge badge-perfect badge-disabled"></i>
                                 <p>🎯 BONUS MASTER : 3 pronos bonus corrects</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-trophy badge badge-perfect"></i>
+                                <i class="fas fa-trophy badge badge-perfect badge-disabled"></i>
                                 <p>🏆 MAJOR PLAYER : Perfect sur un PLE majeur</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-theater-masks badge badge-perfect"></i>
+                                <i class="fas fa-theater-masks badge badge-perfect badge-disabled"></i>
                                 <p>🎭 WRESTLEMANIA SPECIALIST : Perfect score à WrestleMania</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-crown badge badge-perfect"></i>
+                                <i class="fas fa-crown badge badge-perfect badge-disabled"></i>
                                 <p>👑 RUMBLE EXPERT : Prédiction correcte du vainqueur du Royal Rumble</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-sun badge badge-perfect"></i>
+                                <i class="fas fa-sun badge badge-perfect badge-disabled"></i>
                                 <p>☀️ SUMMERSLAM MASTER : Perfect score à SummerSlam</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-shield-alt badge badge-perfect"></i>
+                                <i class="fas fa-shield-alt badge badge-perfect badge-disabled"></i>
                                 <p>🛡️ SURVIVOR CHAMPION : Perfect score à Survivor Series</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-undo badge badge-perfect"></i>
+                                <i class="fas fa-undo badge badge-perfect badge-disabled"></i>
                                 <p>🔄 COMEBACK KID : Remontée de 3 places après une série de mauvais pronos</p>
                             </div>
                             <div class="badge-container">
-                                <i class="fas fa-star badge badge-perfect"></i>
+                                <i class="fas fa-star badge badge-perfect badge-disabled"></i>
                                 <p>🌟 SEASON CHAMPION : Premier du classement de la saison</p>
                             </div>
                         </div>
