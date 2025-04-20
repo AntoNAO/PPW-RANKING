@@ -1162,7 +1162,7 @@
     <header class="main-header">
         <div class="logo-section" style="position: relative; overflow: hidden;">
             <!-- Vidéo en arrière-plan -->
-            <video id="background-video" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
+            <video id="background-video" autoplay muted playsinline controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
                 <source src="assets/video1.mp4" type="video/mp4">
                 <source src="assets/video2.mp4" type="video/mp4">
                 <source src="assets/video3.mp4" type="video/mp4">
@@ -1460,8 +1460,16 @@
         ];
         let currentVideoIndex = 0;
 
+        // Passer à la vidéo suivante lorsque la vidéo se termine
         videoElement.addEventListener('ended', () => {
-            // Passer à la vidéo suivante
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+            videoElement.src = videoSources[currentVideoIndex];
+            videoElement.play();
+        });
+
+        // Gestion des erreurs de chargement
+        videoElement.addEventListener('error', () => {
+            console.error(`Erreur lors du chargement de la vidéo : ${videoSources[currentVideoIndex]}`);
             currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
             videoElement.src = videoSources[currentVideoIndex];
             videoElement.play();
