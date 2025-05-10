@@ -1277,41 +1277,6 @@
                 card.addEventListener('click', () => showPlayerModal(player));
                 container.appendChild(card);
             });
-
-            // Ajout des cartes pour les joueurs spécifiques
-            const additionalPlayers = [
-                { name: 'Blemzer', imageUrl: 'assets/players/blemzer.jpg', totalPoints: 120, seasonPoints: 45 },
-                { name: 'Shoootix', imageUrl: 'assets/players/shoootix.jpg', totalPoints: 98, seasonPoints: 38 },
-                { name: 'Neozy', imageUrl: 'assets/players/neozy.jpg', totalPoints: 110, seasonPoints: 50 },
-                { name: 'Petrelou', imageUrl: 'assets/players/petrelou.jpg', totalPoints: 85, seasonPoints: 30 }
-            ];
-
-            additionalPlayers.forEach(player => {
-                const card = document.createElement('div');
-                card.className = 'player-card';
-                card.style.position = 'relative';
-
-                const cardContent = document.createElement('div');
-                cardContent.innerHTML = `
-                    <img src="${player.imageUrl}" alt="${player.name}" class="player-image" 
-                         onerror="this.src='default-player.jpg'">
-                    <div class="player-info">
-                        <h3 class="player-name">${player.name}</h3>
-                        <div class="player-stats">
-                            <div class="stat-card">
-                                <div class="stat-value">${player.totalPoints}</div>
-                                <div class="stat-label">Points Totaux</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value">${player.seasonPoints}</div>
-                                <div class="stat-label">Points Saison</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                card.appendChild(cardContent);
-                container.appendChild(card);
-            });
         }
 
         function closePlayerModal() {
