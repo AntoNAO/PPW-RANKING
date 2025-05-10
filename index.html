@@ -1044,7 +1044,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1; /* Assurez-vous que la vidéo est derrière tous les autres éléments */
+            z-index: -2; /* Assurez-vous que la vidéo est derrière tous les autres éléments */
         }
 
         .site-logo {
@@ -1162,17 +1162,15 @@
     <header class="main-header">
         <div class="logo-section" style="position: relative; overflow: hidden;">
             <!-- Vidéo en arrière-plan -->
-            <video id="background-video" autoplay muted playsinline controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
+            <video id="background-video" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
                 <source src="assets/video1.mp4" type="video/mp4">
-                <source src="assets/video2.mp4" type="video/mp4">
-                <source src="assets/video3.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas les vidéos HTML5.
             </video>
             <!-- Logo -->
             <img src="assets/logo.png" alt="PPW Logo" class="site-logo" style="position: relative; z-index: 1;">
         </div>
         <div class="nav-buttons">
-            <a href="https://forms.gle/6B3jFQyyPh3RpZqD7" class="button">
+            <a href="https://forms.gle/J4C4uC6F6XsnrH1Z8" class="button">
                 <i class="fas fa-pen-to-square"></i> Participer aux pronostics
             </a>
             <button onclick="openRulesModal()" class="button">
