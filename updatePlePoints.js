@@ -3,24 +3,26 @@ const filePath = './rankings.json';
 
 // Liste des mises à jour pour chaque joueur
 const updates = [
-    { name: 'JASON', plePoints: 0, seasonPoints: 0, totalPoints: 107 },
+    { name: 'JASON', plePoints: 0, seasonPoints: 3, totalPoints: 110 },
     { name: 'SHOOOTIX', plePoints: 0, seasonPoints: 0, totalPoints: 0 },
     { name: 'BLEMZER', plePoints: 0, seasonPoints: 0, totalPoints: 0 },
     { name: 'NEOZY', plePoints: 0, seasonPoints: 0, totalPoints: 0 },
-    { name: 'ANTO', plePoints: 0, seasonPoints: 0, totalPoints: 108 },
-    { name: 'QUENTIN', plePoints: 0, seasonPoints: 0, totalPoints: 102 },
-    { name: 'BRANDON', plePoints: 0, seasonPoints: 0, totalPoints: 88 },
-    { name: 'AURELIEN', plePoints: 0, seasonPoints: 5, totalPoints: 0 },
-    { name: 'MATHIS', plePoints: 0, seasonPoints: 0, totalPoints: 102 },
-    { name: 'NEK', plePoints: 0, seasonPoints: 0, totalPoints: 99 },
-    { name: 'NATHAN', plePoints: 0, seasonPoints: 0, totalPoints: 67 },
+    { name: 'ANTO', plePoints: 0, seasonPoints: 4, totalPoints: 112 },
+    { name: 'QUENTIN', plePoints: 0, seasonPoints: 4, totalPoints: 106 },
+    { name: 'BRANDON', plePoints: 0, seasonPoints: 6, totalPoints: 93 },
+    { name: 'AURELIEN', plePoints: 0, seasonPoints: 8, totalPoints: 120 },
+    { name: 'MATHIS', plePoints: 0, seasonPoints: 4, totalPoints: 106 },
+    { name: 'NEK', plePoints: 0, seasonPoints: 5, totalPoints: 103 },
+    { name: 'NATHAN', plePoints: 0, seasonPoints: 4, totalPoints: 71 },
     { name: 'ONI', plePoints: 0, seasonPoints: 0, totalPoints: 54 },
-    { name: 'MIZOU', plePoints: 1, seasonPoints: 0, totalPoints: 50 },
+    { name: 'MIZOU', plePoints: 1, seasonPoints: 6, totalPoints: 55 },
     { name: 'BEN', plePoints: 0, seasonPoints: 0, totalPoints: 38 },
     { name: 'LUDOPOUL', plePoints: 0, seasonPoints: 0, totalPoints: 56 },
     { name: 'RYOLAIT12', plePoints: 0, seasonPoints: 0, totalPoints: 29 },
     { name: 'ELCHAPO', plePoints: 0, seasonPoints: 0, totalPoints: 10 },
-    { name: 'PETRELOU', plePoints: 0, seasonPoints: 0, totalPoints: 20 },
+    { name: 'PETRELOU', plePoints: 0, seasonPoints: 4, totalPoints: 21 },
+    { name: 'ANGELITO', plePoints: 0, seasonPoints: 4, totalPoints: 4 },
+    { name: 'FLO', plePoints: 0, seasonPoints: 6, totalPoints: 5 },
 ];
 
 // Charger le fichier JSON
