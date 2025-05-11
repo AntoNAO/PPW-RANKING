@@ -10,7 +10,7 @@ const updates = [
     { name: 'ANTO', plePoints: 0, seasonPoints: 4, totalPoints: 112 },
     { name: 'QUENTIN', plePoints: 0, seasonPoints: 4, totalPoints: 106 },
     { name: 'BRANDON', plePoints: 0, seasonPoints: 6, totalPoints: 93 },
-    { name: 'AURELIEN', plePoints: 0, seasonPoints: 8, totalPoints: 0 },
+    { name: 'AURELIEN', plePoints: 0, seasonPoints: 8, totalPoints: 120 },
     { name: 'MATHIS', plePoints: 0, seasonPoints: 4, totalPoints: 106 },
     { name: 'NEK', plePoints: 0, seasonPoints: 5, totalPoints: 103 },
     { name: 'NATHAN', plePoints: 0, seasonPoints: 4, totalPoints: 71 },
