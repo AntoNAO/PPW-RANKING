@@ -18,11 +18,71 @@
     ]
   },
   {
+    "name": "FLO",
+    "seasonPoints": 9,
+    "totalPoints": 8,
+    "plePoints": 1,
+    "rank": 2,
+    "imageUrl": "cards/FLO.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "ANTO",
+    "seasonPoints": 9,
+    "totalPoints": 116,
+    "plePoints": 0,
+    "rank": 3,
+    "imageUrl": "cards/ANTO.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 56,
+        "imageUrl": "achievements/ple_champion.png"
+      }
+    ]
+  },
+  {
+    "name": "MIZOU",
+    "seasonPoints": 7,
+    "totalPoints": 0,
+    "plePoints": 0,
+    "rank": 4,
+    "imageUrl": "cards/MIZOU.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "QUENTIN",
+    "seasonPoints": 7,
+    "totalPoints": 108,
+    "plePoints": 0,
+    "rank": 5,
+    "imageUrl": "cards/QUENTIN.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 35,
+        "imageUrl": "achievements/ple_champion.png"
+      }
+    ]
+  },
+  {
     "name": "BRANDON",
     "seasonPoints": 6,
     "totalPoints": 96,
     "plePoints": 0,
-    "rank": 2,
+    "rank": 6,
     "imageUrl": "cards/BRANDON.png",
     "championDays": 0,
     "boostCount": 0,
@@ -41,36 +101,36 @@
     ]
   },
   {
-    "name": "MIZOU",
-    "seasonPoints": 7,
-    "totalPoints": 60,
-    "plePoints": 0,
-    "rank": 3,
-    "imageUrl": "cards/MIZOU.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
-    "name": "FLO",
-    "seasonPoints": 9,
-    "totalPoints": 8,
-    "plePoints": 1,
-    "rank": 4,
-    "imageUrl": "cards/FLO.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
     "name": "NEK",
     "seasonPoints": 6,
     "totalPoints": 107,
     "plePoints": 0,
-    "rank": 5,
+    "rank": 7,
     "imageUrl": "cards/NEK.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "ANGELITO",
+    "seasonPoints": 6,
+    "totalPoints": 8,
+    "plePoints": 0,
+    "rank": 8,
+    "imageUrl": "cards/ANGELITO.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "JASON",
+    "seasonPoints": 6,
+    "totalPoints": 112,
+    "plePoints": 0,
+    "rank": 9,
+    "imageUrl": "cards/JASON.png",
     "championDays": 0,
     "boostCount": 0,
     "pleHistory": [],
@@ -81,7 +141,7 @@
     "seasonPoints": 5,
     "totalPoints": 110,
     "plePoints": 0,
-    "rank": 6,
+    "rank": 10,
     "imageUrl": "cards/MATHIS.png",
     "championDays": 151,
     "boostCount": 1,
@@ -100,47 +160,11 @@
     ]
   },
   {
-    "name": "ANTO",
-    "seasonPoints": 9,
-    "totalPoints": 116,
-    "plePoints": 0,
-    "rank": 7,
-    "imageUrl": "cards/ANTO.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": [
-      {
-        "title": "Champion PLE",
-        "days": 56,
-        "imageUrl": "achievements/ple_champion.png"
-      }
-    ]
-  },
-  {
-    "name": "QUENTIN",
-    "seasonPoints": 7,
-    "totalPoints": 108,
-    "plePoints": 0,
-    "rank": 8,
-    "imageUrl": "cards/QUENTIN.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": [
-      {
-        "title": "Champion PLE",
-        "days": 35,
-        "imageUrl": "achievements/ple_champion.png"
-      }
-    ]
-  },
-  {
     "name": "NATHAN",
     "seasonPoints": 4,
     "totalPoints": 71,
     "plePoints": 0,
-    "rank": 9,
+    "rank": 11,
     "imageUrl": "cards/NATHAN.png",
     "championDays": 0,
     "boostCount": 0,
@@ -152,32 +176,8 @@
     "seasonPoints": 4,
     "totalPoints": 21,
     "plePoints": 0,
-    "rank": 10,
-    "imageUrl": "cards/PETRELOU.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
-    "name": "ANGELITO",
-    "seasonPoints": 6,
-    "totalPoints": 8,
-    "plePoints": 0,
-    "rank": 11,
-    "imageUrl": "cards/ANGELITO.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
-    "name": "JASON",
-    "seasonPoints": 6,
-    "totalPoints": 112,
-    "plePoints": 0,
     "rank": 12,
-    "imageUrl": "cards/JASON.png",
+    "imageUrl": "cards/PETRELOU.png",
     "championDays": 0,
     "boostCount": 0,
     "pleHistory": [],

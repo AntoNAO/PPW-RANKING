@@ -15,7 +15,7 @@ const updates = [
     { name: 'NEK', plePoints: 0, seasonPoints: 6, totalPoints: 107 },
     { name: 'NATHAN', plePoints: 0, seasonPoints: 4, totalPoints: 71 },
     { name: 'ONI', plePoints: 0, seasonPoints: 0, totalPoints: 54 },
-    { name: 'MIZOU', plePoints: 0, seasonPoints: 7, totalPoints: 60 },
+    { name: 'MIZOU', plePoints: 0, seasonPoints: 7, totalPoints: 0 },
     { name: 'BEN', plePoints: 0, seasonPoints: 0, totalPoints: 38 },
     { name: 'LUDOPOUL', plePoints: 0, seasonPoints: 0, totalPoints: 56 },
     { name: 'RYOLAIT12', plePoints: 0, seasonPoints: 0, totalPoints: 29 },
@@ -46,6 +46,12 @@ fs.readFile(filePath, 'utf8', (err, data) => {
         } else {
             console.error(`Joueur "${update.name}" introuvable dans le fichier.`);
         }
+    });
+
+    // Trier et réattribuer les rangs
+    rankings.sort((a, b) => b.seasonPoints - a.seasonPoints);
+    rankings.forEach((player, index) => {
+        player.rank = index + 1;
     });
 
     // Sauvegarder les modifications dans le fichier JSON
