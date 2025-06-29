@@ -1,7 +1,7 @@
 [
   {
     "name": "AURELIEN",
-    "seasonPoints": 13,
+    "seasonPoints": 17,
     "totalPoints": 0,
     "plePoints": 0,
     "rank": 1,
@@ -18,23 +18,11 @@
     ]
   },
   {
-    "name": "FLO",
-    "seasonPoints": 9,
-    "totalPoints": 8,
-    "plePoints": 1,
-    "rank": 2,
-    "imageUrl": "cards/FLO.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
     "name": "ANTO",
-    "seasonPoints": 9,
+    "seasonPoints": 13,
     "totalPoints": 116,
     "plePoints": 0,
-    "rank": 3,
+    "rank": 2,
     "imageUrl": "cards/ANTO.png",
     "championDays": 0,
     "boostCount": 0,
@@ -48,12 +36,12 @@
     ]
   },
   {
-    "name": "MIZOU",
-    "seasonPoints": 7,
-    "totalPoints": 0,
+    "name": "FLO",
+    "seasonPoints": 9,
+    "totalPoints": 8,
     "plePoints": 0,
-    "rank": 4,
-    "imageUrl": "cards/MIZOU.png",
+    "rank": 3,
+    "imageUrl": "cards/FLO.png",
     "championDays": 0,
     "boostCount": 0,
     "pleHistory": [],
@@ -61,10 +49,10 @@
   },
   {
     "name": "QUENTIN",
-    "seasonPoints": 7,
+    "seasonPoints": 9,
     "totalPoints": 108,
     "plePoints": 0,
-    "rank": 5,
+    "rank": 4,
     "imageUrl": "cards/QUENTIN.png",
     "championDays": 0,
     "boostCount": 0,
@@ -78,58 +66,11 @@
     ]
   },
   {
-    "name": "BRANDON",
-    "seasonPoints": 6,
-    "totalPoints": 96,
-    "plePoints": 0,
-    "rank": 6,
-    "imageUrl": "cards/BRANDON.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [
-      {
-        "name": "Crown Jewel 2024",
-        "points": 7
-      }
-    ],
-    "achievements": [
-      {
-        "title": "Champion PLE",
-        "days": 28,
-        "imageUrl": "achievements/ple_champion.png"
-      }
-    ]
-  },
-  {
-    "name": "NEK",
-    "seasonPoints": 6,
-    "totalPoints": 107,
-    "plePoints": 0,
-    "rank": 7,
-    "imageUrl": "cards/NEK.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
-    "name": "ANGELITO",
-    "seasonPoints": 6,
-    "totalPoints": 8,
-    "plePoints": 0,
-    "rank": 8,
-    "imageUrl": "cards/ANGELITO.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
     "name": "JASON",
-    "seasonPoints": 6,
+    "seasonPoints": 9,
     "totalPoints": 112,
     "plePoints": 0,
-    "rank": 9,
+    "rank": 5,
     "imageUrl": "cards/JASON.png",
     "championDays": 0,
     "boostCount": 0,
@@ -138,10 +79,10 @@
   },
   {
     "name": "MATHIS",
-    "seasonPoints": 5,
+    "seasonPoints": 9,
     "totalPoints": 110,
-    "plePoints": 0,
-    "rank": 10,
+    "plePoints": 1,
+    "rank": 6,
     "imageUrl": "cards/MATHIS.png",
     "championDays": 151,
     "boostCount": 1,
@@ -156,6 +97,65 @@
         "title": "Champion WORLD PPW",
         "days": 48,
         "imageUrl": "achievements/world_champion.png"
+      }
+    ]
+  },
+  {
+    "name": "NEK",
+    "seasonPoints": 8,
+    "totalPoints": 107,
+    "plePoints": 0,
+    "rank": 7,
+    "imageUrl": "cards/NEK.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "ANGELITO",
+    "seasonPoints": 8,
+    "totalPoints": 8,
+    "plePoints": 0,
+    "rank": 8,
+    "imageUrl": "cards/ANGELITO.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "MIZOU",
+    "seasonPoints": 7,
+    "totalPoints": 0,
+    "plePoints": 0,
+    "rank": 9,
+    "imageUrl": "cards/MIZOU.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
+    "name": "BRANDON",
+    "seasonPoints": 6,
+    "totalPoints": 96,
+    "plePoints": 0,
+    "rank": 10,
+    "imageUrl": "cards/BRANDON.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [
+      {
+        "name": "Crown Jewel 2024",
+        "points": 7
+      }
+    ],
+    "achievements": [
+      {
+        "title": "Champion PLE",
+        "days": 28,
+        "imageUrl": "achievements/ple_champion.png"
       }
     ]
   },
@@ -184,11 +184,23 @@
     "achievements": []
   },
   {
+    "name": "ELCHAPO",
+    "seasonPoints": 3,
+    "totalPoints": 10,
+    "plePoints": 0,
+    "rank": 13,
+    "imageUrl": "cards/ELCHAPO.png",
+    "championDays": 0,
+    "boostCount": 0,
+    "pleHistory": [],
+    "achievements": []
+  },
+  {
     "name": "ONI",
     "seasonPoints": 0,
     "totalPoints": 54,
     "plePoints": 0,
-    "rank": 13,
+    "rank": 14,
     "imageUrl": "cards/ONI.png",
     "championDays": 0,
     "boostCount": 0,
@@ -200,7 +212,7 @@
     "seasonPoints": 0,
     "totalPoints": 29,
     "plePoints": 0,
-    "rank": 14,
+    "rank": 15,
     "imageUrl": "cards/RYOLAIT12.png",
     "championDays": 0,
     "boostCount": 0,
@@ -218,7 +230,7 @@
     "seasonPoints": 0,
     "totalPoints": 38,
     "plePoints": 0,
-    "rank": 15,
+    "rank": 16,
     "imageUrl": "cards/BEN.png",
     "championDays": 0,
     "boostCount": 0,
@@ -230,20 +242,8 @@
     "seasonPoints": 0,
     "totalPoints": 56,
     "plePoints": 0,
-    "rank": 16,
-    "imageUrl": "cards/LUDOPOUL.png",
-    "championDays": 0,
-    "boostCount": 0,
-    "pleHistory": [],
-    "achievements": []
-  },
-  {
-    "name": "ELCHAPO",
-    "seasonPoints": 0,
-    "totalPoints": 10,
-    "plePoints": 0,
     "rank": 17,
-    "imageUrl": "cards/ELCHAPO.png",
+    "imageUrl": "cards/LUDOPOUL.png",
     "championDays": 0,
     "boostCount": 0,
     "pleHistory": [],
