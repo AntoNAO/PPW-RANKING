@@ -115,23 +115,23 @@
         @keyframes goldGlow {
             0% {
                 box-shadow: 
-                    0 0 15px #ffd700,
-                    0 0 25px #ffd700,
-                    0 0 35px #ffd700;
+                    0 0 15px var(--gold),
+                    0 0 25px var(--gold),
+                    0 0 35px var(--gold);
                 transform: scale(1);
             }
             50% {
                 box-shadow: 
-                    0 0 20px #ffd700,
-                    0 0 30px #ffd700,
-                    0 0 40px #ffd700;
+                    0 0 20px var(--gold),
+                    0 0 30px var(--gold),
+                    0 0 40px var(--gold);
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
-                    0 0 15px #ffd700,
-                    0 0 25px #ffd700,
-                    0 0 35px #ffd700;
+                    0 0 15px var(--gold),
+                    0 0 25px var(--gold),
+                    0 0 35px var(--gold);
                 transform: scale(1);
             }
         }
@@ -147,15 +147,15 @@
             50% {
                 box-shadow: 
                     0 0 20px var(--silver),
-                    0 0 30px var(--silver),
-                    0 0 40px var(--silver);
+                    0 0 30px var,--silver,
+                    0 0 40px var,--silver;
                 transform: scale(1.02);
             }
             100% {
                 box-shadow: 
-                    0 0 15px var(--silver),
-                    0 0 25px var(--silver),
-                    0 0 35px var(--silver);
+                    0 0 15px var,--silver,
+                    0 0 25px var,--silver,
+                    0 0 35px var,--silver;
                 transform: scale(1);
             }
         }
@@ -227,8 +227,8 @@
             100% {
                 box-shadow: 
                     0 0 15px var(--aura-alltime),
-                    0 0 25px var(--aura-alltime),
-                    0 0 35px var(--aura-alltime-glow) !important;
+                    0 0 25px var,--aura-alltime,
+                    0 0 35px var,--aura-alltime-glow !important;
                 transform: scale(1);
             }
         }
@@ -283,10 +283,31 @@
 
         @keyframes goldGlow {
             0% {
-                box-shadow: 
+                box-shadow:                 // ...existing code...
+                function updateCountdown() {
+                    const startDate = new Date('2025-08-03T00:00:00');
+                    const endDate = new Date('2025-08-04T04:30:00');
+                    const now = new Date();
+                
+                    let countdownText = '';
+                    if (now < startDate) {
+                        const diff = startDate - now;
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                        countdownText = `Débute dans ${days} jours ${hours}h ${minutes}m`;
+                    } else if (now >= startDate && now <= endDate) {
+                        countdownText = "L'événement est en cours !";
+                    } else {
+                        countdownText = "L'événement est terminé !";
+                    }
+                
+                    document.getElementById('countdown').innerHTML = countdownText;
+                }
+                // ...existing code...
                     0 0 15px var(--gold),
-                    0 0 25px var,--gold,
-                    0 0 35px var,--gold;
+                    0 0 25px var(--gold),
+                    0 0 35px var(--gold);
                 transform: scale(1);
             }
             50% {
